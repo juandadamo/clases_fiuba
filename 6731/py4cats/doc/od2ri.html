@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module od2ri</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>od2ri</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/od2ri.py">/users/schrei_f/src/py4CAtS/lite/src/od2ri.py</a></font></td></tr></table>
+    <p><tt>od2ri<br>
+&nbsp;(absorption)&nbsp;optical&nbsp;depth&nbsp;to&nbsp;radiation&nbsp;intensity&nbsp;---&nbsp;Schwarzschild&nbsp;solver<br>
+&nbsp;<br>
+&nbsp;usage:<br>
+&nbsp;od2ri&nbsp;&nbsp;&nbsp;[options]&nbsp;&nbsp;opticalDepthFile<br>
+&nbsp;<br>
+&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;input,output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;radiances&nbsp;(if&nbsp;not&nbsp;given:&nbsp;write&nbsp;to&nbsp;StdOut)<br>
+&nbsp;<br>
+--BoA&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bottom-of-atmosphere&nbsp;altitude&nbsp;[km]&nbsp;&nbsp;(read&nbsp;opt.depth&nbsp;only&nbsp;for&nbsp;levels&nbsp;above)<br>
+--ToA&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top-of-atmosphere&nbsp;altitude&nbsp;[km]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(read&nbsp;opt.depth&nbsp;only&nbsp;for&nbsp;levels&nbsp;below)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;no&nbsp;interpolation,&nbsp;i.e.&nbsp;integration&nbsp;starts/stops&nbsp;at&nbsp;the&nbsp;next&nbsp;level&nbsp;above/below&nbsp;BoA/ToA<br>
+&nbsp;-C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag&nbsp;indicating&nbsp;that&nbsp;input&nbsp;optical&nbsp;depth&nbsp;is&nbsp;cumulative&nbsp;(default:&nbsp;difference/delta&nbsp;od)<br>
+&nbsp;-q&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quadrature&nbsp;method:&nbsp;&nbsp;trapezoid&nbsp;with&nbsp;default&nbsp;'T'&nbsp;for&nbsp;"B&nbsp;linear&nbsp;in&nbsp;tau"&nbsp;or&nbsp;'E'&nbsp;for&nbsp;"B&nbsp;exponential&nbsp;in&nbsp;tau"<br>
+&nbsp;-q&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quadrature&nbsp;method:&nbsp;&nbsp;default&nbsp;'T'=trapez=linear&nbsp;in&nbsp;tau,&nbsp;'E'=exponential&nbsp;in&nbsp;tau<br>
+&nbsp;-T&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;surface&nbsp;temperature&nbsp;[K]&nbsp;&nbsp;(default&nbsp;0)<br>
+&nbsp;-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag:&nbsp;verbose<br>
+&nbsp;-x&nbsp;&nbsp;&nbsp;Interval&nbsp;&nbsp;&nbsp;lower,upper&nbsp;wavenumbers&nbsp;(comma&nbsp;separated&nbsp;pair&nbsp;of&nbsp;floats&nbsp;[no&nbsp;blanks!],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;set&nbsp;according&nbsp;to&nbsp;range&nbsp;of&nbsp;optical&nbsp;depth&nbsp;in&nbsp;datafiles)<br>
+&nbsp;-z&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zenith&nbsp;angle&nbsp;(uplooking:&nbsp;0dg,&nbsp;downlooking&nbsp;180dg)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;a&nbsp;horizontal&nbsp;view,&nbsp;i.e.&nbsp;angle=90dg,&nbsp;is&nbsp;not&nbsp;implemented!!!<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;WARNING:<br>
+&nbsp;od2ri&nbsp;&nbsp;does&nbsp;not&nbsp;know&nbsp;the&nbsp;type&nbsp;of&nbsp;optical&nbsp;depth&nbsp;(delta&nbsp;or&nbsp;accumulated&nbsp;...)&nbsp;given&nbsp;in&nbsp;the&nbsp;input&nbsp;file!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===&gt;&nbsp;use&nbsp;the&nbsp;-C&nbsp;flag&nbsp;if&nbsp;you&nbsp;have&nbsp;(ac)cumulated&nbsp;optical&nbsp;depth</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-dod2ri"><strong>dod2ri</strong></a>(dodList, zenithAngle=0.0, tempBack=0.0, bExpTau=False)</dt><dd><tt>Evaluate&nbsp;Schwarzschild&nbsp;integral&nbsp;equation:&nbsp;&nbsp;integrate&nbsp;Planck&nbsp;*&nbsp;exp(-tau)&nbsp;d_tau&nbsp;&nbsp;with&nbsp;tau=opticalDepth.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+&nbsp;<br>
+dodList:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delta&nbsp;(layer)&nbsp;optical&nbsp;depths&nbsp;(a&nbsp;list&nbsp;of&nbsp;odArray's)<br>
+zenithAngle:&nbsp;&nbsp;&nbsp;viewing&nbsp;zenith&nbsp;angle:&nbsp;0dg=uplooking&nbsp;(default)&nbsp;...&nbsp;180dg=downloooking/nadir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;a&nbsp;horizontal&nbsp;view&nbsp;with&nbsp;90dg&nbsp;is&nbsp;not&nbsp;implemented!!!<br>
+tempBack:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background&nbsp;temperature&nbsp;[K],&nbsp;default&nbsp;0<br>
+bExpTau:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag:&nbsp;use&nbsp;B&nbsp;exponential&nbsp;in&nbsp;optical&nbsp;depth&nbsp;approximation,&nbsp;default&nbsp;B&nbsp;linear<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+riArray:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;subclassed&nbsp;numpy&nbsp;array&nbsp;with&nbsp;radiance&nbsp;along&nbsp;with&nbsp;some&nbsp;attributes<br>
+&nbsp;<br>
+NOTE:<br>
+-----<br>
+dod2ri&nbsp;&nbsp;evaluates&nbsp;the&nbsp;Schwarzschild&nbsp;(and&nbsp;Beer)&nbsp;integral&nbsp;from&nbsp;the&nbsp;first&nbsp;to&nbsp;the&nbsp;last&nbsp;altitude,<br>
+i.e.&nbsp;lowest&nbsp;to&nbsp;highest&nbsp;for&nbsp;an&nbsp;uplooking&nbsp;observer&nbsp;(zenith&lt;90dg)&nbsp;and&nbsp;highest&nbsp;to&nbsp;lowest&nbsp;for&nbsp;nadir&nbsp;view.<br>
+If&nbsp;you&nbsp;want&nbsp;radiance&nbsp;for&nbsp;an&nbsp;observer&nbsp;somewhere&nbsp;in&nbsp;between,&nbsp;give&nbsp;only&nbsp;the&nbsp;subset&nbsp;of&nbsp;relevant&nbsp;odArray's.<br>
+However,&nbsp;dod2ri&nbsp;does&nbsp;not&nbsp;consider&nbsp;an&nbsp;observer&nbsp;between&nbsp;the&nbsp;levels&nbsp;(layer&nbsp;bounds).</tt></dd></dl>
+ <dl><dt><a name="-schwarzschild_BexpTau"><strong>schwarzschild_BexpTau</strong></a>(vGrid, dodMatrix, temperature, zenithAngle=0.0, omega=0.0)</dt><dd><tt>Quadrature&nbsp;of&nbsp;Schwarzschild&nbsp;integral&nbsp;over&nbsp;optical&nbsp;depth.<br>
+(equivalent&nbsp;to&nbsp;Planck&nbsp;exponential&nbsp;in&nbsp;optical&nbsp;depth&nbsp;approximation)<br>
+&nbsp;<br>
+For&nbsp;input&nbsp;and&nbsp;output&nbsp;arguments,&nbsp;see&nbsp;schwarzschid_BlinTau</tt></dd></dl>
+ <dl><dt><a name="-schwarzschild_BlinTau"><strong>schwarzschild_BlinTau</strong></a>(vGrid, dodMatrix, temperature, zenithAngle=0.0)</dt><dd><tt>Evaluate&nbsp;Schwarzschild&nbsp;integral&nbsp;equation:&nbsp;&nbsp;integrate&nbsp;Planck&nbsp;*&nbsp;exp(-tau)&nbsp;d_tau&nbsp;&nbsp;with&nbsp;tau=opticalDepth.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+vGrid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber&nbsp;(frequency)&nbsp;grid<br>
+dodMatrix:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delta/differential/layer&nbsp;optical&nbsp;depth&nbsp;"matrix"<br>
+temperature:&nbsp;&nbsp;&nbsp;temperature&nbsp;at&nbsp;the&nbsp;levels&nbsp;(layer&nbsp;bounds)<br>
+zenithAngle:&nbsp;&nbsp;&nbsp;viewing&nbsp;angle:&nbsp;0dg=uplooking,&nbsp;180dg=downloooking/nadir<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+radiance:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intensity&nbsp;in&nbsp;erg/s/(cm^2&nbsp;sr&nbsp;cm-1)&nbsp;as&nbsp;a&nbsp;function&nbsp;of&nbsp;wavenumber<br>
+transmission:&nbsp;&nbsp;total&nbsp;transmission&nbsp;as&nbsp;a&nbsp;function&nbsp;of&nbsp;wavenumber</tt></dd></dl>
+</td></tr></table>
+</body></html>

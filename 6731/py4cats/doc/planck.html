@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module planck</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>planck</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/planck.py">/users/schrei_f/src/py4CAtS/lite/src/planck.py</a></font></td></tr></table>
+    <p><tt>planck.py<br>
+&nbsp;<br>
+usage:<br>
+planck&nbsp;&nbsp;[options]&nbsp;&nbsp;xGrid&nbsp;&nbsp;temperature(s)<br>
+&nbsp;<br>
+compute&nbsp;Planck's&nbsp;black&nbsp;body&nbsp;function&nbsp;as&nbsp;a&nbsp;function&nbsp;of&nbsp;wavenumber&nbsp;(or&nbsp;frequency,&nbsp;wavelength)&nbsp;for&nbsp;given&nbsp;temperature(s).<br>
+&nbsp;<br>
+xGrid:&nbsp;&nbsp;[xStart,]xStop[,xStep]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specification&nbsp;of&nbsp;wavenumber/frequency/wavelength&nbsp;grid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comma&nbsp;separated&nbsp;(no&nbsp;blanks!)&nbsp;list&nbsp;of&nbsp;one,&nbsp;two,&nbsp;or&nbsp;three&nbsp;floats&nbsp;similar&nbsp;to&nbsp;Python's&nbsp;range&nbsp;function:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;xStart&nbsp;argument&nbsp;is&nbsp;omitted,&nbsp;it&nbsp;defaults&nbsp;to&nbsp;0.0;&nbsp;If&nbsp;xStep&nbsp;argument&nbsp;is&nbsp;omitted,&nbsp;it&nbsp;defaults&nbsp;to&nbsp;1.0<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternatively&nbsp;a&nbsp;file&nbsp;can&nbsp;be&nbsp;specified&nbsp;here,&nbsp;the&nbsp;xGrid&nbsp;is&nbsp;then&nbsp;read&nbsp;from&nbsp;the&nbsp;file's&nbsp;first&nbsp;column<br>
+&nbsp;<br>
+temperatures:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comma&nbsp;separated&nbsp;(no&nbsp;blanks!)&nbsp;list&nbsp;of&nbsp;values&nbsp;(Kelvin)<br>
+&nbsp;<br>
+options:<br>
+-c&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character&nbsp;to&nbsp;be&nbsp;used&nbsp;in&nbsp;output&nbsp;(default:&nbsp;'#')<br>
+-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display&nbsp;help<br>
+-m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SI&nbsp;area&nbsp;units&nbsp;&nbsp;(default:&nbsp;&nbsp;cgs&nbsp;area&nbsp;units&nbsp;[cm^2])<br>
+-o&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;(default:&nbsp;standard&nbsp;output)<br>
+-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rayleigh-Jeans&nbsp;approximation<br>
+-W&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;power&nbsp;in&nbsp;SI&nbsp;power&nbsp;units&nbsp;(default:&nbsp;&nbsp;power&nbsp;in&nbsp;cgs&nbsp;units&nbsp;[erg/s])<br>
+-X&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;x-axis&nbsp;unit:&nbsp;wavenumber&nbsp;[cm-1]&nbsp;(default),&nbsp;frequency&nbsp;(Hz,&nbsp;kHz,&nbsp;MHz,&nbsp;GHz)&nbsp;or&nbsp;wavelength&nbsp;(cm,&nbsp;mue,&nbsp;nm,&nbsp;A)<br>
+&nbsp;<br>
+UNITS:<br>
+default&nbsp;is&nbsp;to&nbsp;return&nbsp;Planck&nbsp;function&nbsp;values&nbsp;in&nbsp;cgs&nbsp;units,&nbsp;i.e.&nbsp;[erg/s&nbsp;/&nbsp;(cm^2&nbsp;sr&nbsp;[x])]<br>
+Using&nbsp;the&nbsp;-W&nbsp;and&nbsp;-m&nbsp;switches&nbsp;you&nbsp;can&nbsp;convert&nbsp;the&nbsp;power&nbsp;unit&nbsp;in&nbsp;the&nbsp;nominator<br>
+or&nbsp;the&nbsp;area&nbsp;unit&nbsp;in&nbsp;the&nbsp;denominator&nbsp;to&nbsp;Watt&nbsp;and&nbsp;square&nbsp;meters,&nbsp;respectively.</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Planck_Frequency"><strong>Planck_Frequency</strong></a>(f, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;frequency&nbsp;[Hz]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;corresponding&nbsp;Planck&nbsp;function&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-Planck_Wavelength"><strong>Planck_Wavelength</strong></a>(l, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;wavelength&nbsp;[cm]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;corresponding&nbsp;Planck&nbsp;function&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-Planck_Wavenumber"><strong>Planck_Wavenumber</strong></a>(v, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;wavenumber&nbsp;[1/cm]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;corresponding&nbsp;Planck&nbsp;function&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-RayleighJeans"><strong>RayleighJeans</strong></a>(x, temp, xUnit='cm-1')</dt><dd><tt>Call&nbsp;appropriate&nbsp;Rayleigh-Jeans&nbsp;routine&nbsp;(with&nbsp;x&nbsp;in&nbsp;cgs&nbsp;units,&nbsp;i.e.&nbsp;v[1/cm],&nbsp;f[Hz]&nbsp;or&nbsp;lambda[cm])&nbsp;.</tt></dd></dl>
+ <dl><dt><a name="-RayleighJeans_Frequency"><strong>RayleighJeans_Frequency</strong></a>(f, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;frequency&nbsp;[Hz]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;corresponding&nbsp;Rayleigh-Jeans&nbsp;approximations.</tt></dd></dl>
+ <dl><dt><a name="-RayleighJeans_Wavelength"><strong>RayleighJeans_Wavelength</strong></a>(l, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;wavelength&nbsp;[cm]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;corresponding&nbsp;Rayleigh-Jeans&nbsp;approximations.</tt></dd></dl>
+ <dl><dt><a name="-RayleighJeans_Wavenumber"><strong>RayleighJeans_Wavenumber</strong></a>(v, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;wavenumber&nbsp;[1/cm]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;corresponding&nbsp;Rayleigh-Jeans&nbsp;approximations.</tt></dd></dl>
+ <dl><dt><a name="-dPlanck_Wavenumber_dT"><strong>dPlanck_Wavenumber_dT</strong></a>(v, temp)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;wavenumber&nbsp;[1/cm]&nbsp;array&nbsp;and&nbsp;temperature&nbsp;return&nbsp;derivative&nbsp;of&nbsp;Planck&nbsp;function&nbsp;wrt&nbsp;temperature.</tt></dd></dl>
+ <dl><dt><a name="-planck"><strong>planck</strong></a>(x, T, xUnit='cm-1')</dt><dd><tt>Compute&nbsp;Planck&nbsp;blackbody&nbsp;function&nbsp;for&nbsp;wavenumber&nbsp;v[1/cm]&nbsp;(default)&nbsp;or&nbsp;frequency&nbsp;f&nbsp;or&nbsp;wavelength&nbsp;array&nbsp;and&nbsp;temperature&nbsp;T.<br>
+Returns&nbsp;B(x,T)&nbsp;in&nbsp;[power]/([area]*sr*[x])<br>
+default&nbsp;power&nbsp;erg/s<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area&nbsp;&nbsp;cm**2</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>C1</strong> = 1.1910427584934559e-05<br>
+<strong>C2</strong> = 1.4387751601679206<br>
+<strong>c</strong> = 29979245800.0<br>
+<strong>frequencyUnits</strong> = {'1/cm': 29979245800.0, 'GHz': 1000000000.0, 'Hz': 1.0, 'MHz': 1000000.0, 'THz': 1000000000000.0, 'cm-1': 29979245800.0, 'kHz': 1000.0}<br>
+<strong>h</strong> = 6.62606896e-27<br>
+<strong>k</strong> = 1.3806504e-16<br>
+<strong>wavelengthUnits</strong> = {'A': 1e-08, 'cm': 1.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, 'nm': 1e-07, 'um': 0.0001}</td></tr></table>
+</body></html>

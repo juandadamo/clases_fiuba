@@ -1,0 +1,348 @@
+<HTML>
+<HEAD>
+<TITLE>Py4CAtS</TITLE>
+<LINK REV="made" HREF="mailto:franz.schreier[at]dlr.de">
+</HEAD>
+ 
+<BODY BGCOLOR="white" TEXT="black" LINK="red" VLINK="blue" ALINK="lime">
+<H1>Py4CAtS --- <A HREF="http://www.python.org">Python</A> for Computational ATmospheric Spectroscopy</H1>
+
+<IMG SRC="higs2xs2ac2od2ri.png" align=middle width="100%" alt="lbl2od scheme">
+<div align="right"><font size=-1 color='gray'><kbd>[Image: DLR]</kbd></font></div>
+
+<H2>Main Scripts/Functions: From Hitran/Geisa to Optical Depths</H2>
+<div align="right"><font size=-1 color='gray'>Except for the first and fifth items the name of the "main" function used in the (I)Python shell/interpreter is identical to the name of the script/module used in the Unix/Linux shell/terminal/console (except for the file extension <kbd>.py</kbd>).<BR>
+(For example, <kbd>lbl2xs</kbd> is the "main" function of the <kbd>lbl2xs.py</kbd> module.)
+</font></div>
+
+<DL>
+<DT> <A HREF="atmos1D.html"><tt><big>atmos1D.py</big></tt> <font color='black'>and</font> <tt><big>atmRead</big></tt></A> </DT>
+<DD> Read atmospheric data file(s) in xy tabular ascii format:
+     extract profiles, interpolate to new altitude grid, save in xy or namelist format.<BR>
+     <font size=-1>(Usually not required from the Unix/Linux shell, but "mandatory" as a function in the interpreter)</font>
+<DT> <A HREF="higstract.html"><tt><big>higstract</big></tt></A>
+<DD> higstract (extract, select) lines of a certain molecule (and isotope) and/or wavenumber range from line parameter database.<BR>
+     <font size=-1>(To avoid name clashes with numpy's <tt>extract</tt> function, the module and corresponding function is now called <font color='green'><tt>higstract</tt></font>, short for HItran-GeiSa-exTRACT)<BR>
+     (In contrast to the "low-level" <tt>hitran</tt> and <tt>geisa</tt> scripts/functions (see below) molecule (and isotope) can be specified by their chemical names!)</font>
+<DT> <A HREF="lbl2xs.html"><tt><big>lbl2xs</big></tt></A></DT>
+<DD> Line-by-line (lbl) cross sections for some molecule(s) and several <I>p, T</I>
+<DT> <A HREF="lbl2od.html"><tt><big>lbl2od</big></tt></A></DT>
+<DD> Computation of line-by-line optical depth due to molecular absorption (combines <tt><A HREF="lbl2xs.html">lbl2xs</A>, <a href="xs2ac.html">xs2ac</a>, <a href="ac2od.html">ac2od</tt></a>)
+<DT> <A HREF="od2ri.html"><tt><big>(d)od2ri</big></tt></A> </DT>
+<DD> Evaluate Schwarzschild integral: integrate transmission weighted optical depth along line-of-sight
+</DL>
+
+<H3>Further Conversion Scripts with Corresponding Functions</H3>
+<small><em>Note: The functions inside the <tt>*2od.py</tt> files compute delta optical depths, hence most are called <tt>...2dod</tt>, whereas the scripts have an option to save total or (ac)cumulated optical depths.</em></small>
+<DL>
+<DT> <a href="xs2ac.html"><tt>xs2ac</tt></a></dt>
+<DD> Sum up cross sections to absorption coefficients</DD>
+<DT> <a href="ac2od.html"><tt>ac2od</tt></a></dt>
+<DD> Integrate absorption coefficients to optical depth</DD>
+<DT> <A HREF="ac2wf.html"><tt>ac2wf</tt></A> </DT>
+<DD> Compute weighting funtions given absorption coefficients along with atmospheric data (altitudes)</DD>
+<DT> <a href="xs2od.html"><tt>xs2od</tt></a></dt>
+<DD> Sum up cross sections to absorption coefficients and integrate to optical depth</DD>
+<DT> <a href="lbl2ac.html"><tt>lbl2ac</tt></a></dt>
+<DD> Lbl cross sections, then sum up to absorption coefficients</DD>
+<BR>
+<DT> <A HREF="radiance2radiance.html"><tt>radiance2radiance</tt></A></DT>
+<DD> Convert radiance (intensity) vs. wavenumber to radiance vs frequency etc.</DD>
+<DT> <A HREF="radiance2Kelvin.html"><tt>radiance2Kelvin</tt></A></DT>
+<DD> Convert radiance (intensity) to equivalent blackbody temperatures according to Planck</DD>
+<DT> <A HREF="cgsUnits.html"><tt>cgsUnits</tt></A></DT>
+<DD> Conversion of (scalar or array) physical values to different units</DD>
+</DL>
+
+<H3>Further Executable Scripts and Functions</H3>
+<small><em>The first group of modules define subclassed NumPy arrays saving the data (line parameters, cross sections, etc.) along with some attributes and provide functions to read, write, plot and 'manipulate' the data:</em></small>
+<DL>
+<DT> <A HREF="lines.html"><tt>lines</tt></A> </DT>
+<DD> Read molecular spectroscopic line parameters (from Hitran, Geisa, ... extract(s))  and convert to new pressure/temperature</DD>
+<DT> <A HREF="xSection.html"><tt>xSection</tt></A></DT>
+<DD> Read and write / plot molecular cross sections (e.g., to reformat or interpolate)</DD>
+<DT> <A HREF="absCo.html"><tt>absCo</tt></A> </DT>
+<DD> Read and write / plot absorption coefficients</DD>
+<DT> <A HREF="oDepth.html"><tt>oDepth</tt></A> </DT>
+<DD> Read and write / plot optical depth, optionally transform differential <--> accumulated --> total optical depth</DD>
+<DT> <A HREF="wgtFct.html"><tt>wgtFct</tt></A> </DT>
+<DD> Read and write / plot weighting functions</DD>
+<DT> <A HREF="radInt.html"><tt>radInt</tt></A> </DT>
+<DD> Read and write / plot radiance (intensity)</DD>
+</DL>
+
+<BR>
+<small><em>Further modules that can be used as command line script and as function inside the (I)Python interpreter:</em></small>
+
+<DL>
+<DT> <A HREF="hitran.html"><tt>hitran</tt></A></DT>
+<DD> Extract lines of a certain molecule (and isotope) and/or wavenumber range from the <A HREF="http://www.hitran.org">HITRAN</A> database</DD>
+<DT> <A HREF="geisa.html"><tt>geisa</tt></A></DT>
+<DD> Extract lines of a certain molecule (and isotope) and/or wavenumber range from the <A HREF="https://geisa.aeris-data.fr/">GEISA</A> databank</DD>
+<DT> <A HREF="plot_atlas.html"><tt>plot_atlas</tt></A></DT>
+<DD> Plot line data, i.e., line position vs strength in 'atlas' style.<BR>
+     <small>(<em>Note:</em>This version utilizes the <A HREF="https://github.com/mlund/xmgr-resurrection"><tt>xmgr</tt></A> plotting tool
+     (a.k.a. ACE/gr, further developed into the GRACE tool).  Alternatively use the <tt>atlas</tt> function in the <A HREF="lines.html"><tt>lines.py</tt></a> module)</dd></small>
+<DT> <A HREF="planck.html"><tt>planck</tt></A> </DT>
+<DD> Compute Planck's black body function as a function of wavenumber (or frequency, wavelength) for given temperature(s)</DD>
+<DT> <A HREF="srf.html"><tt>srf</tt></A> </DT>
+<DD> A collection of spectral response functions</DD>
+<DT> <A HREF="molecules.html"><tt>molecules</tt></A></DT>
+<DD> A dictionary of dictionaries containing molecular data (id numbers, mass, ....) along with some convenience functions</DD>
+</DL>
+
+<H3>Supplementary Modules</H3>
+<small>
+<em>(None of these modules is executable on the command line)</em>
+<DL>
+<DT> <A HREF="lineshapes.html"><tt>lineshapes</tt></A></DT>
+<DD> Lorentz, Gauss, Voigt, and ... line profiles (normalized to one)</DD>
+<DT> <A HREF="racef.html"><tt>racef</tt></A></DT>
+<DD> Rational approximations for the complex error function (Humlicek, Weideman, ...) </DD>
+<DT> <A HREF="lagrange_interpolation.html"><tt>lagrange_interpolation</tt></A></DT>
+<DD> Linear, quadratic and cubic Lagrange interpolation for equidistant/uniform grids</DD>
+<DT> <A HREF="convolution.html"><tt>convolution</tt></A> </DT>
+<DD> Convolution of monochromatic spectrum/spectra with Box, Triangle, Gaussian spectral response functions of constant width</DD>
+<DT> <A HREF="convolve_grating.html"><tt>convolve_grating</tt></A> </DT>
+<DD> Convolution of monochromatic spectrum/spectra with Gaussian spectral response functions of constant resolution</DD>
+<DT> <A HREF="command_parser.html"><tt>command_parser</tt></A></DT>
+<DD> Command line interpreter, esp. options, written ontop of Python's getopt module</DD>
+<DT> <A HREF="aeiou.html"><tt>aeiou</tt></A></DD>
+<DD> Advanced extended input/output utility functions</DD>
+<DT> <A HREF="struc_array.html"><tt>struc_array</tt></A></DD>
+<DD> Functions to read and ... structured arrays from file</DD>
+<DT> <A HREF="grid.html"><tt>grid</tt></A></DT>
+<DD> Functions to handle equidistant/uniform grids</DD>
+<DT> <A HREF="ir.html"><tt>ir</tt></A></DT>
+<DD> Constants for infrared spectroscopy and radiative transfer </DD>
+<DT> <A HREF="misc.html"><tt>misc</tt></A></DT>
+<DD> Miscellaneous ...
+<DT> <A HREF="moreFun.html"><tt>moreFun</tt></A></DT>
+<DD> More (elementary or special) functions
+<DT> <A HREF="pairTypes.html"><tt>pairTypes</tt></A></DT>
+<DD> Three classes for PairOfInts, PairOfFloats, Intervals</DD>
+</DL>
+</small>
+
+<HR><P>
+
+<H3>Some Remarks on the Executable Scripts</A></H3>
+<UL>
+<LI> Some options are used by (almost) all scripts:<BR>
+     &nbsp;  <code>-h</code> &nbsp; to request help (usage description) <BR>
+     &nbsp;  <code>-c</code> &nbsp; to override the default character # used to indicate comment lines in data files  <BR>
+     &nbsp;  <code>-o</code> &nbsp; to specify an output file (default: standard out) <BR>
+     &nbsp;  <code>-v</code> &nbsp; to request more informative output messages (verbose)
+<LI> Many options require one or several argument(s) (except for the boolean ones such as -h).
+     The type of argument(s) is indicated in the help documentation:
+     <table>
+     <tr> <td> <code>char</code>     </td> <td> a single character (usually a letter or digit)</td></tr>
+     <tr> <td> <code>string</code>   </td> <td> a string (if there are blanks, enclose the string in quotes) </td></tr>
+     <tr> <td> <code>file</code>     </td> <td> essentially a string specifying a valid file name </td></tr>
+     <tr> <td> <code>int</code>      </td> <td> an integer </td></tr>
+     <tr> <td> <code>float</code>    </td> <td> a real number (e.g. 3.14 or 1.23e45) </td></tr>
+     <tr> <td>                       </td> <td> <small> (the "d" or "D" for the exponent of 10 is not allowed) </small></td></tr>
+     <tr> <td> <code>interval</code> &nbsp; </td> <td> two (usually real) numbers separated by comma (no blanks!)</td></tr>
+     </table>
+     
+<LI> Some scripts allow to specify a list of integers, floats, strings etc as an option (e.g. a sequence of pressures).<BR>
+     Use <em>commas</em> as separator, but do <em>not</em> use blanks between the list elements, i.e. say <code>lbl2xs -p 1013,800,500</code><BR>
+     <font size=-2 color="gray">(or enclose everything in quotes:                     <code>lbl2xs -p '1013, 800, 500'</code>)</font>
+
+<LI> Some scripts such as lbl2xs produce an output file for each input file.
+     In these cases the <code>-o</code> option is used to specify the extension of the output file(s) <BR>
+     (Typically the input files will have the same extension, 
+     and there will be a list of output files with the common extension replaced by the string given in the <code>-o</code> option)
+</UL>
+
+<HR><P>
+<H2><A HREF='data.html'>DATA</A></H2>
+To use these scripts, you need molecular spectroscopic <A HREF="data.html#lineData">line parameters</A> (essentially line positions and strengths)
+and <A HREF="data.html#atmosData">atmospheric data</A> comprising pressure, temperature, and molecular concentrations as a function of altitude.</BR>
+See the <A HREF='../data'><tt>data</tt></A> directory for the six AFGL atmospheres (with full 50 level and reduced versions),
+some "representative" line parameter files (generated by the <kbd>higstract.py</kbd> module, usually irrelevant in the (I)Python shell),
+and solar irradiance spectra (Kurucz data taken from Modtran, important for SWIR/NIR applications).
+
+
+<HR><P>
+<H2>Executing Py4CAtS</A></H2>
+Py4CAtS can be used in two ways, from the Unix/Linux (or Windows/Mac) console/terminal or (much better, more flexible, ...!) inside the <A HREF="http://www.ipython.org">(I)Python</A> interpreter,
+see the <a href="py4cats.pdf"><tt>py4cats.pdf</tt></a> chapters 5 and 6
+or the <A HREF="https://atmos.eoc.dlr.de/tools/Py4CAtS/ipy4cats.html">IPython demo</A>.
+
+<P><DL>
+
+<DT><A NAME="iPython">(I)Python, Jupyter shell (or notebook)</A></dt>
+<DD>
+Basically you have to add the directory containing Py4CAtS (here assuming the <tt>projects</tt> directory in my home directory) to Python's search path, i.e.<br>
+<tt>sys.path.insert (0, '/home/franz/projects')</tt> <br>
+or <br> 
+<tt>sys.path.append ('/home/franz/projects')</tt><br>
+and then you can import the required modules.
+In the IPython interpreter you can execute these two steps with the command<br>
+<tt>from py4cats import *</tt> <BR>
+See section 6.1 in the <a href="py4cats.pdf">pdf manual</a>, how this setup is done more efficiently (i.e. automatically).
+
+<DT>Unix etc. shell</dt>
+<DD>
+<font color='pink'><em>NOTE: Using Py4CAtS inside the (I)Python (or Jupyter) shell (or notebook) is much better, more flexible, .... This mode is “historical” and probably not maintained forever!</em></font><P>
+
+The executable scripts are in <tt>../bin</tt> (relative to this doc directory!)<br>
+To add this directory to your search path, you have to change the shell's <tt>PATH</tt> variable, e.g. <br>
+<tt>setenv PATH ${PATH}:${py4catsHome}/bin</tt> <br>
+or <br>
+<tt>setenv PATH ${py4catsHome}/bin:${PATH}</tt> <br>
+Here <tt>${py4catsHome}</tt> denotes the directory where you have stored the package
+(something like <tt>/a/very/long/path/to/py4cats/</tt>).
+<p>(For the bash or korn shell use the equivalent <tt>export</tt> command).
+Ideally add this statement to your <tt>.tcshrc</tt> (or <tt>.cshrc</tt> or <tt>.bashrc</tt>) file,
+because otherwise you have to redo this statement whenever you start a new terminal/console.
+
+<P>
+Note that the executables in this <tt>bin</tt> directory should be symbolic links to the corresponding scripts in the <tt>src</tt> directory (with the <tt>.py</tt> extension omitted).
+If these links did not survive the packing and unpacking to/from the tarball, you can restore them by, e.g.,<BR>
+<tt>cd bin; ln -s ../lbl/lbl2xs.py lbl2xs</tt>
+<BR>(Also see the <A HREF='../bin/1.ReadMe'><tt>1.ReadMe</tt></A> file in the <tt>bin</tt> directory.)
+
+</p><p><font color="gray"><small>
+(Strictly speaking the change of the search path is not required.
+ You can always start a script by giving the full path name, e.g. <br>
+ <tt>/a/very/long/path/to/py4cats/bin/lbl2xs</tt><br>
+ or equivalently<br>
+ <tt> /a/very/long/path/to/py4cats/src/lbl2xs.py</tt>,<br>
+ but thats boring, not really fun, ....)
+</small></font>
+</p></DD>
+
+</DD>
+</DL>
+
+<p>
+Ideally the Py4CAtS scripts should run on any computer.
+Well, almost any, of course you should have <A HREF="http://www.python.org">Python</A> along with <A HREF="http://numpy.scipy.org/">numpy</A>
+(and <A HREF="http://www.scipy.org/">scipy</A> occasionally ....). <BR>
+In order to save the optical depth data using <A HREF="http://www.unidata.ucar.edu/software/netcdf/">netcdf</A> format, you also need an appropriate module
+such as <tt>Scientific.IO.NetCDF</tt>
+(from K. Hinsen's <A HREF="https://pypi.org/project/ScientificPython/">ScientificPython</A>;
+Alternatively <A HREF="http://pypi.python.org/pypi/pynetcdf/">pynetcdf</A> might help ....).<BR>
+For plotting (e.g. atmospheric data, line data, spectra) you need <A HREF="http://matplotlib.sourceforge.net/">matplotlib</A>.
+(Alternatively lines can be plotted with <A HREF="https://github.com/mlund/xmgr-resurrection">ACE/gr = xmgr</A>
+using the <tt>plot_atlas</tt> script or its <tt>aceGr_atlas</tt> function;
+Both scripts have slightly different capabilities (pro's and con's), but none is perfect!)
+
+<HR><P>
+<H2> <IMG src="Icons/64px-PDF.png" alt="">Documentation and Some Questions</A></H2>
+<UL>
+<li> F. Schreier, S. Gimeno Garc&iacute;a, P. Hochstaffl and S. St&auml;dt.
+     <em>Py4CAtS &#150; Python for Computational ATmospheric Spectroscopy.</em>
+     Atmosphere <b>10(5)</b>, 262, 2019, <A HREF="http://dx.doi.org/10.3390/atmos10050262">doi: 10.3390/atmos10050262</a><BR>
+     <font color='gray' size=-1><em>Please cite this paper in your work if you use data generated by Py4CATS!</em></font>
+<li> For a review of line-by-line modeling for infrared radiative transfer see this <A HREF="py4cats.pdf"><tt>py4cats.pdf</tt></A>
+     (The paper is a somewhat shortened version of this report.)
+<li> See also <em> GARLIC &#150; Generic Atmospheric Radiation Line-by-line Infrared Code</em> (Py4CAtS' big brother):
+     JQSRT <B>137</B>, 29-50, 2014; <A HREF="http://dx.doi.org/10.1016/j.jqsrt.2013.11.018">doi: 10.1016/j.jqsrt.2013.11.018</A>
+<li> Py4CAtS can also be used as a forward model in an inverse problem solver, i.e. for retrieval of atmospheric state parameters,
+     see <em><A HREF="http://dx.doi.org/10.1051/0004-6361/201936511">SVEEEETIES</A> -- Singular Vector Expansion to Estimate Earth-like Exoplanet Temperatures from Infrared Emission Spectra</em>
+<div align=right><A HREF="py4cats.bib">(download BiBTeX entries)</A></div>
+</UL>
+
+<H3> Some <A HREF='faq.html'>Questions</A></H3>
+<UL>
+<LI> <A HREF="faq.html#2scripts">Why two separate scripts?</A>
+<LI> <A HREF="faq.html#wingCut">Line wing cuts?</A>
+<LI> <A HREF="faq.html#specRange">Selection of spectral range, contributions from line outside the interval?</A>
+<LI> <A HREF="faq.html#wwOptions">What is the difference between the <tt>-w</tt> and <tt><large>-W</large></tt> options?</A>
+<LI> <A HREF="faq.html#timeExtract">How long does it typically take to extract the line parameters from HITRAN/GEISA?</A>
+<LI> <A HREF="faq.html#mixedLineData">Can I mix line parameter data from HITRAN and GEISA?</A>
+<LI> <A HREF="faq.html#negXS">Some of the cross section values are negative?</A>
+<LI> <A HREF="faq.html#continuum">What about continuum, e.g., (MT-)CKD for water?</A>
+<LI> <A HREF="faq.html#sampling">The optical depth file is huge &#150; Do we really need this fine resolution?</A>
+</UL>
+
+<HR>
+
+<H3><A HREF='whatsNew.html'>What's new?</A></H3>
+<DL>
+<DT> <font size=+1><em>March 2021</em></font>
+<DD> <font size=+1 face="it" color="blue">Source code now reorganized as a package</font><BR>
+     <font size=-1>
+     Source files are now distributed over three subdirectories
+     <UL>
+          <LI> <kbd>lbl</kbd>: modules related to lbl computations incl. Hitran/Geisa database access, Voigt routines etc.;
+          <LI> <kbd>art</kbd>: modules related to atmospheric radiative transfer;
+          <LI> <kbd>aux</kbd>: auxiliary modules that should/could be useful in any context, e.g. input/output routines.
+     </UL>
+     The setup module <tt>py4cats.py</tt> is not required anymore, import of the Py4CAtS module is now organized by the <tt>__init__.py</tt> files.
+     </font>
+
+<P>
+<DT> <font size=+1><em>Spring - Summer 2021</em></font> (see <A HREF='whatsNew.html'>What's new?</A> for a full listing)
+<DT> &nbsp; Plot functions
+<DD> <tt>atmPlot, acPlot, odPlot, riPlot, xsPlot</tt> functions have an additional argument <tt>**kwArgs</tt> (passed thru to MatPlotLib's functions) <BR>
+     <tt>acPlot, odPlot, xsPlot</tt> with an additional argument xUnit (instead of flag mue or nm)
+
+<DT> &nbsp;  Module <tt>aux/aerosol.py</tt>
+<DD> new module for aerosol optical depth using simple power law (Angstrom coefficient)
+
+<DT>  &nbsp; Module <tt>lbl/lbl2xs.py</tt>
+<DD> function  <tt>lbl_brute</tt>:  handling/selection of "beyond Voigt" line shapes changed;
+
+<DT> &nbsp;  Module <tt>lbl/lines.py</tt>
+<DD> better support of "beyond Voigt" parameters;
+<DD> new function <tt>llInfo</tt>
+
+<DT> &nbsp;  Module <tt>art/limb.py</tt>:
+<DD> new module for limb (occultation) transmission and effective height
+
+<DT> &nbsp;  Module <tt>lbl/molecules.py</tt>
+<DD> new molecules (hitran20, geisa20) added 
+
+<DT> &nbsp;  Module <tt>art/oDepth.py</tt>
+<DD> class <tt>odArray</tt> with new attribute column density;
+<DD> convolve method with default Gauss;
+<DD> new function <tt>odConvolve</tt> (calls class method for a list/dictionary of optical depths);
+
+<DT> &nbsp;  Module <tt>art/od2ri.py</tt>
+<DD>   completely rewritten with added support for surface reflection etc
+
+<DT> &nbsp;  Module <tt>art/rayleigh.py</tt>
+<DD>  new module for Rayleigh extinction
+
+<DT> &nbsp;  Module <tt>art/radInt.py</tt>
+<DD> class <tt>riArray</tt> with new method noise; <BR>
+     convolve method with default Gauss; <BR>
+     new function <tt>riConvolve</tt> (calls class method for a list/dictionary of radiances); <BR>
+     function <tt>riRead</tt> now returns a dictionary of riArray's if all entries of the pickle file have a `key`; <BR>
+     function <tt>riSave</tt>: if called with a dictionary of riArray's, save each as dictionary with an extra `key`
+
+<DT> &nbsp;  Module <tt>lbl/sdr.py</tt>
+<DD>      new module for speed-dependent Voigt and Rautian functions
+
+<P>
+<DT> <font size=+1><em>Fall 2021</em></font> (see <A HREF='whatsNew.html'>What's new?</A> for a full listing)
+
+<DT> &nbsp;  Module <tt>lbl/lbl2od.py</tt>
+<DD>      three new options for function <tt>lbl2od</tt> to add cia, Rayleigh, and aerosol extinction to absorption coefficient(s) and optical depth(s)
+<DT> &nbsp;  Module <tt>art/cia.py</tt>
+<DD>      new module for collision-induced absorption
+</DL>
+
+<H3>Known Problems</A></H3>
+<UL>
+<LI> <tt>extract</tt> options: <BR>
+     <tt>-o</tt> (output filename (extension)) &#150; <tt>-d</tt> (output directory) &#150; <tt>-f</tt> (output file format) <BR>
+     (Possibly this is a bit confusing now?)
+<LI> Two-, three grid algorithm currently implemented only for Voigt line shape
+<LI> No continuum correction (some work on CIA ongoing)
+<LI> Weak line rejection: presently this can be done only with <tt>higstract</tt> using the <tt>strMin</tt> ((I)Python shell) or <tt>-S</tt> (Unix shell) option.
+</UL>
+<HR><P>
+
+<P>
+<H3>... and some notes on <A HREF="../license.txt">license</A></H3>
+
+<P align=right>&copy; <A HREF ="mailto:franz.schreier [at] dlr.de">fgs</A> &nbsp; (+49-8153-28-1234) <BR>
+<!Last update>  Fri Jan 15, 2021;  12:34 <!fgs> <BR>
+
+</BODY>
+</HTML>

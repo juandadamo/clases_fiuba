@@ -1,0 +1,66 @@
+A collection of atmospheric model profiles from the AFGL data set (see bib entry at bottom of file).
+The files in the 50/ subdirectory contain the original profiles defined on 50 levels.
+The 25 and 20 level versions have been regridded (interpolated) using the atmos.py script.
+
+
+50/USstandard+traceGases.xy    US standard atmosphere (z,p,T and 30 gases) defined at 50 levels <=120km
+50/USstandard_main.xy          US standard atmosphere (z,p,T and 7 main gases) defined at 50 levels <=120km
+25/uss.xy                 ... regridded to 25 levels <=120km
+20/us.xy                  ... regridded to 20 levels <=100km
+
+50/tropical.xy            tropical atmosphere  (z,p,T and 7 main gases) defined at 50 levels <=120km
+25/tropic.xy              ... regridded to 25 levels <=120km
+20/tro.xy                 ... regridded to 20 levels <=100km
+
+50/midlatitudeSummer.xy   midlatitude summer atmosphere  (z,p,T and 7 main gases) defined at 50 levels <=120km
+25/midLatSum.xy           ... regridded to 25 levels <=120km
+20/mls.xy                 ... regridded to 20 levels <=100km
+
+50/midlatitudeWinter.xy   midlatitude winter atmosphere  (z,p,T and 7 main gases) defined at 50 levels <=120km
+25/midLatWin.xy           ... regridded to 25 levels <=120km
+20/mlw.xy                 ... regridded to 20 levels <=100km
+
+50/subarcticSummer.xy     subarctic summer atmosphere  (z,p,T and 7 main gases) defined at 50 levels <=120km
+25/subArcSum.xy           ... regridded to 25 levels <=120km
+20/sas.xy                 ... regridded to 20 levels <=100km
+
+50/subarcticWinter.xy     subarctic winter atmosphere  (z,p,T and 7 main gases) defined at 50 levels <=120km
+25/subArcWin.xy           ... regridded to 25 levels <=120km
+20/saw.xy                 ... regridded to 20 levels <=100km
+
+50/traceGases.xy          Volume mixing ratios of NO, NO2, SO2, ... (molecules # 8, 9, 10, ... in Hitran/Geisa notation)
+25/traceGases.xy          ... regridded to 25 levels <=120km
+20/traceGases.xy          ... regridded to 20 levels <=100km
+
+Some more variants of the US Standard atmosphere are collected in the USS directory
+
+
+Reading the data:
+-----------------
+
+In Py4CAtS you can read these files using the atmos1D function of the atmos1D module, e.g.
+mls = atmos1D('data/atmos/20/mls.xy')
+The script/function uses the loadStrucArray function of the aeiou.py module and assumes
+that the column identifiers are given in the second last comment line of the file header starting with "#what:';
+the very last comment line (starting with "#units:") specifies the physical units.
+
+In the example call given above,
+atmos1D returns a numpy structured array with 11 profiles (p, T, air, H2O, ....) vs. altitude z
+defined on 20 levels (i.e. altitude grid points).
+All profiles are returned in cgs units (e.g. "g/cm/s**2" for pressure.)
+The individual profiles can be accessed similar to a dictionary, e.g.
+temperature = mls['T']
+
+For trace gases there is only a single "global" set of concentration profiles.
+These data can be loaded with the readVMR function, and combined with the "main" data using merge_atmos1D.
+
+
+References:
+-----------
+
+@techreport{Anderson86,
+ AUTHOR      = {G.P. Anderson and S.A. Clough and F.X. Kneizys and J.H. Chetwynd and E.P. Shettle},
+ TITLE       = {{AFGL} Atmospheric Constituent Profiles (0 -- $\rm 120\,km$)}, 
+ INSTITUTION = {AFGL},
+ NUMBER      = {TR-86-0110},
+ YEAR        = 1986}

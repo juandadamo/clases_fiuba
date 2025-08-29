@@ -1,0 +1,59 @@
+A collection of Python scripts for (molecular) line-by-line absorption
+(cross sections, optical depths, ...) and atmospheric radiative transfer
+
+Five directories:
+-----------------
+bin/    essentially links to the executable python scripts in the art, lbl, and aux directories
+        (without the .py extension)
+doc/    a pdf tutorial, html files and the 'help' documentation of all (executable) scripts
+lbl/    python 3 source code for line-by-line molecular absorption modeling
+art/    python 3 source code for atmospheric radiative transfer modeling
+aux/    python 3 source code for auxiliary, miscellaneous, ... utility functions 
+
+(A sixth directory `__pycache__`  is generated automatically comprising pyc files (compiled py files).)
+
+
+DATA:
+-----
+In previous versions there has been an extra data directory comprising a collection of atmospheric data sets
+(plus solar irradiance and some line data).
+These data are now available independently with an additional download from the py4CAtS site.
+[This data directory does not include the HITRAN and/or GEISA line databases!]
+
+
+HOW-TO:
+-------
+To start working (playing, fighting, ....) with these scripts:
+
+1) Save the package at some convenient place and unpack it (well, obviously you just have done this)
+
+2) Open your browser in the doc directory, e.g.:
+   file:///a/very/long/path/to/py4cats/doc/index.html
+
+3) py4CAtS can be used in two ways:
+   a) inside the (I)Python interpreter (or Jupyter notebook etc.):
+      1. add py4cats' parent (!) directory to the search path, e.g.
+      sys.path.append('/a/very/long/path/to/')
+      2. import the modules and functions:
+      from py4cats import *
+      [Ideally do this automatically by adjusting your (I)Python config file(s).]
+
+   b) and/or from the Unix/Linux terminal (console etc.):
+      (ideally) add the bin directory to your system search PATH, e.g.
+      setenv PATH ${PATH}:/a/very/long/path/to/py4cats/bin
+      [NOTE:  (I)Python / Jupyter is much better, flexible, ....
+              This mode is "historical" and possibly not maintained forever!]
+
+4) Extract line parameters from HITRAN and GEISA,
+   then compute optical depth via cross sections by lbl2od ...
+
+
+HELP:
+-----
+Inside IPython/Jupyter, help for all functions is available by "function?"
+Inside the "classical" python shell, use "help(function)"
+In the terminal/console, help for all (executable) scripts (higstract, lbl2od, ..) is available with the "-h" option.
+
+
+https://atmos.eoc.dlr.de/tools/Py4CAtS/
+https://ascl.net/1905.002

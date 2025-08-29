@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lbl2ac</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>lbl2ac</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/lbl2ac.py">/users/schrei_f/src/py4CAtS/lite/src/lbl2ac.py</a></font></td></tr></table>
+    <p><tt>lbl2ac<br>
+&nbsp;computation&nbsp;of&nbsp;line-by-line&nbsp;absorption&nbsp;coefficients&nbsp;due&nbsp;to&nbsp;molecular&nbsp;absorption<br>
+&nbsp;<br>
+&nbsp;usage:<br>
+&nbsp;lbl2ac&nbsp;&nbsp;[options]&nbsp;&nbsp;atm_file&nbsp;&nbsp;line_parameter_file(s)<br>
+&nbsp;<br>
+&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;input,output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;optical&nbsp;depth&nbsp;(if&nbsp;not&nbsp;given:&nbsp;write&nbsp;to&nbsp;StdOut)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;the&nbsp;output&nbsp;file's&nbsp;extension&nbsp;ends&nbsp;with&nbsp;".nc",&nbsp;".ncdf"&nbsp;or&nbsp;".netcdf",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;netcdf&nbsp;file&nbsp;is&nbsp;generated,&nbsp;otherwise&nbsp;the&nbsp;file&nbsp;is&nbsp;ascii&nbsp;tabular)<br>
+&nbsp;<br>
+--BoA&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bottom-of-atmosphere&nbsp;altitude&nbsp;[km]&nbsp;&nbsp;(compute&nbsp;opt.depth&nbsp;only&nbsp;for&nbsp;levels&nbsp;above)<br>
+--ToA&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top-of-atmosphere&nbsp;altitude&nbsp;[km]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(compute&nbsp;opt.depth&nbsp;only&nbsp;for&nbsp;levels&nbsp;below)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;no&nbsp;interpolation,&nbsp;i.e.&nbsp;integration&nbsp;starts/stops&nbsp;at&nbsp;the&nbsp;next&nbsp;level&nbsp;above/below&nbsp;BoA/ToA<br>
+--scale&nbsp;floats&nbsp;&nbsp;&nbsp;&nbsp;multiply&nbsp;molecular&nbsp;concentrations&nbsp;with&nbsp;scaleFactors<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(either&nbsp;a&nbsp;comma&nbsp;separated&nbsp;list&nbsp;of&nbsp;floats&nbsp;(no&nbsp;blanks)&nbsp;in&nbsp;the&nbsp;same&nbsp;order&nbsp;as&nbsp;for&nbsp;the&nbsp;line&nbsp;data&nbsp;files,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;just&nbsp;a&nbsp;single&nbsp;float&nbsp;to&nbsp;scale&nbsp;the&nbsp;profile&nbsp;of&nbsp;the&nbsp;molecule&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;first&nbsp;lineFile.)<br>
+&nbsp;-x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interval&nbsp;&nbsp;lower,upper&nbsp;wavenumbers&nbsp;(comma&nbsp;separated&nbsp;pair&nbsp;of&nbsp;floats&nbsp;[no&nbsp;blanks!],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;set&nbsp;according&nbsp;to&nbsp;range&nbsp;of&nbsp;lines&nbsp;in&nbsp;datafiles)<br>
+&nbsp;<br>
+&nbsp;For&nbsp;more&nbsp;information&nbsp;see&nbsp;also&nbsp;the&nbsp;lbl2xs&nbsp;and&nbsp;lbl2od&nbsp;help.</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-lbl2ac"><strong>lbl2ac</strong></a>(atmos, lineListsDict, xLimits=None, lineShape='Voigt', sampling=5.0, nGrids=3, gridRatio=8, nWidths=25.0, lagrange=2, interpolate='2', xsFile=None, verbose=False)</dt><dd><tt>Compute&nbsp;cross&nbsp;sections&nbsp;for&nbsp;some&nbsp;molecule(s)&nbsp;and&nbsp;some&nbsp;pressure(s),temperature(s)&nbsp;by&nbsp;summation&nbsp;of&nbsp;line&nbsp;profiles;<br>
+Compute&nbsp;absorption&nbsp;coefficients&nbsp;as&nbsp;product&nbsp;cross&nbsp;section&nbsp;times&nbsp;molecular&nbsp;density,&nbsp;summed&nbsp;over&nbsp;all&nbsp;molecules.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+atmos:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atmospheric&nbsp;data&nbsp;set,&nbsp;notably&nbsp;including&nbsp;zGrid=atmos['z']<br>
+lineListsDict&nbsp;&nbsp;(molecular)&nbsp;line&nbsp;parameters:&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;structured&nbsp;arrays<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+absCo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;subclassed&nbsp;numpy&nbsp;array&nbsp;with&nbsp;the&nbsp;absorption&nbsp;coefficients,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;z,&nbsp;p,&nbsp;T,&nbsp;and&nbsp;wavenumber&nbsp;grid&nbsp;information&nbsp;as&nbsp;attributes&nbsp;(similar&nbsp;to&nbsp;xsArray)<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;lbl2xs&nbsp;and&nbsp;lbl2od&nbsp;functions&nbsp;for&nbsp;details&nbsp;about&nbsp;further&nbsp;optional&nbsp;arguments.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>molecNames</strong> = ['H2O', 'HDO', 'CO2', 'O3', 'N2O', 'CO', 'CH4', 'CH3D', 'O2', 'NO', 'SO2', 'NO2', 'NH3', 'HNO3', 'OH', 'HF', 'HCl', 'HBr', 'HI', 'ClO', ...]<br>
+<strong>molecules</strong> = {'BrO': {'NumDeg': [1], 'TempExpGL': 0.5, 'TempExpQR': 1.0, 'VibFreq': [500.0], 'isotopes': ['69', '61'], 'mass': 95.0}, 'C2H2': {'NumDeg': [1, 1, 1, 2, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.0, 'VibFreq': [3374.0, 1974.0, 3289.0, 629.0, 730.0], 'geisa': 24, 'hitran': 26, 'isotopes': ['1221', '1231', '1222'], 'mass': 26.03, 'sao': 26}, 'C2H4': {'NumDeg': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'TempExpGL': 0.5, 'TempExpQR': 1.5, 'VibFreq': [3026, 1625, 1342, 1023, 3103, 1236, 949, 943, 3106, 826, 2989, 1444], 'geisa': 25, 'hitran': 38, 'isotopes': ['221', '311'], 'mass': 28.0}, 'C2H6': {'NumDeg': [1, 1, 1, 1, 1, 1, 2, 1, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.9, 'VibFreq': [2899.0, 1375.0, 993.0, 275.0, 2954.0, 1379.0, 2994.0, 1486.0, 822.0], 'geisa': 22, 'hitran': 27, 'isotopes': ['1221', '1231'], 'mass': 30.07, 'sao': 27}, 'C2HD': {'geisa': 48, 'isotopes': ['122'], 'mass': 17.0}, 'C2N2': {'VibFreq': [2330, 846, 2158, 503, 234], 'geisa': 29, 'hitran': 48, 'isotopes': ['4224'], 'mass': 52.0}, 'C3H4': {'geisa': 40, 'mass': 40.0}, 'C3H8': {'VibFreq': [2977, 2962, 2887, 1476, 1462, 1392, 1158, 869, 369, 2967, 1451, 1278, 940, 216, 2968, 2887, 1464, 1378, 1338, 1054, ...], 'geisa': 28, 'isotopes': ['221'], 'mass': 44.0}, 'C4H2': {'VibFreq': [3293, 2184, 874, 3329, 2020, 627, 482, 630, 231], 'geisa': 30, 'hitran': 43, 'isotopes': ['221'], 'mass': 50.0}, 'C6H6': {'VibFreq': [3062, 992, 1326, 673, 3068, 1010, 995, 703, 1310, 1150, 849, 3063, 1486, 1038, 3047, 1596, 1178, 606, 975, 410], 'geisa': 47, 'isotopes': ['266'], 'mass': 78.0}, ...}</td></tr></table>
+</body></html>

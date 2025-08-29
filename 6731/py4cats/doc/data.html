@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<TITLE>Py4CATS --- Data</TITLE>
+<LINK REV="made" HREF="mailto:franz.schreier[at]dlr.de">
+</HEAD>
+ 
+<BODY BGCOLOR="white" TEXT="black" LINK="red" VLINK="blue" ALINK="lime">
+<H1>Py4CAtS --- <A HREF="http://www.python.org">Python</A> scripts for Computational ATmospheric Spectroscopy</H1>
+
+
+<HR>
+<H2><A NAME="lineData">Molecular Spectroscopic Databases</A></H2>
+<UL>
+<LI> <A HREF="https://hitran.org/"><strong>HITRAN</strong></A> molecular database
+<LI> <A HREF="https://geisa.aeris-data.fr"><strong>GEISA</strong></A> data bank
+<LI> <A HREF="http://doi.org/10.5281/zenodo.1009126"><strong>SEOM-IAS</strong></A> data for SWIR \chem{CO}, \chem{CH_4}, \chem{H_2O}
+<LI> (<A HREF="http://spec.jpl.nasa.gov"><strong>JPL</strong></A> - Submillimeter, Millimeter, and Microwave Spectral Line Catalog)
+</UL>
+
+In order to compute line-by-line cross sections and optical depths, you first have to extract the relevant spectroscopc line parameters
+ from the HITRAN or GEISA databases.
+See <A HREF="../data//lines/CO.vSEan"><tt>CO.vSEan</tt></A> for a typical line parameter file
+(listing the "essential" parameters only, i.e.,
+line positions <i>v</i>, <i>S</i>trengths, lower state <i>E</i>nergy, <i>a</i>ir broadening widths and its temperature dependency exponent <i>n</i>).
+According to the default naming convention, the filename head indicates the molecule, and the extension indicates the data columns.
+
+<HR>
+<H2><A NAME="atmosData">Atmospheric Data</A></H2>
+The file containing an user's atmospheric profile data has to be in <em>xy</em> format:<BR>
+<small>(netcdf will come soon (hopefully))</small>
+<UL>
+   <LI> comment lines in this file have to begin with # in the first column<BR>
+        (Actually 'any' character can be used, i.e. using the <tt>-c</tt> option the default # can be changed)
+   <LI> a comment line starting with &nbsp; <kbd>#where: </kbd> can be used to include some info for the job
+   <LI> at least 2 comment lines are mandatory:<BR>
+        <kbd>#what: &nbsp;</kbd> followed by identifiers, e.g. altitude, molecular names, pressure, or temperature<BR>
+        <kbd>#units: </kbd> followed by the physical units, e.g. <em>km, mb, K, ppm</em>
+   <LI> <small>
+        If the very first column is altitude, some abbreviated forms are recognized, too:, e.g. <BR>
+        <kbd># altitude pressure temperature</kbd> <BR>
+        or  <BR>
+        <kbd># z p T</kbd> <BR>
+        and  <BR>
+        <kbd># km mb K</kbd></small>
+   <LI> a column for altitudes is mandatory (marked <kbd>ALTITUDE</kbd> or <kbd>HEIGHT</kbd> in the <kbd>#what:</kbd> record)
+   <LI> columns with profiles not requested by the user (e.g. IR inactive gases) are ignored
+   <LI> the number of columns in the data section and the number of identifiers and units given above have to be identical
+   <LI> Example:
+
+<PRE>
+#comment this line will be ignored
+#info:   this is ignored, too
+#note:   the next line is optional
+#where:  bavarian foehn
+# the following two lines are mandatory
+#what:   Height  Temperature  CO2   H2O   NO
+#units:  km      K      cm-3            cm-3            cm-3
+        0.0	300	7.671e+15	1.875e+17	1.53e+13
+        0.2	298	8.641e+15	2.557e+17	1.72e+11
+        0.4	296	7.929e+15	2.544e+17	4.24e+10
+        0.6	293	7.417e+15	2.620e+17	1.73e+10
+        0.8	290	7.280e+15	2.711e+17	9.05e+09
+        1.0	285	7.179e+15	2.771e+17	6.03e+09
+        2.0	280	6.915e+15	1.875e+17	5.81e+09
+        3.0	275	6.333e+15	1.061e+17	5.32e+09
+        4.0	270	5.802e+15	6.197e+16	4.87e+09
+        5.0	260	5.308e+15	3.308e+16	4.46e+09
+</PRE>
+</UL>
+
+
+<HR>
+<H2><A NAME="otherData">Further Data Sources</A></H2>
+<UL>
+<LI> <A HREF="http://www.nist.gov/"><strong>NIST</strong></A> 
+<LI> <A HREF="http://physics.nist.gov/PhysRefData/">Physical Reference Data</A>
+<LI> <A HREF="http://physics.nist.gov/cuu/Constants/">Fundamental Physical Constants</A> 
+<LI> <A HREF="http://www.nist.gov/pml/data/molspecdata.cfm">Molecular Spectroscopic Data</A> (Wavenumbers for IR, microwave, and millimeter regions)
+</UL>
+
+
+
+<P align=right>&copy; <A HREF ="mailto:franz.schreier[at]dlr.de">fgs</A> &nbsp; (+49-8153-28-1234) <BR>
+<!Last update>  Wed Oct 28, 2015;  15:30 <!fgs> <BR>
+
+</BODY>
+</HTML>

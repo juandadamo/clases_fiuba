@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module radiance2radiance</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>radiance2radiance</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/radiance2radiance.py">../src3/radiance2radiance.py</a></font></td></tr></table>
+    <p><tt>radiance2radiance<br>
+convert&nbsp;radiance&nbsp;(intensity)&nbsp;vs.&nbsp;wavenumber&nbsp;to&nbsp;radiance&nbsp;vs&nbsp;frequency&nbsp;etc.<br>
+&nbsp;<br>
+usage:<br>
+radiance2radiance&nbsp;[options]&nbsp;file[s]<br>
+&nbsp;<br>
+optional&nbsp;command&nbsp;line&nbsp;options&nbsp;without&nbsp;arguments:<br>
+&nbsp;&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;&nbsp;-c&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;line&nbsp;character&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;"#")<br>
+&nbsp;&nbsp;-o&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;standard&nbsp;out)<br>
+&nbsp;<br>
+&nbsp;&nbsp;-a&nbsp;string&nbsp;&nbsp;area&nbsp;&nbsp;unit&nbsp;of&nbsp;input&nbsp;&nbsp;radiance:&nbsp;&nbsp;&nbsp;'cm2'&nbsp;(square&nbsp;centimeter,&nbsp;default)&nbsp;or&nbsp;'m2'<br>
+&nbsp;&nbsp;-A&nbsp;string&nbsp;&nbsp;area&nbsp;&nbsp;unit&nbsp;of&nbsp;output&nbsp;radiance<br>
+&nbsp;&nbsp;-p&nbsp;string&nbsp;&nbsp;power&nbsp;unit&nbsp;of&nbsp;input&nbsp;&nbsp;radiance:&nbsp;&nbsp;&nbsp;'erg/s'&nbsp;(default)&nbsp;or&nbsp;'W'&nbsp;or&nbsp;'mW'&nbsp;or&nbsp;'nW'<br>
+&nbsp;&nbsp;-P&nbsp;string&nbsp;&nbsp;power&nbsp;unit&nbsp;of&nbsp;output&nbsp;radiance<br>
+&nbsp;&nbsp;-x&nbsp;string&nbsp;&nbsp;unit&nbsp;of&nbsp;x-axis&nbsp;on&nbsp;input&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cm-1'&nbsp;(default)&nbsp;or&nbsp;wavelength&nbsp;or&nbsp;frequency&nbsp;(see&nbsp;below)<br>
+&nbsp;&nbsp;-X&nbsp;string&nbsp;&nbsp;unit&nbsp;of&nbsp;x-axis&nbsp;on&nbsp;output<br>
+&nbsp;<br>
+&nbsp;&nbsp;-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reverse&nbsp;sequence&nbsp;of&nbsp;x&nbsp;and&nbsp;corresponding&nbsp;y&nbsp;values&nbsp;(convenient&nbsp;for&nbsp;wavenumber&nbsp;&lt;--&gt;&nbsp;wavelength&nbsp;conversion)<br>
+&nbsp;&nbsp;-C&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;y&nbsp;column&nbsp;to&nbsp;be&nbsp;processed&nbsp;(default:&nbsp;all&nbsp;y&nbsp;columns)<br>
+&nbsp;&nbsp;-T&nbsp;float&nbsp;&nbsp;&nbsp;temperature&nbsp;[K]:&nbsp;&nbsp;return&nbsp;radiance&nbsp;normalized&nbsp;to&nbsp;Planck&nbsp;radiance&nbsp;B(T)<br>
+&nbsp;<br>
+x-units&nbsp;currently&nbsp;supported:&nbsp;'cm-1',&nbsp;'m-1',&nbsp;'Hz',&nbsp;'MHz',&nbsp;'GHz',&nbsp;'THz',&nbsp;'mue',&nbsp;'nm'<br>
+y-units&nbsp;currently&nbsp;supported:&nbsp;""erg/s/([A]&nbsp;sr&nbsp;[x])&nbsp;&nbsp;or&nbsp;&nbsp;W/([A]&nbsp;sr&nbsp;[x])"&nbsp;&nbsp;or&nbsp;&nbsp;"photons/s/([A]&nbsp;sr&nbsp;[x])"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(where&nbsp;[A]&nbsp;is&nbsp;m^2&nbsp;or&nbsp;cm^2&nbsp;and&nbsp;[x]&nbsp;is&nbsp;x-unit&nbsp;as&nbsp;listed&nbsp;above)<br>
+&nbsp;<br>
+For&nbsp;conversion&nbsp;of&nbsp;radiance&nbsp;to&nbsp;equ.&nbsp;Blackbody&nbsp;temperature&nbsp;use&nbsp;"radiance2Kelvin"</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-normalized_radiance"><strong>normalized_radiance</strong></a>(x, y, temp, xUnit, yUnit)</dt><dd><tt>Convert&nbsp;Radiance&nbsp;(in&nbsp;power&nbsp;/&nbsp;(area*sr*[X]))&nbsp;to&nbsp;normalized&nbsp;radiance&nbsp;by&nbsp;division&nbsp;of&nbsp;Planck&nbsp;function&nbsp;at&nbsp;given&nbsp;temperature.</tt></dd></dl>
+ <dl><dt><a name="-photons2energy"><strong>photons2energy</strong></a>(x, y, xUnit)</dt><dd><tt>Convert&nbsp;radiance&nbsp;given&nbsp;in&nbsp;units&nbsp;of&nbsp;photons/s/(area*sr*[x])&nbsp;to&nbsp;erg/s/(area*sr*[x].</tt></dd></dl>
+ <dl><dt><a name="-radiance2radiance"><strong>radiance2radiance</strong></a>(xGrid, yValues, oldX='cm-1', newX='cm-1', oldA='cm2', newA='cm2', oldP='erg/s', newP='erg/s', verbose=False)</dt><dd><tt>Convert&nbsp;radiance,&nbsp;e.g.&nbsp;wavenumber&nbsp;&lt;--&gt;&nbsp;frequency&nbsp;&lt;--&gt;&nbsp;wavelength&nbsp;&nbsp;or&nbsp;&nbsp;area&nbsp;unit&nbsp;&nbsp;or&nbsp;power&nbsp;unit.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+xGrid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber,&nbsp;frequency,&nbsp;or&nbsp;wavelength&nbsp;abscissa<br>
+yValues&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radiance&nbsp;values&nbsp;defined&nbsp;on&nbsp;the&nbsp;xGrid<br>
+oldX,&nbsp;newX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;old&nbsp;and&nbsp;new&nbsp;unit&nbsp;of&nbsp;xGrid,&nbsp;default&nbsp;wavenumber&nbsp;[cm-1]<br>
+oldA,&nbsp;newA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;old&nbsp;and&nbsp;new&nbsp;area&nbsp;unit&nbsp;of&nbsp;radiance,&nbsp;default&nbsp;[cm**2]<br>
+oldP,&nbsp;newP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;old&nbsp;and&nbsp;new&nbsp;power&nbsp;unit&nbsp;of&nbsp;radiance,&nbsp;default&nbsp;[erg/s]<br>
+&nbsp;<br>
+verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;additionally&nbsp;return&nbsp;two&nbsp;strings&nbsp;with&nbsp;x&nbsp;and&nbsp;y&nbsp;infos<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;&nbsp;only&nbsp;new&nbsp;xGrid&nbsp;and&nbsp;yValues&nbsp;arrays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(NOTE:&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;oldX!=newX,&nbsp;the&nbsp;xGrid&nbsp;will&nbsp;change,&nbsp;too)<br>
+RETURNS:<br>
+--------<br>
+xGrid,&nbsp;yValues:&nbsp;&nbsp;two&nbsp;arrays&nbsp;with&nbsp;the&nbsp;new&nbsp;abscissa&nbsp;and&nbsp;radiances<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!!!&nbsp;optionally&nbsp;return&nbsp;x&nbsp;and&nbsp;y&nbsp;infos,&nbsp;too&nbsp;!!!</tt></dd></dl>
+ <dl><dt><a name="-radiance2radiance_X"><strong>radiance2radiance_X</strong></a>(x, y, oldX, newX, yUnit)</dt><dd><tt>Convert&nbsp;radiance&nbsp;to&nbsp;a&nbsp;new&nbsp;X&nbsp;unit.</tt></dd></dl>
+ <dl><dt><a name="-radiance2radiance_Y"><strong>radiance2radiance_Y</strong></a>(y, oldA, newA, oldP, newP)</dt><dd><tt>Convert&nbsp;radiance&nbsp;to&nbsp;a&nbsp;new&nbsp;Y&nbsp;unit&nbsp;(i.e.&nbsp;change&nbsp;power&nbsp;or&nbsp;area&nbsp;unit).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>C1</strong> = 1.1910427584934559e-05<br>
+<strong>c</strong> = 29979245800.0<br>
+<strong>frequencyFactor</strong> = {'GHz': 1000000000.0, 'Hz': 1.0, 'MHz': 1000000.0, 'THz': 1000000000000.0, 'kHz': 1000.0}<br>
+<strong>h</strong> = 6.62606896e-27<br>
+<strong>hc</strong> = 1.9864455003959037e-16<br>
+<strong>wavelengthUnits</strong> = {'A': 1e-08, 'cm': 1.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, 'nm': 1e-07, 'um': 0.0001}</td></tr></table>
+</body></html>

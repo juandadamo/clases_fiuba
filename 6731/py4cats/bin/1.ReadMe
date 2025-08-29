@@ -1,0 +1,4 @@
+# (t)csh command to create links for all executable scripts/modules:
+foreach file ( ../{art,aux,lbl}/*.py )
+    if ( -x $file ) ln -s $file $file:r:t
+end

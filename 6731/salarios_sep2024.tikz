@@ -1,0 +1,52 @@
+% This file was created with tikzplotlib v0.10.1.
+\begin{tikzpicture}
+
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{axis}[
+tick align=outside,
+tick pos=left,
+x grid style={darkgray176},
+xmajorgrids,
+xmin=19646.75, xmax=19982.25,
+xtick style={color=black},
+xtick={19662,19692.5,19723,19753.5,19784,19814.5,19845,19875.5,19906,19936.5,19967},
+xticklabels={Nov 23,Dec 23,Jan 24,Jan 24,Mar 24,Apr 24,May 24,Jun 24,Jul 24,Aug 24,Sep 24},
+y grid style={darkgray176},
+ymajorgrids,
+ymin=92.373, ymax=260.167,
+ytick style={color=black}
+]
+\addplot [semithick, steelblue31119180, mark=o, mark size=3, mark options={solid,fill opacity=0}, only marks]
+table {%
+19662 100
+19692.5 125.5
+19723 151.35
+19753.5 171.33
+19784 190.18
+19814.5 206.91
+19845 215.6
+19875.5 225.52
+19906 234.61
+19936.5 243.53
+19967 252.54
+};
+\addplot [semithick, darkorange25512714, mark=square, mark size=3, mark options={solid,fill opacity=0}, only marks]
+table {%
+19662 100
+19692.5 105.5
+19723 105.5
+19753.5 122.39
+19784 137.07
+19814.5 148.04
+19845 161.36
+19875.5 167.82
+19906 180.4
+19936.5 185.81
+19967 189.42
+};
+\end{axis}
+
+\end{tikzpicture}

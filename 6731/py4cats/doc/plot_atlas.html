@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module plot_atlas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>plot_atlas</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/plot_atlas.py">/users/schrei_f/src/py4CAtS/lite/src/plot_atlas.py</a></font></td></tr></table>
+    <p><tt>plot_atlas<br>
+Plot&nbsp;line&nbsp;position&nbsp;vs&nbsp;strength&nbsp;in&nbsp;'atlas'&nbsp;style.<br>
+&nbsp;<br>
+usage:<br>
+plot_atlas&nbsp;[options]&nbsp;files<br>
+&nbsp;<br>
+-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+-c&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;files&nbsp;(default&nbsp;'#',&nbsp;several&nbsp;characters&nbsp;allowed)<br>
+-I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vertical&nbsp;impulses&nbsp;(bars)&nbsp;to&nbsp;indicate&nbsp;line&nbsp;strength&nbsp;(default:&nbsp;use&nbsp;'+',&nbsp;only&nbsp;for&nbsp;xmgr)<br>
+-g&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show&nbsp;one&nbsp;molecule&nbsp;per&nbsp;graph&nbsp;(default:&nbsp;plot&nbsp;all&nbsp;lines&nbsp;of&nbsp;all&nbsp;molecules&nbsp;in&nbsp;one&nbsp;graph)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(max.)&nbsp;number&nbsp;of&nbsp;graphs&nbsp;per&nbsp;page&nbsp;with&nbsp;one&nbsp;molecule&nbsp;per&nbsp;graph<br>
+-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;(print)&nbsp;file&nbsp;(default:&nbsp;interactive&nbsp;plot)<br>
+-t&nbsp;string&nbsp;&nbsp;&nbsp;title<br>
+-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verbose<br>
+&nbsp;<br>
+NOTE:<br>
+The&nbsp;original&nbsp;implementation&nbsp;used&nbsp;the&nbsp;xmgr&nbsp;plotting&nbsp;tool&nbsp;(a.k.a.&nbsp;ACE/gr,&nbsp;further&nbsp;developed&nbsp;into&nbsp;the&nbsp;GRACE&nbsp;tool).<br>
+If&nbsp;you&nbsp;prefer&nbsp;the&nbsp;new&nbsp;xmgrace,&nbsp;use&nbsp;the&nbsp;-v&nbsp;option&nbsp;(verbose)&nbsp;to&nbsp;print&nbsp;the&nbsp;command&nbsp;to&nbsp;the&nbsp;screen&nbsp;and&nbsp;replace&nbsp;xmgr&nbsp;-&gt;&nbsp;xmgrace.<br>
+(Unfortunately&nbsp;the&nbsp;option&nbsp;syntax&nbsp;is&nbsp;slightly&nbsp;different,&nbsp;but&nbsp;the&nbsp;"all&nbsp;in&nbsp;one"&nbsp;plot&nbsp;should&nbsp;work&nbsp;as&nbsp;before.)<br>
+&nbsp;<br>
+Currently&nbsp;only&nbsp;wavenumber&nbsp;vs&nbsp;strength&nbsp;is&nbsp;implemented,&nbsp;see&nbsp;also&nbsp;the&nbsp;atlas&nbsp;function&nbsp;in&nbsp;the&nbsp;lines&nbsp;module.</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-aceGr_atlas"><strong>aceGr_atlas</strong></a>(lineFiles, printFile='', nGraphs=0, impulse=False, title='')</dt><dd><tt>Plot&nbsp;line&nbsp;parameters&nbsp;(position&nbsp;vs&nbsp;strength)&nbsp;using&nbsp;ACE/gr&nbsp;=&nbsp;xmgr.<br>
+&nbsp;<br>
+lineFiles&nbsp;&nbsp;&nbsp;&nbsp;line&nbsp;parameter&nbsp;data&nbsp;file(s)<br>
+printFile&nbsp;&nbsp;&nbsp;&nbsp;postscript&nbsp;file&nbsp;for&nbsp;hardcopy&nbsp;output&nbsp;(default&nbsp;none)<br>
+nGraphs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one&nbsp;graph&nbsp;per&nbsp;molecule&nbsp;and&nbsp;&lt;=&nbsp;nGraphs&nbsp;per&nbsp;"page"&nbsp;(default&nbsp;0,&nbsp;i.e.&nbsp;one&nbsp;plot&nbsp;for&nbsp;all)<br>
+impulse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;vertical&nbsp;bars&nbsp;instead&nbsp;of&nbsp;+&nbsp;markers<br>
+title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header&nbsp;line</tt></dd></dl>
+ <dl><dt><a name="-childProcess"><strong>childProcess</strong></a>(job)</dt><dd><tt>System&nbsp;call&nbsp;along&nbsp;with&nbsp;exception&nbsp;handling.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>catsPath</strong> = ''<br>
+<strong>verbose</strong> = 0</td></tr></table>
+</body></html>

@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{tikz}
+% all other packages and stuff you need for the picture
+%
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{hyperref}
+\usepackage{pgfplots}
+\usetikzlibrary{patterns}
+\usetikzlibrary{babel}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\begin{tikzpicture}
+\draw[help lines, color=gray!30, dashed] (-.9,-.9) grid (5.9,3.9);
+\draw[-{>[scale=2.5,length=3,width=2]},ultra thick](-1.,0) -- (6,0);
+\draw[-{>[scale=2.5,length=3,width=2]},ultra thick] (0,-1) -- (0,4);
+\draw[pattern=north west lines, pattern color=cyan] (0,0) rectangle (6,2);
+\draw[pattern=north east lines, pattern color=blue] (0,-1) rectangle (6,0);
+\draw (2,0) --(2,-1);
+\draw[dashed] (4.8,0) --(4.8,4);
+\draw (6,0) --(6,4);
+\draw (2,0) --(4.8,2);
+\draw (2,0) --(4.8,2);
+\draw[dashed] (0,1.9) --(6,1.9);
+\node at (2,-.4) {$T_i$};
+\node at (4.8,-.4) {$T_s$};
+\node at (6,-.4) {$T$};
+\node at (-.3,-.2) {0};
+\node at (-.8,2) {$z=2$mm};
+\node at (6.3,2) {$u$};
+\node at (-.3,4) {$z$};
+\node[fill=white] at (1,1) {Hielo};
+\node[fill=white] at (3,2.6) {Agua};e
+\end{tikzpicture}
+\end{document}

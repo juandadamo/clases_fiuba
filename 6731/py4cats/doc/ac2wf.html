@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module ac2wf</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ac2wf</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/ac2wf.py">/users/schrei_f/src/py4CAtS/lite/src/ac2wf.py</a></font></td></tr></table>
+    <p><tt>ac2wf<br>
+&nbsp;computation&nbsp;of&nbsp;weighting&nbsp;funtions&nbsp;given&nbsp;absorption&nbsp;coefficients&nbsp;along&nbsp;with&nbsp;atmospheric&nbsp;data&nbsp;(altitudes)<br>
+&nbsp;<br>
+&nbsp;usage:<br>
+&nbsp;ac2wf&nbsp;&nbsp;[options]&nbsp;&nbsp;absCoFile<br>
+&nbsp;<br>
+&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;input,output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;optical&nbsp;depth&nbsp;(if&nbsp;not&nbsp;given:&nbsp;write&nbsp;to&nbsp;StdOut)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;the&nbsp;output&nbsp;file's&nbsp;extension&nbsp;ends&nbsp;with&nbsp;".nc",&nbsp;".ncdf"&nbsp;or&nbsp;".netcdf",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;netcdf&nbsp;file&nbsp;is&nbsp;generated,&nbsp;otherwise&nbsp;the&nbsp;file&nbsp;is&nbsp;ascii&nbsp;tabular)<br>
+&nbsp;<br>
+&nbsp;-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;observer&nbsp;angle&nbsp;[dg]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uplooking&nbsp;=&nbsp;0dg&nbsp;...&nbsp;nadir&nbsp;downlooking&nbsp;=&nbsp;180dg&nbsp;(default)<br>
+&nbsp;-z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;observer&nbsp;altitude&nbsp;[km]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;no&nbsp;interpolation,&nbsp;i.e.&nbsp;integration&nbsp;starts/stops&nbsp;at&nbsp;the&nbsp;next&nbsp;level&nbsp;above/below&nbsp;BoA/ToA<br>
+&nbsp;-t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;save&nbsp;transposed&nbsp;weighting&nbsp;functions,&nbsp;i.e.&nbsp;distance&nbsp;(altitude)&nbsp;vs&nbsp;WF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;&nbsp;save&nbsp;wavenumber&nbsp;grid&nbsp;(first&nbsp;column)&nbsp;vs&nbsp;WF&nbsp;(following&nbsp;columns))<br>
+&nbsp;-x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interval&nbsp;&nbsp;lower,upper&nbsp;wavenumbers&nbsp;(comma&nbsp;separated&nbsp;pair&nbsp;of&nbsp;floats&nbsp;[no&nbsp;blanks!],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;set&nbsp;according&nbsp;to&nbsp;range&nbsp;of&nbsp;lines&nbsp;in&nbsp;datafiles)<br>
+--fov&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;of&nbsp;field-of-view&nbsp;function:&nbsp;&nbsp;Gauss&nbsp;|&nbsp;Box&nbsp;|&nbsp;Rectangle<br>
+&nbsp;-w&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width&nbsp;of&nbsp;field-of-view,&nbsp;HWHM&nbsp;in&nbsp;dg,&nbsp;default&nbsp;1.0</tt></p>
+<p>
+    
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-ac2wf"><strong>ac2wf</strong></a>(acList, angle=180.0, zObs=None, FoV=None)</dt><dd><tt>Absorption&nbsp;coefficient&nbsp;to&nbsp;weighting&nbsp;functions.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+acList:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;(molecular)&nbsp;absorption&nbsp;coefficients&nbsp;[1/cm]&nbsp;&nbsp;(acArray's&nbsp;with&nbsp;x,&nbsp;z,&nbsp;p,&nbsp;T&nbsp;as&nbsp;attributes)<br>
+angle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zenith&nbsp;viewing&nbsp;angle&nbsp;[dg]:&nbsp;&nbsp;0dg=uploooking&nbsp;...&nbsp;180dg&nbsp;downlooking&nbsp;default<br>
+zObs:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;observer&nbsp;altitude&nbsp;[cm]&nbsp;(if&nbsp;very&nbsp;small,&nbsp;assume&nbsp;km&nbsp;and&nbsp;scale&nbsp;by&nbsp;1e5&nbsp;to&nbsp;get&nbsp;cm)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;unspecified:&nbsp;assume&nbsp;ToA&nbsp;for&nbsp;angle&gt;90dg,&nbsp;i.e.&nbsp;nadir&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;default&nbsp;angle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assume&nbsp;BoA&nbsp;for&nbsp;angle&lt;90dg<br>
+FoV:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;giving&nbsp;field-of-view&nbsp;type&nbsp;and&nbsp;width&nbsp;(HWHM&nbsp;in&nbsp;dg),&nbsp;e.g.&nbsp;"Gauss&nbsp;1.0"&nbsp;(default&nbsp;None)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(computed&nbsp;by&nbsp;sum&nbsp;of&nbsp;three&nbsp;pencil&nbsp;beams)<br>
+RETURNS:<br>
+--------<br>
+wgtFct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;numpy&nbsp;array&nbsp;matrix&nbsp;along&nbsp;with&nbsp;attributes<br>
+&nbsp;<br>
+NOTE:<br>
+-----<br>
+the&nbsp;shape&nbsp;of&nbsp;the&nbsp;weighting&nbsp;function&nbsp;array&nbsp;returned&nbsp;depends&nbsp;on&nbsp;the&nbsp;number&nbsp;of&nbsp;levels&nbsp;above/below&nbsp;the&nbsp;observer</tt></dd></dl>
+ <dl><dt><a name="-dod2wf"><strong>dod2wf</strong></a>(dodList, angle=180.0, zObs=None)</dt><dd><tt>Optical&nbsp;depth&nbsp;to&nbsp;weighting&nbsp;functions&nbsp;(using&nbsp;2-point&nbsp;finite&nbsp;difference).<br>
+&nbsp;<br>
+Arguments:<br>
+----------<br>
+dodList:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;differential&nbsp;optical&nbsp;depth&nbsp;list<br>
+angle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;viewing&nbsp;angle&nbsp;[dg]:&nbsp;&nbsp;0dg=uploooking&nbsp;...&nbsp;180dg&nbsp;downlooking&nbsp;(default)<br>
+zObs:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;observer&nbsp;altitude&nbsp;[cm]&nbsp;(if&nbsp;very&nbsp;small,&nbsp;assume&nbsp;km&nbsp;and&nbsp;scale&nbsp;by&nbsp;1e5&nbsp;to&nbsp;get&nbsp;cm)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;unspecified:&nbsp;assume&nbsp;ToA&nbsp;for&nbsp;angle&gt;90dg,&nbsp;i.e.&nbsp;nadir&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;default&nbsp;angle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assume&nbsp;BoA&nbsp;for&nbsp;angle&lt;90dg<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+vGrid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;spectral&nbsp;grid&nbsp;(wavenumbers)<br>
+sGrid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;spatial&nbsp;grid&nbsp;(altitudes&nbsp;(scaled&nbsp;by&nbsp;1/cos(angle))&nbsp;relative&nbsp;to&nbsp;observer)<br>
+wgtFct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numpy&nbsp;array&nbsp;matrix&nbsp;with&nbsp;absCo.shape[0]&nbsp;rows&nbsp;and&nbsp;???&nbsp;columns&nbsp;for&nbsp;the&nbsp;altitude(s)<br>
+&nbsp;<br>
+WARNING:<br>
+--------<br>
+probably&nbsp;more&nbsp;accurate&nbsp;to&nbsp;compute&nbsp;finite&nbsp;diff&nbsp;of&nbsp;optical&nbsp;depth&nbsp;and&nbsp;multiply&nbsp;with&nbsp;transmission<br>
+OR&nbsp;even&nbsp;better&nbsp;"analytically"&nbsp;from&nbsp;transmission*absCoefficient&nbsp;(see&nbsp;function&nbsp;ac2wf)</tt></dd></dl>
+ <dl><dt><a name="-sqrt"><strong>sqrt</strong></a>(...)</dt><dd><tt><a href="#-sqrt">sqrt</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;square&nbsp;root&nbsp;of&nbsp;x.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>recSqrtPi</strong> = 0.5641895835477563</td></tr></table>
+</body></html>

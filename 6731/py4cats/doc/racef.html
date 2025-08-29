@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module racef</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>racef</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/racef.py">../src3/racef.py</a></font></td></tr></table>
+    <p><tt>Rational&nbsp;Approximations&nbsp;for&nbsp;the&nbsp;Complex&nbsp;Error&nbsp;Function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;w(z)&nbsp;&nbsp;=&nbsp;&nbsp;(i/pi)&nbsp;integral&nbsp;exp(-t**2)&nbsp;/&nbsp;(z-t)&nbsp;dt&nbsp;&nbsp;=&nbsp;&nbsp;K(x,y)&nbsp;+&nbsp;iL(x,y)<br>
+&nbsp;<br>
+J.&nbsp;Humlicek.<br>
+An&nbsp;efficient&nbsp;method&nbsp;for&nbsp;evaluation&nbsp;of&nbsp;the&nbsp;complex&nbsp;probability&nbsp;function<br>
+J.&nbsp;Quant.&nbsp;Spectrosc.&nbsp;&amp;&nbsp;Radiat.&nbsp;Transfer,&nbsp;21,&nbsp;309­313,&nbsp;1979.<br>
+&nbsp;<br>
+J.&nbsp;Humlicek.<br>
+Optimized&nbsp;computation&nbsp;of&nbsp;the&nbsp;Voigt&nbsp;and&nbsp;complex&nbsp;probability&nbsp;function<br>
+J.&nbsp;Quant.&nbsp;Spectrosc.&nbsp;&amp;&nbsp;Radiat.&nbsp;Transfer,&nbsp;27,&nbsp;437­444,&nbsp;1982.<br>
+&nbsp;<br>
+J.A.C.&nbsp;Weideman.<br>
+Computation&nbsp;of&nbsp;the&nbsp;Complex&nbsp;Error&nbsp;Function.<br>
+SIAM&nbsp;J.&nbsp;Num.&nbsp;Anal.,&nbsp;31,&nbsp;1497­1518,&nbsp;1994.<br>
+&nbsp;<br>
+F.&nbsp;Schreier.<br>
+Optimized&nbsp;Implementations&nbsp;of&nbsp;Rational&nbsp;Approximations&nbsp;for&nbsp;the&nbsp;Voigt&nbsp;and&nbsp;Complex&nbsp;Error&nbsp;Function.<br>
+J.&nbsp;Quant.&nbsp;Spectrosc.&nbsp;&amp;&nbsp;Radiat.&nbsp;Transfer,&nbsp;112(6),&nbsp;1010­1025,&nbsp;2011.<br>
+&nbsp;<br>
+F.&nbsp;Schreier.<br>
+The&nbsp;Voigt&nbsp;and&nbsp;complex&nbsp;error&nbsp;function:&nbsp;Humlicek's&nbsp;rational&nbsp;approximation&nbsp;generalized.<br>
+Mon.&nbsp;Not.&nbsp;Roy.&nbsp;Astron.&nbsp;Soc.,&nbsp;479(3),&nbsp;3068­3075,&nbsp;September&nbsp;2018.</tt></p>
+<p>
+
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-hum1wei24"><strong>hum1wei24</strong></a>(x, y)</dt><dd><tt>Complex&nbsp;error&nbsp;function&nbsp;combining&nbsp;Humlicek's&nbsp;and&nbsp;Weideman's&nbsp;rational&nbsp;approximations:<br>
+&nbsp;<br>
+|x|+y&gt;15:&nbsp;&nbsp;Humlicek&nbsp;(JQSRT,&nbsp;1982)&nbsp;rational&nbsp;approximation&nbsp;for&nbsp;region&nbsp;I;<br>
+else:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;J.A.C.&nbsp;Weideman&nbsp;(SIAM-NA&nbsp;1994);&nbsp;equation&nbsp;(38.I)&nbsp;and&nbsp;table&nbsp;I.<br>
+&nbsp;<br>
+F.&nbsp;Schreier,&nbsp;JQSRT&nbsp;112,&nbsp;pp.&nbsp;1010-1025,&nbsp;2011:&nbsp;&nbsp;doi:&nbsp;10.1016/j.jqsrt.2010.12.010</tt></dd></dl>
+ <dl><dt><a name="-hum1zpf16m"><strong>hum1zpf16m</strong></a>(x, y, s=15.0)</dt><dd><tt>Complex&nbsp;error&nbsp;function&nbsp;w(z)=w(x+iy)&nbsp;combining&nbsp;Humlicek's&nbsp;rational&nbsp;approximations:<br>
+&nbsp;<br>
+|x|+y&gt;15:&nbsp;&nbsp;Humlicek&nbsp;(JQSRT,&nbsp;1982)&nbsp;rational&nbsp;approximation&nbsp;for&nbsp;region&nbsp;I;<br>
+else:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Humlicek&nbsp;(JQSRT,&nbsp;1979)&nbsp;rational&nbsp;approximation&nbsp;with&nbsp;n=16&nbsp;and&nbsp;delta=y0=1.31183<br>
+&nbsp;<br>
+Version&nbsp;using&nbsp;a&nbsp;mask&nbsp;and&nbsp;np.place;&nbsp;&nbsp;two&nbsp;real&nbsp;arguments&nbsp;x,y.</tt></dd></dl>
+ <dl><dt><a name="-hum2wei32"><strong>hum2wei32</strong></a>(x, y)</dt><dd><tt>Complex&nbsp;error&nbsp;function&nbsp;combining&nbsp;Humlicek's&nbsp;and&nbsp;Weideman's&nbsp;rational&nbsp;approximations:<br>
+&nbsp;<br>
+|x|+y&gt;10.0:&nbsp;Humlicek&nbsp;(JQSRT,&nbsp;1982)&nbsp;rational&nbsp;approximation&nbsp;for&nbsp;region&nbsp;II;<br>
+else:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;J.A.C.&nbsp;Weideman&nbsp;(SIAM-NA&nbsp;1994);&nbsp;equation&nbsp;(38.I)&nbsp;and&nbsp;table&nbsp;I.<br>
+&nbsp;<br>
+F.&nbsp;Schreier,&nbsp;JQSRT&nbsp;112,&nbsp;pp.&nbsp;1010-1025,&nbsp;2011:&nbsp;&nbsp;doi:&nbsp;10.1016/j.jqsrt.2010.12.010</tt></dd></dl>
+ <dl><dt><a name="-hum2zpf16m"><strong>hum2zpf16m</strong></a>(x, y, s=10.0)</dt><dd><tt>Complex&nbsp;error&nbsp;function&nbsp;w(z)=w(x+iy)&nbsp;combining&nbsp;Humlicek's&nbsp;rational&nbsp;approximations:<br>
+&nbsp;<br>
+|x|+y&gt;10:&nbsp;&nbsp;Humlicek&nbsp;(JQSRT,&nbsp;1982)&nbsp;rational&nbsp;approximation&nbsp;for&nbsp;region&nbsp;II;<br>
+else:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Humlicek&nbsp;(JQSRT,&nbsp;1979)&nbsp;rational&nbsp;approximation&nbsp;with&nbsp;n=16&nbsp;and&nbsp;delta=y0=1.31183<br>
+&nbsp;<br>
+Version&nbsp;using&nbsp;a&nbsp;mask&nbsp;and&nbsp;np.place;&nbsp;&nbsp;two&nbsp;real&nbsp;arguments&nbsp;x,y.</tt></dd></dl>
+ <dl><dt><a name="-weideman24a"><strong>weideman24a</strong></a>(x, y)</dt><dd><tt>Complex&nbsp;error&nbsp;function&nbsp;using&nbsp;Weideman's&nbsp;rational&nbsp;approximation:<br>
+J.A.C.&nbsp;Weideman&nbsp;(SIAM-NA&nbsp;1994);&nbsp;equation&nbsp;(38.I)&nbsp;for&nbsp;N=24&nbsp;and&nbsp;table&nbsp;I.<br>
+Maximum&nbsp;relative&nbsp;error:&nbsp;2.6e-1&nbsp;for&nbsp;0&lt;x&lt;25&nbsp;and&nbsp;1e-8&lt;y&lt;1e2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6e-3&nbsp;for&nbsp;0&lt;x&lt;25&nbsp;and&nbsp;1e-6&lt;y&lt;1e2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6e-5&nbsp;for&nbsp;0&lt;x&lt;25&nbsp;and&nbsp;1e-4&lt;y&lt;1e2.</tt></dd></dl>
+ <dl><dt><a name="-weideman32a"><strong>weideman32a</strong></a>(x, y)</dt><dd><tt>Complex&nbsp;error&nbsp;function&nbsp;using&nbsp;Weideman's&nbsp;rational&nbsp;approximation:<br>
+J.A.C.&nbsp;Weideman&nbsp;(SIAM-NA&nbsp;1994);&nbsp;equation&nbsp;(38.I)&nbsp;for&nbsp;N=32&nbsp;and&nbsp;table&nbsp;I.<br>
+Maximum&nbsp;relative&nbsp;error:&nbsp;2.6e-4&nbsp;for&nbsp;0&lt;x&lt;25&nbsp;and&nbsp;1e-8&lt;y&lt;1e2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6e-6&nbsp;for&nbsp;0&lt;x&lt;25&nbsp;and&nbsp;1e-6&lt;y&lt;1e2.</tt></dd></dl>
+ <dl><dt><a name="-zpf16h"><strong>zpf16h</strong></a>(x, y)</dt><dd><tt>Humlicek&nbsp;(JQSRT&nbsp;1979)&nbsp;complex&nbsp;probability&nbsp;function&nbsp;for&nbsp;n=16&nbsp;and&nbsp;delta=1.31183.<br>
+Generalization&nbsp;described&nbsp;in&nbsp;MNRAS&nbsp;479(3),&nbsp;3068-3075,&nbsp;2018,&nbsp;doi:&nbsp;10.1093/mnras/sty1680<br>
+&nbsp;<br>
+Optimized&nbsp;rational&nbsp;approximation&nbsp;with&nbsp;Horner&nbsp;scheme&nbsp;&nbsp;(applicable&nbsp;for&nbsp;all&nbsp;z=x+iy).</tt></dd></dl>
+ <dl><dt><a name="-zpf16p"><strong>zpf16p</strong></a>(x, y)</dt><dd><tt>Humlicek&nbsp;(JQSRT&nbsp;1979)&nbsp;complex&nbsp;probability&nbsp;function&nbsp;for&nbsp;n=16&nbsp;and&nbsp;delta=1.31183.<br>
+Generalization&nbsp;described&nbsp;in&nbsp;MNRAS&nbsp;479(3),&nbsp;3068-3075,&nbsp;2018,&nbsp;doi:&nbsp;10.1093/mnras/sty1680<br>
+&nbsp;<br>
+Optimized&nbsp;rational&nbsp;approximation&nbsp;using&nbsp;numpy.poly1d&nbsp;&nbsp;(applicable&nbsp;for&nbsp;all&nbsp;z=x+iy).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['weideman24a', 'weideman32a', 'hum1wei24', 'hum2wei32', 'zpf16h', 'zpf16p', 'hum1zpf16m', 'hum2zpf16m']</td></tr></table>
+</body></html>

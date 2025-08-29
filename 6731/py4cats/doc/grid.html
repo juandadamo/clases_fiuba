@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module grid</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>grid</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/grid.py">../src3/grid.py</a></font></td></tr></table>
+    <p><tt>grid<br>
+&nbsp;<br>
+Read&nbsp;command&nbsp;argument&nbsp;and&nbsp;try&nbsp;to&nbsp;generate&nbsp;a&nbsp;numpy&nbsp;array&nbsp;defining&nbsp;a&nbsp;grid.<br>
+&nbsp;<br>
+Usage:<br>
+&nbsp;<br>
+&nbsp;&nbsp;grid&nbsp;[options]&nbsp;gridSpec<br>
+&nbsp;<br>
+&nbsp;&nbsp;gridSpec&nbsp;can&nbsp;be<br>
+&nbsp;&nbsp;*&nbsp;&nbsp;an&nbsp;integer<br>
+&nbsp;&nbsp;*&nbsp;&nbsp;a&nbsp;plain&nbsp;ascii&nbsp;file&nbsp;(grid&nbsp;will&nbsp;be&nbsp;read&nbsp;from&nbsp;first&nbsp;(default)&nbsp;column)<br>
+&nbsp;&nbsp;*&nbsp;&nbsp;a&nbsp;numpy&nbsp;expression,&nbsp;e.g.&nbsp;"<a href="#-arange">arange</a>(10)"&nbsp;or&nbsp;"linspace(10.,20.)"<br>
+&nbsp;&nbsp;*&nbsp;&nbsp;a&nbsp;string&nbsp;in&nbsp;the&nbsp;format&nbsp;'start[step1]stop1[step2]stop'&nbsp;etc&nbsp;to&nbsp;set&nbsp;up&nbsp;an&nbsp;piecewise&nbsp;equidistant&nbsp;grid.<br>
+&nbsp;&nbsp;NOTE:&nbsp;&nbsp;except&nbsp;for&nbsp;the&nbsp;first&nbsp;two&nbsp;cases&nbsp;enclose&nbsp;gridSpec&nbsp;in&nbsp;quotes&nbsp;to&nbsp;prevent&nbsp;any&nbsp;'misinterpretation'&nbsp;by&nbsp;the&nbsp;unix&nbsp;shell<br>
+&nbsp;<br>
+Options:<br>
+&nbsp;<br>
+&nbsp;&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;input,output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+&nbsp;&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;grid<br>
+&nbsp;&nbsp;-C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;column&nbsp;to&nbsp;read&nbsp;from&nbsp;file&nbsp;(numpy&nbsp;convention;&nbsp;&nbsp;default:&nbsp;0&nbsp;---&gt;&nbsp;first&nbsp;column)<br>
+&nbsp;&nbsp;-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reverse&nbsp;(flip)&nbsp;grid&nbsp;points&nbsp;up&nbsp;&lt;--&gt;&nbsp;down<br>
+&nbsp;--scale&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;multiplication&nbsp;factor&nbsp;for&nbsp;grid&nbsp;&nbsp;(default:&nbsp;&nbsp;1)<br>
+&nbsp;--shift&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;additive&nbsp;constant&nbsp;to&nbsp;shift&nbsp;the&nbsp;grid&nbsp;&nbsp;(default:&nbsp;&nbsp;0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;scaling&nbsp;is&nbsp;done&nbsp;before&nbsp;shifting&nbsp;!</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-arange"><strong>arange</strong></a>(...)</dt><dd><tt><a href="#-arange">arange</a>([start,]&nbsp;stop[,&nbsp;step,],&nbsp;dtype=None)<br>
+&nbsp;<br>
+Return&nbsp;evenly&nbsp;spaced&nbsp;values&nbsp;within&nbsp;a&nbsp;given&nbsp;interval.<br>
+&nbsp;<br>
+Values&nbsp;are&nbsp;generated&nbsp;within&nbsp;the&nbsp;half-open&nbsp;interval&nbsp;``[start,&nbsp;stop)``<br>
+(in&nbsp;other&nbsp;words,&nbsp;the&nbsp;interval&nbsp;including&nbsp;`start`&nbsp;but&nbsp;excluding&nbsp;`stop`).<br>
+For&nbsp;integer&nbsp;arguments&nbsp;the&nbsp;function&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;the&nbsp;Python&nbsp;built-in<br>
+`range&nbsp;&lt;<a href="http://docs.python.org/lib/built-in-funcs.html&gt;`_">http://docs.python.org/lib/built-in-funcs.html&gt;`_</a>&nbsp;function,<br>
+but&nbsp;returns&nbsp;an&nbsp;ndarray&nbsp;rather&nbsp;than&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+When&nbsp;using&nbsp;a&nbsp;non-integer&nbsp;step,&nbsp;such&nbsp;as&nbsp;0.1,&nbsp;the&nbsp;results&nbsp;will&nbsp;often&nbsp;not<br>
+be&nbsp;consistent.&nbsp;&nbsp;It&nbsp;is&nbsp;better&nbsp;to&nbsp;use&nbsp;``linspace``&nbsp;for&nbsp;these&nbsp;cases.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+start&nbsp;:&nbsp;number,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;of&nbsp;interval.&nbsp;&nbsp;The&nbsp;interval&nbsp;includes&nbsp;this&nbsp;value.&nbsp;&nbsp;The&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;value&nbsp;is&nbsp;0.<br>
+stop&nbsp;:&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;End&nbsp;of&nbsp;interval.&nbsp;&nbsp;The&nbsp;interval&nbsp;does&nbsp;not&nbsp;include&nbsp;this&nbsp;value,&nbsp;except<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;some&nbsp;cases&nbsp;where&nbsp;`step`&nbsp;is&nbsp;not&nbsp;an&nbsp;integer&nbsp;and&nbsp;floating&nbsp;point<br>
+&nbsp;&nbsp;&nbsp;&nbsp;round-off&nbsp;affects&nbsp;the&nbsp;length&nbsp;of&nbsp;`out`.<br>
+step&nbsp;:&nbsp;number,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Spacing&nbsp;between&nbsp;values.&nbsp;&nbsp;For&nbsp;any&nbsp;output&nbsp;`out`,&nbsp;this&nbsp;is&nbsp;the&nbsp;distance<br>
+&nbsp;&nbsp;&nbsp;&nbsp;between&nbsp;two&nbsp;adjacent&nbsp;values,&nbsp;``out[i+1]&nbsp;-&nbsp;out[i]``.&nbsp;&nbsp;The&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;step&nbsp;size&nbsp;is&nbsp;1.&nbsp;&nbsp;If&nbsp;`step`&nbsp;is&nbsp;specified&nbsp;as&nbsp;a&nbsp;position&nbsp;argument,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`start`&nbsp;must&nbsp;also&nbsp;be&nbsp;given.<br>
+dtype&nbsp;:&nbsp;dtype<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;type&nbsp;of&nbsp;the&nbsp;output&nbsp;array.&nbsp;&nbsp;If&nbsp;`dtype`&nbsp;is&nbsp;not&nbsp;given,&nbsp;infer&nbsp;the&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;from&nbsp;the&nbsp;other&nbsp;input&nbsp;arguments.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+arange&nbsp;:&nbsp;ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Array&nbsp;of&nbsp;evenly&nbsp;spaced&nbsp;values.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;floating&nbsp;point&nbsp;arguments,&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;result&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;``ceil((stop&nbsp;-&nbsp;start)/step)``.&nbsp;&nbsp;Because&nbsp;of&nbsp;floating&nbsp;point&nbsp;overflow,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;rule&nbsp;may&nbsp;result&nbsp;in&nbsp;the&nbsp;last&nbsp;element&nbsp;of&nbsp;`out`&nbsp;being&nbsp;greater<br>
+&nbsp;&nbsp;&nbsp;&nbsp;than&nbsp;`stop`.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+linspace&nbsp;:&nbsp;Evenly&nbsp;spaced&nbsp;numbers&nbsp;with&nbsp;careful&nbsp;handling&nbsp;of&nbsp;endpoints.<br>
+ogrid:&nbsp;Arrays&nbsp;of&nbsp;evenly&nbsp;spaced&nbsp;numbers&nbsp;in&nbsp;N-dimensions.<br>
+mgrid:&nbsp;Grid-shaped&nbsp;arrays&nbsp;of&nbsp;evenly&nbsp;spaced&nbsp;numbers&nbsp;in&nbsp;N-dimensions.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+&gt;&gt;&gt;&nbsp;np.<a href="#-arange">arange</a>(3)<br>
+array([0,&nbsp;1,&nbsp;2])<br>
+&gt;&gt;&gt;&nbsp;np.<a href="#-arange">arange</a>(3.0)<br>
+array([&nbsp;0.,&nbsp;&nbsp;1.,&nbsp;&nbsp;2.])<br>
+&gt;&gt;&gt;&nbsp;np.<a href="#-arange">arange</a>(3,7)<br>
+array([3,&nbsp;4,&nbsp;5,&nbsp;6])<br>
+&gt;&gt;&gt;&nbsp;np.<a href="#-arange">arange</a>(3,7,2)<br>
+array([3,&nbsp;5])</tt></dd></dl>
+ <dl><dt><a name="-grid"><strong>grid</strong></a>(gridSpec, commentChar='#', column=0, scale=None, shift=None, reverse=False, verbose=False)</dt><dd><tt>Parse&nbsp;"gridSpec"&nbsp;and&nbsp;return&nbsp;a&nbsp;numpy&nbsp;array&nbsp;defining&nbsp;a&nbsp;(monotone)&nbsp;grid.<br>
+&nbsp;<br>
+gridSpec&nbsp;can&nbsp;be<br>
+*&nbsp;&nbsp;an&nbsp;integer<br>
+*&nbsp;&nbsp;a&nbsp;plain&nbsp;ascii&nbsp;file&nbsp;(grid&nbsp;will&nbsp;be&nbsp;read&nbsp;from&nbsp;first&nbsp;(default)&nbsp;column)<br>
+*&nbsp;&nbsp;a&nbsp;numpy&nbsp;expression,&nbsp;e.g.&nbsp;'<a href="#-arange">arange</a>(10)'&nbsp;or&nbsp;'linspace(10.,20.)'<br>
+*&nbsp;&nbsp;a&nbsp;string&nbsp;in&nbsp;the&nbsp;format&nbsp;'start[step1]stop1[step2]stop'&nbsp;etc&nbsp;to&nbsp;set&nbsp;up&nbsp;an&nbsp;piecewise&nbsp;equidistant&nbsp;grid.<br>
+&nbsp;<br>
+Further&nbsp;arguments:<br>
+------------------<br>
+commentChar:&nbsp;&nbsp;&nbsp;The&nbsp;character&nbsp;used&nbsp;to&nbsp;indicate&nbsp;the&nbsp;start&nbsp;of&nbsp;a&nbsp;comment&nbsp;in&nbsp;the&nbsp;data&nbsp;file<br>
+column:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;column&nbsp;to&nbsp;read&nbsp;from&nbsp;file&nbsp;(default&nbsp;0&nbsp;=&nbsp;very&nbsp;first&nbsp;column)<br>
+scale:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;scaling&nbsp;factor&nbsp;(default&nbsp;None)<br>
+shift:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;constant&nbsp;to&nbsp;be&nbsp;added&nbsp;(default&nbsp;None)<br>
+reverse:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag&nbsp;to&nbsp;flip&nbsp;"up/down"<br>
+verbose:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag</tt></dd></dl>
+ <dl><dt><a name="-is_uniform"><strong>is_uniform</strong></a>(xGrid, eps=0.001, verbose=0)</dt><dd><tt>Compute&nbsp;grid&nbsp;point&nbsp;spacing&nbsp;and&nbsp;return&nbsp;a&nbsp;flag&nbsp;True/False&nbsp;if&nbsp;xGrid&nbsp;is&nbsp;uniform/equidistant&nbsp;or&nbsp;not.<br>
+If&nbsp;verbose,&nbsp;return&nbsp;a&nbsp;string&nbsp;if&nbsp;uniform,&nbsp;otherwise&nbsp;print&nbsp;info&nbsp;and&nbsp;return&nbsp;an&nbsp;empty&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-parseGridSpec"><strong>parseGridSpec</strong></a>(gridSpec)</dt><dd><tt>Set&nbsp;up&nbsp;(altitude)&nbsp;grid&nbsp;specified&nbsp;in&nbsp;format&nbsp;'start[step1]stop1[step2]stop'&nbsp;or&nbsp;similar.<br>
+&nbsp;<br>
+Example:&nbsp;&nbsp;"0[1]10[2]20[2.5]30[5]50"&nbsp;returns&nbsp;an&nbsp;array&nbsp;with&nbsp;24&nbsp;grid&nbsp;points.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+</body></html>

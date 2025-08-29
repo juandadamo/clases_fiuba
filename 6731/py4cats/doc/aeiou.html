@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module aeiou</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>aeiou</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/aeiou.py">/users/schrei_f/src/py4CAtS/lite/src/aeiou.py</a></font></td></tr></table>
+    <p><tt>aeiou&nbsp;&nbsp;&nbsp;---&nbsp;advanced&nbsp;extended&nbsp;input&nbsp;output&nbsp;utilities:<br>
+&nbsp;<br>
+awrite&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write&nbsp;(a)&nbsp;numeric&nbsp;array(s)&nbsp;to&nbsp;file&nbsp;(or&nbsp;fileObject,&nbsp;or&nbsp;stdout&nbsp;if&nbsp;unspecified).<br>
+cstack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shorthand&nbsp;robust&nbsp;version&nbsp;of&nbsp;numpy.column_stack:&nbsp;'paste'&nbsp;arrays&nbsp;side-by-side.<br>
+...<br>
+and&nbsp;many&nbsp;more&nbsp;functions.</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-awrite"><strong>awrite</strong></a>(data, outFile=None, format='%g ', comments=None, append=False, commentChar='#')</dt><dd><tt>Write&nbsp;(a)&nbsp;numeric&nbsp;array(s)&nbsp;to&nbsp;file&nbsp;(or&nbsp;fileObject,&nbsp;or&nbsp;stdout&nbsp;if&nbsp;unspecified).<br>
+&nbsp;<br>
+data:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;numpy&nbsp;array&nbsp;or&nbsp;a&nbsp;list/tuple&nbsp;of&nbsp;numpy&nbsp;arrays&nbsp;(with&nbsp;consistent&nbsp;number&nbsp;of&nbsp;rows,&nbsp;i.e.,&nbsp;identical&nbsp;first&nbsp;shape)<br>
+outFile:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filename&nbsp;or&nbsp;file&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;unspecified:&nbsp;write&nbsp;to&nbsp;stdout<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;an&nbsp;already&nbsp;opened&nbsp;file&nbsp;object,&nbsp;awrite&nbsp;does&nbsp;not&nbsp;close&nbsp;the&nbsp;file&nbsp;after&nbsp;writing<br>
+format:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;must&nbsp;have&nbsp;one,&nbsp;two,&nbsp;or&nbsp;data.shape[1]&nbsp;specifiers&nbsp;&nbsp;(line&nbsp;feed&nbsp;is&nbsp;appended&nbsp;if&nbsp;necessary)<br>
+comments:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;(list&nbsp;of)&nbsp;string(s)&nbsp;to&nbsp;be&nbsp;written&nbsp;as&nbsp;a&nbsp;file&nbsp;header&nbsp;in&nbsp;front&nbsp;of&nbsp;the&nbsp;data<br>
+append:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag<br>
+commentChar:&nbsp;&nbsp;default&nbsp;#<br>
+&nbsp;<br>
+[awrite&nbsp;is&nbsp;similar&nbsp;to&nbsp;numpy.savetxt,&nbsp;but&nbsp;smarter,&nbsp;more&nbsp;flexible,&nbsp;....<br>
+&nbsp;Note&nbsp;that&nbsp;the&nbsp;output&nbsp;file&nbsp;(object)&nbsp;is&nbsp;optional&nbsp;here,&nbsp;hence&nbsp;the&nbsp;second&nbsp;argument!]</tt></dd></dl>
+ <dl><dt><a name="-commonExtension"><strong>commonExtension</strong></a>(files)</dt><dd><tt>Return&nbsp;the&nbsp;common&nbsp;extension&nbsp;of&nbsp;all&nbsp;files,&nbsp;if&nbsp;identical;&nbsp;otherwise&nbsp;return&nbsp;None.</tt></dd></dl>
+ <dl><dt><a name="-countUniqueNames"><strong>countUniqueNames</strong></a>(listOfNames)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;strings,&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;unique&nbsp;strings&nbsp;(i.e.&nbsp;without&nbsp;duplicates).</tt></dd></dl>
+ <dl><dt><a name="-cstack"><strong>cstack</strong></a>(*arrays)</dt><dd><tt>Shorthand&nbsp;robust&nbsp;version&nbsp;of&nbsp;numpy.column_stack:&nbsp;'paste'&nbsp;arrays&nbsp;side-by-side.<br>
+&nbsp;<br>
+See&nbsp;also&nbsp;the&nbsp;numpy&nbsp;builtin&nbsp;c_</tt></dd></dl>
+ <dl><dt><a name="-getCommentLines"><strong>getCommentLines</strong></a>(inFile, commentChar='#')</dt><dd><tt>Read&nbsp;a&nbsp;tabular&nbsp;(xy)&nbsp;formatted&nbsp;ascii&nbsp;file&nbsp;and&nbsp;return&nbsp;list&nbsp;of&nbsp;ALL&nbsp;comments&nbsp;(without&nbsp;commentChar)&nbsp;found&nbsp;in&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-get_command"><strong>get_command</strong></a>(maxArgs=13)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;with&nbsp;the&nbsp;command&nbsp;line&nbsp;used&nbsp;(optionally&nbsp;truncated).</tt></dd></dl>
+ <dl><dt><a name="-grep_array_from_header"><strong>grep_array_from_header</strong></a>(inFile, keyword, keyValSep=':', commentChar='#', intType=0)</dt><dd><tt>Scan&nbsp;thru&nbsp;list&nbsp;of&nbsp;records&nbsp;(typically&nbsp;read&nbsp;as&nbsp;file&nbsp;header),&nbsp;search&nbsp;for&nbsp;ONE&nbsp;keyword,&nbsp;and&nbsp;return&nbsp;data&nbsp;as&nbsp;numpy&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-grep_from_header"><strong>grep_from_header</strong></a>(inFile, keyword, sep=':', commentChar='#')</dt><dd><tt>Scan&nbsp;thru&nbsp;list&nbsp;of&nbsp;records&nbsp;(typically&nbsp;read&nbsp;as&nbsp;file&nbsp;header),&nbsp;search&nbsp;for&nbsp;ONE&nbsp;keyword,&nbsp;and&nbsp;return&nbsp;its&nbsp;'value'.<br>
+(Equivalent&nbsp;to&nbsp;parse_comments&nbsp;(<a href="#-readFileHeader">readFileHeader</a>(file),keyword)[keyword],&nbsp;but&nbsp;returns&nbsp;only&nbsp;the&nbsp;entry).</tt></dd></dl>
+ <dl><dt><a name="-grep_word"><strong>grep_word</strong></a>(inFile, firstWord, commentChar='#')</dt><dd><tt>Scan&nbsp;thru&nbsp;header&nbsp;section&nbsp;of&nbsp;file&nbsp;and&nbsp;search&nbsp;for&nbsp;a&nbsp;comment&nbsp;line&nbsp;starting&nbsp;with&nbsp;&lt;firstWord&gt;;<br>
+Return&nbsp;list&nbsp;of&nbsp;words.</tt></dd></dl>
+ <dl><dt><a name="-join_words"><strong>join_words</strong></a>(wordList, sep=' ')</dt><dd><tt>Join&nbsp;/&nbsp;concatenate&nbsp;list&nbsp;or&nbsp;tuple&nbsp;of&nbsp;'words'&nbsp;(not&nbsp;in&nbsp;a&nbsp;strict&nbsp;grammar&nbsp;sense)&nbsp;and&nbsp;return&nbsp;a&nbsp;single&nbsp;string.<br>
+&nbsp;<br>
+(This&nbsp;function&nbsp;should&nbsp;work&nbsp;similar&nbsp;to&nbsp;the&nbsp;string.join&nbsp;function&nbsp;of&nbsp;Python&nbsp;2)</tt></dd></dl>
+ <dl><dt><a name="-loadxy"><strong>loadxy</strong></a>(xyFile, usecols=(0, 1), xLimits=None, verbose=False, commentChar='#')</dt><dd><tt>Read&nbsp;a&nbsp;tabular&nbsp;two-column&nbsp;ascii&nbsp;file&nbsp;with&nbsp;loadtxt&nbsp;and&nbsp;separately&nbsp;return&nbsp;the&nbsp;xGrid&nbsp;and&nbsp;the&nbsp;yValues&nbsp;arrays.</tt></dd></dl>
+ <dl><dt><a name="-loadxyy"><strong>loadxyy</strong></a>(xyyFile, verbose=False, commentChar='#')</dt><dd><tt>Read&nbsp;a&nbsp;tabular&nbsp;ascii&nbsp;file&nbsp;with&nbsp;loadtxt&nbsp;and&nbsp;separately&nbsp;return&nbsp;the&nbsp;xGrid&nbsp;array&nbsp;and&nbsp;the&nbsp;y&nbsp;data&nbsp;'matrix'.</tt></dd></dl>
+ <dl><dt><a name="-minmaxmean"><strong>minmaxmean</strong></a>(xy, name='xy')</dt><dd><tt>Print&nbsp;some&nbsp;'statistics'&nbsp;of&nbsp;a&nbsp;numpy&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-open_outFile"><strong>open_outFile</strong></a>(outFile, commentChar='#')</dt><dd><tt>Open&nbsp;output&nbsp;file&nbsp;and&nbsp;write&nbsp;job&nbsp;&nbsp;specification&nbsp;(command&nbsp;line).</tt></dd></dl>
+ <dl><dt><a name="-parse_comments"><strong>parse_comments</strong></a>(commentLines, keywords, sep=':', commentChar='#')</dt><dd><tt>Scan&nbsp;thru&nbsp;list&nbsp;of&nbsp;records&nbsp;(typically&nbsp;read&nbsp;as&nbsp;file&nbsp;header)&nbsp;and&nbsp;search&nbsp;for&nbsp;certain&nbsp;keys;<br>
+returns&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;(ideally)&nbsp;len(keywords)&nbsp;key,value(s)&nbsp;pairs<br>
+If&nbsp;units&nbsp;are&nbsp;specified&nbsp;in&nbsp;the&nbsp;key&nbsp;(like&nbsp;"name&nbsp;[unit]:&nbsp;value(s)),<br>
+the&nbsp;value(s)&nbsp;are&nbsp;converted&nbsp;to&nbsp;the&nbsp;standard&nbsp;cgs&nbsp;unit&nbsp;(e.g.&nbsp;mb&nbsp;-&gt;&nbsp;g/cm/s**2).</tt></dd></dl>
+ <dl><dt><a name="-readDataAndComments"><strong>readDataAndComments</strong></a>(inFile, commentChar='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False)</dt><dd><tt>Read&nbsp;tabular&nbsp;(xy)&nbsp;formatted&nbsp;ascii&nbsp;file,&nbsp;return&nbsp;data&nbsp;as&nbsp;numpy&nbsp;array&nbsp;and&nbsp;list&nbsp;of&nbsp;comments&nbsp;in&nbsp;file&nbsp;header.<br>
+(Most&nbsp;options&nbsp;are&nbsp;simply&nbsp;passed&nbsp;thru&nbsp;to&nbsp;numpy.loadtxt)</tt></dd></dl>
+ <dl><dt><a name="-readFileHeader"><strong>readFileHeader</strong></a>(inFile, commentChar='#')</dt><dd><tt>Read&nbsp;a&nbsp;tabular&nbsp;(xy)&nbsp;formatted&nbsp;ascii&nbsp;file&nbsp;and&nbsp;return&nbsp;list&nbsp;of&nbsp;comments&nbsp;(without&nbsp;commentChar)&nbsp;found&nbsp;in&nbsp;header.<br>
+Stops&nbsp;reading&nbsp;when&nbsp;the&nbsp;first&nbsp;non-comment&nbsp;line&nbsp;is&nbsp;found.</tt></dd></dl>
+ <dl><dt><a name="-read_first_line"><strong>read_first_line</strong></a>(sFile, verbose=0)</dt><dd><tt>Try&nbsp;to&nbsp;determine&nbsp;filetype&nbsp;(pickle&nbsp;or&nbsp;ascii&nbsp;or&nbsp;...)&nbsp;automatically&nbsp;from&nbsp;first&nbsp;nonblank&nbsp;character&nbsp;in&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-read_xyz_file"><strong>read_xyz_file</strong></a>(xyzFile, yInfo=-1, verbose=False, commentChar='#')</dt><dd><tt>Read&nbsp;a&nbsp;xGrid,&nbsp;yGrid&nbsp;and&nbsp;a&nbsp;zzz&nbsp;"matrix"&nbsp;from&nbsp;a&nbsp;tabular&nbsp;ascii&nbsp;file.<br>
+Return&nbsp;first&nbsp;column&nbsp;as&nbsp;xGrid,&nbsp;yGrid&nbsp;given&nbsp;in&nbsp;header&nbsp;or&nbsp;as&nbsp;function&nbsp;argument,&nbsp;further&nbsp;columns&nbsp;as&nbsp;zzz&nbsp;matrix.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+xyzFile:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;data&nbsp;file&nbsp;to&nbsp;read&nbsp;(using&nbsp;numpy.loadtxt)<br>
+yInfo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;an&nbsp;integer&nbsp;indicating&nbsp;the&nbsp;line&nbsp;number&nbsp;in&nbsp;the&nbsp;file&nbsp;header&nbsp;where&nbsp;to&nbsp;read&nbsp;the&nbsp;y&nbsp;grid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;-1:&nbsp;&nbsp;read&nbsp;the&nbsp;last&nbsp;header&nbsp;line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;a&nbsp;numpy&nbsp;array&nbsp;(or&nbsp;list&nbsp;of&nbsp;floats)&nbsp;with&nbsp;length&nbsp;equal&nbsp;to&nbsp;zzz.shape[1]<br>
+verbose:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag<br>
+commentChar:&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;'#'</tt></dd></dl>
+ <dl><dt><a name="-uniqueNames"><strong>uniqueNames</strong></a>(listOfNames)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;strings,&nbsp;return&nbsp;the&nbsp;list&nbsp;of&nbsp;unique&nbsp;strings&nbsp;(i.e.&nbsp;a&nbsp;list&nbsp;without&nbsp;duplicates).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ascii_lowercase</strong> = 'abcdefghijklmnopqrstuvwxyz'</td></tr></table>
+</body></html>

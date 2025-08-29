@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module struc_array</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>struc_array</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/struc_array.py">/users/schrei_f/src/py4CAtS/lite/src/struc_array.py</a></font></td></tr></table>
+    <p><tt>Structured&nbsp;arrays&nbsp;---&nbsp;some&nbsp;convenience&nbsp;functions&nbsp;to&nbsp;read&nbsp;and&nbsp;manipulate:<br>
+&nbsp;<br>
+loadStrucArray:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;a&nbsp;tabular&nbsp;ascii&nbsp;file&nbsp;and&nbsp;return&nbsp;a&nbsp;structured&nbsp;array<br>
+strucArrayChangeNames:&nbsp;&nbsp;&nbsp;&nbsp;Change&nbsp;field&nbsp;names&nbsp;of&nbsp;some&nbsp;entries&nbsp;of&nbsp;a&nbsp;structured&nbsp;array<br>
+strucArrayExtractFields:&nbsp;&nbsp;Extract&nbsp;some&nbsp;field&nbsp;entries&nbsp;of&nbsp;a&nbsp;structured&nbsp;array<br>
+strucArrayDeleteFields:&nbsp;&nbsp;&nbsp;Delete&nbsp;some&nbsp;field&nbsp;entries&nbsp;of&nbsp;a&nbsp;structured&nbsp;array<br>
+strucArrayAddField:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;a&nbsp;new&nbsp;field&nbsp;(data&nbsp;array)&nbsp;to&nbsp;a&nbsp;structured&nbsp;array<br>
+dict2strucArray:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transform&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;arrays&nbsp;into&nbsp;a&nbsp;structured&nbsp;numpy&nbsp;array<br>
+&nbsp;<br>
+Documentation:<br>
+&nbsp;&nbsp;<a href="http://docs.scipy.org/doc/numpy/user/basics.rec.html">http://docs.scipy.org/doc/numpy/user/basics.rec.html</a><br>
+&nbsp;&nbsp;<a href="http://www.scipy.org/Cookbook/Recarray">http://www.scipy.org/Cookbook/Recarray</a><br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;atm=<a href="#-loadStrucArray">loadStrucArray</a>('midLatSummer.xy',&nbsp;-2,&nbsp;changeNames={'pressure':'p',&nbsp;'temperature':'T'})</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-dict2strucArray"><strong>dict2strucArray</strong></a>(arrayDict, changeNames=None)</dt><dd><tt>Transform&nbsp;a&nbsp;dictionary&nbsp;containing&nbsp;some&nbsp;arrays&nbsp;(of&nbsp;equal&nbsp;length)&nbsp;into&nbsp;a&nbsp;structured&nbsp;numpy&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-loadStrucArray"><strong>loadStrucArray</strong></a>(inFile, key2names=-1, changeNames=None, commentChar='#', verbose=False)</dt><dd><tt>Read&nbsp;a&nbsp;tabular&nbsp;ascii&nbsp;file&nbsp;and&nbsp;return&nbsp;a&nbsp;structured&nbsp;array&nbsp;(closely&nbsp;related&nbsp;to&nbsp;record&nbsp;array,&nbsp;but&nbsp;more&nbsp;efficient).<br>
+&nbsp;<br>
+key2names&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifies&nbsp;the&nbsp;row&nbsp;(record)&nbsp;in&nbsp;the&nbsp;file's&nbsp;header&nbsp;section&nbsp;(comments)&nbsp;where&nbsp;to&nbsp;read&nbsp;the&nbsp;field&nbsp;names.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;an&nbsp;integer&nbsp;specifying&nbsp;the&nbsp;row&nbsp;(0&nbsp;for&nbsp;the&nbsp;very&nbsp;first,&nbsp;-1&nbsp;for&nbsp;the&nbsp;last)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;a&nbsp;single&nbsp;word&nbsp;identical&nbsp;to&nbsp;the&nbsp;very&nbsp;first&nbsp;field&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;a&nbsp;string&nbsp;ending&nbsp;with&nbsp;':'&nbsp;(e.g.&nbsp;"what:",&nbsp;the&nbsp;following&nbsp;words&nbsp;are&nbsp;taken&nbsp;as&nbsp;the&nbsp;field&nbsp;names)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternatively&nbsp;you&nbsp;can&nbsp;explicitely&nbsp;specify&nbsp;the&nbsp;column&nbsp;ID's:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;a&nbsp;string&nbsp;(or&nbsp;list)&nbsp;with&nbsp;names&nbsp;(words,&nbsp;exactly&nbsp;as&nbsp;many&nbsp;as&nbsp;data&nbsp;columns)<br>
+changeNames&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;dictionary&nbsp;to&nbsp;translate&nbsp;field&nbsp;names&nbsp;found&nbsp;in&nbsp;the&nbsp;file&nbsp;header.<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;If&nbsp;the&nbsp;dataset&nbsp;has&nbsp;more&nbsp;columns&nbsp;than&nbsp;names&nbsp;given,&nbsp;the&nbsp;extra&nbsp;columns&nbsp;are&nbsp;ignored.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blanks&nbsp;are&nbsp;not&nbsp;allowed&nbsp;in&nbsp;field&nbsp;names&nbsp;read&nbsp;from&nbsp;the&nbsp;file&nbsp;header.</tt></dd></dl>
+ <dl><dt><a name="-strucArrayAddField"><strong>strucArrayAddField</strong></a>(strucArray, newField, newName)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;field&nbsp;(data&nbsp;array)&nbsp;to&nbsp;a&nbsp;structured&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-strucArrayChangeNames"><strong>strucArrayChangeNames</strong></a>(strucArray, changeNames=None)</dt><dd><tt>Change&nbsp;field&nbsp;names&nbsp;of&nbsp;some&nbsp;entries&nbsp;of&nbsp;a&nbsp;structured&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-strucArrayDeleteFields"><strong>strucArrayDeleteFields</strong></a>(strucArray, delete)</dt><dd><tt>Delete&nbsp;some&nbsp;field&nbsp;entries&nbsp;of&nbsp;a&nbsp;structured&nbsp;array&nbsp;and&nbsp;return&nbsp;a&nbsp;smaller&nbsp;structured&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-strucArrayExtractFields"><strong>strucArrayExtractFields</strong></a>(strucArray, extract)</dt><dd><tt>Extract&nbsp;some&nbsp;field&nbsp;entries&nbsp;of&nbsp;a&nbsp;structured&nbsp;array&nbsp;and&nbsp;return&nbsp;a&nbsp;smaller&nbsp;structured&nbsp;array.</tt></dd></dl>
+</td></tr></table>
+</body></html>

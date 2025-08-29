@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module misc</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>misc</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src3/misc.py">/users/schrei_f/src/py4CAtS/lite/src3/misc.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;'random'&nbsp;collection&nbsp;of&nbsp;some&nbsp;useful(?)&nbsp;functions.</tt></p>
+<p>
+    
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-approx"><strong>approx</strong></a>(this, other, eps=0.001)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;two&nbsp;numbers&nbsp;(usually&nbsp;floats)&nbsp;are&nbsp;equal&nbsp;within&nbsp;the&nbsp;tolerance&nbsp;eps&nbsp;(default&nbsp;0.001).</tt></dd></dl>
+ <dl><dt><a name="-effHgt2transitDepth"><strong>effHgt2transitDepth</strong></a>(effHgt, radiusPlanet=6371.23, radiusStar=696342.0)</dt><dd><tt>Return&nbsp;the&nbsp;additional&nbsp;transit&nbsp;depth&nbsp;from&nbsp;a&nbsp;given&nbsp;effective&nbsp;height.<br>
+&nbsp;<br>
+effHgt:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;effective&nbsp;height&nbsp;spectrum<br>
+radiusPlanet:&nbsp;&nbsp;default&nbsp;Earth&nbsp;6371.23km<br>
+radiusStar:&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;Sun&nbsp;696342km&nbsp;(https://de.wikipedia.org/wiki/Sonnenradius)<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;according&nbsp;to&nbsp;https://en.wikipedia.org/wiki/Solar_radius&nbsp;695700km</tt></dd></dl>
+ <dl><dt><a name="-float_in_list"><strong>float_in_list</strong></a>(value, floatList, eps=0.001)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;value&nbsp;is&nbsp;contained&nbsp;in&nbsp;a&nbsp;list&nbsp;of&nbsp;float&nbsp;values&nbsp;within&nbsp;the&nbsp;tolerance&nbsp;eps&nbsp;(default&nbsp;0.001).</tt></dd></dl>
+ <dl><dt><a name="-monotone"><strong>monotone</strong></a>(data)</dt><dd><tt>Check&nbsp;data&nbsp;for&nbsp;monotonicity&nbsp;and&nbsp;return<br>
++1&nbsp;&nbsp;&nbsp;increasing&nbsp;monotonically<br>
+-1&nbsp;&nbsp;&nbsp;decreasing&nbsp;monotonically<br>
+&nbsp;0&nbsp;&nbsp;&nbsp;otherwise</tt></dd></dl>
+ <dl><dt><a name="-regrid"><strong>regrid</strong></a>(yValues, newLen, method='L')</dt><dd><tt>Regrid&nbsp;function&nbsp;values&nbsp;given&nbsp;on&nbsp;an&nbsp;equidistant/uniform&nbsp;grid&nbsp;to&nbsp;a&nbsp;new&nbsp;(usually&nbsp;denser)&nbsp;grid&nbsp;in&nbsp;the&nbsp;same&nbsp;interval.<br>
+&nbsp;<br>
+yValues:&nbsp;&nbsp;the&nbsp;function&nbsp;values&nbsp;to&nbsp;be&nbsp;interpolated&nbsp;with&nbsp;len(yValues)=oldLen<br>
+newLen:&nbsp;&nbsp;&nbsp;the&nbsp;number&nbsp;of&nbsp;new&nbsp;function&nbsp;values&nbsp;after&nbsp;interpolation<br>
+method:&nbsp;&nbsp;&nbsp;the&nbsp;interpolation&nbsp;method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integers&nbsp;2,&nbsp;3,&nbsp;4&nbsp;&nbsp;===&gt;&nbsp;the&nbsp;self-made&nbsp;linear,&nbsp;quadratic&nbsp;or&nbsp;cubic&nbsp;Lagrange<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"linear",&nbsp;"quadratic",&nbsp;"cubic",&nbsp;etc.&nbsp;===&gt;&nbsp;scipy.interp1d<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise&nbsp;===&gt;&nbsp;numpy.interp<br>
+&nbsp;<br>
+RETURNS:&nbsp;&nbsp;yData&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;the&nbsp;function&nbsp;values&nbsp;interpolated&nbsp;with&nbsp;len(yData)=newLen</tt></dd></dl>
+ <dl><dt><a name="-runningAverage"><strong>runningAverage</strong></a>(xy, n=2, splitXY=False)</dt><dd><tt>Compute&nbsp;running&nbsp;average,&nbsp;i.e.&nbsp;sum&nbsp;up&nbsp;`n`&nbsp;consecutive&nbsp;array&nbsp;elements&nbsp;and&nbsp;divide&nbsp;by&nbsp;`n`.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+xy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;rank&nbsp;1&nbsp;or&nbsp;rank&nbsp;2&nbsp;array<br>
+n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;number&nbsp;of&nbsp;elements&nbsp;to&nbsp;combine&nbsp;(default&nbsp;2)<br>
+splitXY&nbsp;&nbsp;&nbsp;flag,&nbsp;default&nbsp;False<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;True&nbsp;and&nbsp;xy&nbsp;is&nbsp;a&nbsp;rank&nbsp;2&nbsp;array,&nbsp;separately&nbsp;return&nbsp;first&nbsp;column&nbsp;(xGrid)&nbsp;and&nbsp;further&nbsp;columns<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+a&nbsp;rank&nbsp;1&nbsp;or&nbsp;rank&nbsp;2&nbsp;array&nbsp;XY&nbsp;&nbsp;(or&nbsp;a&nbsp;rank&nbsp;1&nbsp;array&nbsp;xGrid&nbsp;and&nbsp;rank&nbsp;2&nbsp;array&nbsp;yValues&nbsp;if&nbsp;splitXY)<br>
+the&nbsp;length&nbsp;of&nbsp;the&nbsp;returned&nbsp;array(s)&nbsp;is&nbsp;roughly&nbsp;xy.shape[0]/n</tt></dd></dl>
+ <dl><dt><a name="-show_lambda"><strong>show_lambda</strong></a>(wavenumbers=[100, 200, 500, 800, 1000, 2000, 2500, 3333, 4000, 5000, 8000, 10000, 12500])</dt><dd><tt>Write&nbsp;wavelengths&nbsp;[mue]&nbsp;corresponding&nbsp;to&nbsp;x-axis&nbsp;wavenumbers&nbsp;on&nbsp;the&nbsp;top-axis&nbsp;of&nbsp;plot.</tt></dd></dl>
+ <dl><dt><a name="-trapez"><strong>trapez</strong></a>(x, Y, xLow=None, xHigh=None)</dt><dd><tt>Integral_x[0]^x[-1]&nbsp;y(x)&nbsp;dx&nbsp;&nbsp;with&nbsp;tabulated&nbsp;x,y&nbsp;values&nbsp;(2&nbsp;arrays)&nbsp;using&nbsp;trapezoid&nbsp;quadrature.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;rank&nbsp;1&nbsp;array&nbsp;of&nbsp;grid&nbsp;points<br>
+Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;rank&nbsp;1&nbsp;or&nbsp;rank&nbsp;2&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;can&nbsp;be&nbsp;single&nbsp;or&nbsp;multi-dimensional,&nbsp;i.e.&nbsp;Y.shape=len(x)&nbsp;or&nbsp;Y.shape=[len(x),*]<br>
+xLow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lower&nbsp;integration&nbsp;limit;&nbsp;default&nbsp;None:&nbsp;start&nbsp;at&nbsp;x[0]<br>
+xHigh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upper&nbsp;integration&nbsp;limit;&nbsp;default&nbsp;None:&nbsp;start&nbsp;at&nbsp;x[-1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;xLow&nbsp;or&nbsp;xHigh&nbsp;are&nbsp;not&nbsp;grid&nbsp;points,&nbsp;Lagrange&nbsp;two-point&nbsp;interpolation&nbsp;is&nbsp;used&nbsp;for&nbsp;the&nbsp;first/last&nbsp;interval.<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+the&nbsp;integral&nbsp;approximated&nbsp;by&nbsp;0.5*sum&nbsp;(y[i]+y[i-1])&nbsp;*&nbsp;(x[i]-x[i-1])<br>
+&nbsp;<br>
+NOTE:<br>
+-----<br>
+An&nbsp;alternative&nbsp;implementation&nbsp;is&nbsp;given&nbsp;by&nbsp;numpy's&nbsp;`trapz`&nbsp;function;<br>
+however,&nbsp;this&nbsp;does&nbsp;not&nbsp;allow&nbsp;to&nbsp;set&nbsp;the&nbsp;limits.</tt></dd></dl>
+ <dl><dt><a name="-wien"><strong>wien</strong></a>(**kwArgs)</dt><dd><tt>Wien's&nbsp;displacement&nbsp;law:<br>
+for&nbsp;given&nbsp;temperature&nbsp;[K]&nbsp;return&nbsp;wavenumber&nbsp;(or&nbsp;wavelength)&nbsp;of&nbsp;maximum&nbsp;blackbody&nbsp;emission<br>
+or<br>
+for&nbsp;given&nbsp;wavenumber&nbsp;(or&nbsp;wavelength)&nbsp;return&nbsp;corresponding&nbsp;temperature.<br>
+&nbsp;<br>
+KEYWORD&nbsp;ARGUMENTS:<br>
+x:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber&nbsp;or&nbsp;wavelength<br>
+T:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temperature&nbsp;[K]<br>
+xUnit:&nbsp;&nbsp;cm-1&nbsp;(default)&nbsp;or&nbsp;a&nbsp;wavelength&nbsp;unit</tt></dd></dl>
+ <dl><dt><a name="-xTruncate"><strong>xTruncate</strong></a>(xGrid, yValues, xLimits)</dt><dd><tt>Given&nbsp;an&nbsp;array&nbsp;of&nbsp;x&nbsp;grid&nbsp;points&nbsp;and&nbsp;a&nbsp;'matrix'&nbsp;of&nbsp;y&nbsp;values&nbsp;(with&nbsp;len(xGrid)&nbsp;rows)<br>
+delete&nbsp;data&nbsp;outside&nbsp;the&nbsp;Interval&nbsp;defined&nbsp;by&nbsp;xLimits<br>
+and&nbsp;return&nbsp;the&nbsp;truncated&nbsp;grid&nbsp;and&nbsp;the&nbsp;corresponding&nbsp;'matrix'.</tt></dd></dl>
+ <dl><dt><a name="-zenithAngle_boa2toa"><strong>zenithAngle_boa2toa</strong></a>(beta, zToA=120.0, radiusEarth=6371.23, degree=False)</dt><dd><tt>Return&nbsp;the&nbsp;zenith&nbsp;angle&nbsp;at&nbsp;ToA&nbsp;(or&nbsp;nadir&nbsp;viewing&nbsp;observer)&nbsp;from&nbsp;given&nbsp;angle&nbsp;at&nbsp;BoA.<br>
+(beta=0&nbsp;for&nbsp;vertical&nbsp;uplooking,&nbsp;alpha=pi=90dg&nbsp;for&nbsp;horizontal&nbsp;view)</tt></dd></dl>
+ <dl><dt><a name="-zenithAngle_toa2boa"><strong>zenithAngle_toa2boa</strong></a>(alpha, zToA=120.0, radiusEarth=6371.23, degree=False)</dt><dd><tt>Return&nbsp;the&nbsp;viewing&nbsp;angle&nbsp;at&nbsp;BoA&nbsp;(or&nbsp;nadir&nbsp;viewing&nbsp;observer)&nbsp;from&nbsp;given&nbsp;zenith&nbsp;angle&nbsp;at&nbsp;ToA.<br>
+(alpha=0&nbsp;for&nbsp;vertical&nbsp;uplooking,&nbsp;alpha=pi=180dg&nbsp;for&nbsp;downlooking&nbsp;observer)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>pi</strong> = 3.141592653589793<br>
+<strong>wavelengthUnits</strong> = {'A': 1e-08, 'cm': 1.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, 'nm': 1e-07, 'um': 0.0001}</td></tr></table>
+</body></html>

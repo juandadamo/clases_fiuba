@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module radiance2Kelvin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>radiance2Kelvin</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/radiance2Kelvin.py">../src3/radiance2Kelvin.py</a></font></td></tr></table>
+    <p><tt>radiance2Kelvin<br>
+convert&nbsp;radiance&nbsp;(intensity)&nbsp;to&nbsp;equivalent&nbsp;blackbody&nbsp;temperatures&nbsp;according&nbsp;to&nbsp;Planck<br>
+&nbsp;<br>
+usage:<br>
+&nbsp;&nbsp;radiance2Kelvin&nbsp;[options]&nbsp;file[s]<br>
+&nbsp;<br>
+options:<br>
+&nbsp;&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;files&nbsp;(default&nbsp;'#',&nbsp;several&nbsp;characters&nbsp;allowed)<br>
+&nbsp;&nbsp;-C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;y&nbsp;column&nbsp;to&nbsp;be&nbsp;processed&nbsp;(default:&nbsp;all&nbsp;y&nbsp;columns)<br>
+&nbsp;&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;(print)&nbsp;file&nbsp;(default:&nbsp;standard&nbsp;out)<br>
+&nbsp;&nbsp;-P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot:&nbsp;&nbsp;quicklook&nbsp;using&nbsp;matplotlib<br>
+&nbsp;&nbsp;-x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;unit&nbsp;of&nbsp;x-axis&nbsp;(wavenumber,&nbsp;frequency&nbsp;or&nbsp;wavelength):&nbsp;'cm-1'&nbsp;(default),&nbsp;'m-1',&nbsp;'Hz',&nbsp;'MHz',&nbsp;'GHz',&nbsp;'mue'<br>
+&nbsp;&nbsp;-y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;unit&nbsp;of&nbsp;y-axis&nbsp;(radiance):&nbsp;'erg/s'&nbsp;for&nbsp;erg/s/(cm^2&nbsp;sr&nbsp;cm^-1)&nbsp;(default)&nbsp;or&nbsp;'W'&nbsp;for&nbsp;W(cm^2&nbsp;sr&nbsp;cm^-1)<br>
+&nbsp;-xFormat&nbsp;string&nbsp;&nbsp;&nbsp;format&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;x&nbsp;values&nbsp;(default:'%&nbsp;12.6f')<br>
+&nbsp;-yFormat&nbsp;string&nbsp;&nbsp;&nbsp;format&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;y&nbsp;values&nbsp;(default:'%&nbsp;10.4f')</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-ergs_to_Kelvin"><strong>ergs_to_Kelvin</strong></a>(x, y)</dt><dd><tt>Convert&nbsp;radiance&nbsp;in&nbsp;erg/s/(cm^2&nbsp;sr&nbsp;cm^-1)&nbsp;to&nbsp;BlackBody&nbsp;temperature&nbsp;via&nbsp;inverse&nbsp;Planck.</tt></dd></dl>
+ <dl><dt><a name="-ergs_to_Kelvin_frequency"><strong>ergs_to_Kelvin_frequency</strong></a>(x, y, xUnit='Hz')</dt><dd><tt>Convert&nbsp;radiance&nbsp;in&nbsp;erg/s/(cm^2&nbsp;sr&nbsp;Hz)&nbsp;to&nbsp;BlackBody&nbsp;temperature&nbsp;via&nbsp;inverse&nbsp;Planck.</tt></dd></dl>
+ <dl><dt><a name="-ergs_to_Kelvin_wavelength"><strong>ergs_to_Kelvin_wavelength</strong></a>(x, y, xUnit)</dt><dd><tt>Convert&nbsp;radiance&nbsp;in&nbsp;erg/s/(cm^2&nbsp;sr&nbsp;micrometer)&nbsp;to&nbsp;BlackBody&nbsp;temperature&nbsp;via&nbsp;inverse&nbsp;Planck.</tt></dd></dl>
+ <dl><dt><a name="-parse_radiance_file_header"><strong>parse_radiance_file_header</strong></a>(comments, commentChar='#')</dt><dd><tt>Read&nbsp;the&nbsp;header&nbsp;of&nbsp;the&nbsp;radiance&nbsp;file&nbsp;and&nbsp;try&nbsp;to&nbsp;find&nbsp;x&nbsp;and&nbsp;y&nbsp;units.</tt></dd></dl>
+ <dl><dt><a name="-radiance2Kelvin"><strong>radiance2Kelvin</strong></a>(xGrid, yValues, xUnit='cm-1', yUnit='erg/s/(cm2 sr cm-1)', flux=False)</dt><dd><tt>Convert&nbsp;radiance&nbsp;spectra&nbsp;to&nbsp;equivalent&nbsp;Black&nbsp;Body&nbsp;Temperature&nbsp;by&nbsp;inversion&nbsp;of&nbsp;Planck's&nbsp;Law.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+xGrid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber|frequency|wavelength<br>
+yValues&nbsp;&nbsp;&nbsp;radiance&nbsp;value(s)<br>
+xUnit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;physical&nbsp;unit&nbsp;of&nbsp;the&nbsp;xGrid&nbsp;data&nbsp;&nbsp;[default&nbsp;cm-1]<br>
+yUnit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;physical&nbsp;unit&nbsp;of&nbsp;the&nbsp;radiances&nbsp;&nbsp;&nbsp;[default&nbsp;erg/s/(cm2&nbsp;sr&nbsp;cm-1)]<br>
+flux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag,&nbsp;assume&nbsp;yValues&nbsp;is&nbsp;flux,&nbsp;so&nbsp;divide&nbsp;by&nbsp;pi<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+temperature(s)&nbsp;&nbsp;[Kelvin]</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>C2</strong> = 1.4387751601679206<br>
+<strong>c</strong> = 29979245800.0<br>
+<strong>h</strong> = 6.62606896e-27<br>
+<strong>hcc2</strong> = 1.1910427584934559e-05<br>
+<strong>k</strong> = 1.3806504e-16<br>
+<strong>pi</strong> = 3.141592653589793<br>
+<strong>xUnitsValid</strong> = ['cm-1', 'Hz', 'kHz', 'THz', 'GHz', 'MHz', 'mue', 'nm']</td></tr></table>
+</body></html>

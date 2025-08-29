@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lagrange_interpolation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>lagrange_interpolation</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/lagrange_interpolation.py">../src3/lagrange_interpolation.py</a></font></td></tr></table>
+    <p><tt>Lagrange&nbsp;2,&nbsp;3,&nbsp;and&nbsp;4&nbsp;point&nbsp;interpolation&nbsp;y(x)&nbsp;---&gt;&nbsp;Y(X)<br>
+for&nbsp;uniform,&nbsp;equidistant&nbsp;old&nbsp;and&nbsp;new&nbsp;x-grids<br>
+where&nbsp;the&nbsp;X&nbsp;interval&nbsp;is&nbsp;identical&nbsp;to&nbsp;the&nbsp;x-interval<br>
+(i.e.&nbsp;min(x)=min(X)&nbsp;and&nbsp;max(x)=max(X))<br>
+&nbsp;<br>
+Y&nbsp;=&nbsp;lagrange2_regularGrid&nbsp;(y,&nbsp;n)&nbsp;&nbsp;---&nbsp;linear&nbsp;interpolation&nbsp;with&nbsp;len(Y)&nbsp;&gt;&nbsp;len(y)<br>
+Y&nbsp;=&nbsp;lagrange3_regularGrid&nbsp;(y,&nbsp;n)&nbsp;&nbsp;---&nbsp;quadratic&nbsp;interpolation<br>
+Y&nbsp;=&nbsp;lagrange4_regularGrid&nbsp;(y,&nbsp;n)&nbsp;&nbsp;---&nbsp;cubic&nbsp;interpolation<br>
+&nbsp;<br>
+Y&nbsp;=&nbsp;lagrange2_interpolate2&nbsp;(y)&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;interpolation&nbsp;for&nbsp;len(Y)-1=2*(len(y)-1)<br>
+Y&nbsp;=&nbsp;lagrange3_interpolate2&nbsp;(y)<br>
+Y&nbsp;=&nbsp;lagrange4_interpolate2&nbsp;(y)<br>
+&nbsp;<br>
+Y&nbsp;=&nbsp;lagrange2_interpolate4&nbsp;(y)&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;interpolation&nbsp;for&nbsp;len(Y)-1=4*(len(y)-1)<br>
+Y&nbsp;=&nbsp;lagrange3_interpolate4&nbsp;(y)<br>
+Y&nbsp;=&nbsp;lagrange4_interpolate4&nbsp;(y)<br>
+&nbsp;<br>
+Y&nbsp;=&nbsp;lagrange2_interpolate8&nbsp;(y)&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;interpolation&nbsp;for&nbsp;len(Y)-1=8*(len(y)-1)<br>
+Y&nbsp;=&nbsp;lagrange3_interpolate8&nbsp;(y)<br>
+Y&nbsp;=&nbsp;lagrange4_interpolate8&nbsp;(y)</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-lagrange2_interpolate2"><strong>lagrange2_interpolate2</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;2-point&nbsp;interpolation&nbsp;with&nbsp;doubled&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange2_interpolate4"><strong>lagrange2_interpolate4</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;2-point&nbsp;interpolation&nbsp;with&nbsp;quadrupled&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange2_interpolate8"><strong>lagrange2_interpolate8</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;2-point&nbsp;interpolation&nbsp;with&nbsp;eightfold&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange2_regularGrid"><strong>lagrange2_regularGrid</strong></a>(y, n)</dt><dd><tt>Lagrange&nbsp;2&nbsp;point&nbsp;interpolation&nbsp;for&nbsp;regular&nbsp;equidistant&nbsp;grid&nbsp;x&nbsp;to&nbsp;finer&nbsp;regular&nbsp;grid&nbsp;X&nbsp;of&nbsp;length&nbsp;n.<br>
+(assumes&nbsp;end&nbsp;points&nbsp;are&nbsp;identical:&nbsp;&nbsp;x[0]=X[0]&nbsp;and&nbsp;x[-1]=X[-1])</tt></dd></dl>
+ <dl><dt><a name="-lagrange3_interpolate2"><strong>lagrange3_interpolate2</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;3-point&nbsp;interpolation&nbsp;with&nbsp;doubled&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange3_interpolate4"><strong>lagrange3_interpolate4</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;3-point&nbsp;interpolation&nbsp;with&nbsp;quadrupled&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange3_interpolate8"><strong>lagrange3_interpolate8</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;3-point&nbsp;interpolation&nbsp;with&nbsp;eightfold&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange3_regularGrid"><strong>lagrange3_regularGrid</strong></a>(y, n)</dt><dd><tt>Lagrange&nbsp;3&nbsp;point&nbsp;interpolation&nbsp;for&nbsp;regular&nbsp;equidistant&nbsp;grid&nbsp;x&nbsp;to&nbsp;finer&nbsp;regular&nbsp;grid&nbsp;X&nbsp;of&nbsp;length&nbsp;n.<br>
+(assumes&nbsp;end&nbsp;points&nbsp;are&nbsp;identical:&nbsp;&nbsp;x[0]=X[0]&nbsp;and&nbsp;x[-1]=X[-1])</tt></dd></dl>
+ <dl><dt><a name="-lagrange4_interpolate2"><strong>lagrange4_interpolate2</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;4-point&nbsp;interpolation&nbsp;with&nbsp;doubled&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange4_interpolate4"><strong>lagrange4_interpolate4</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;4-point&nbsp;interpolation&nbsp;with&nbsp;quadrupled&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange4_interpolate8"><strong>lagrange4_interpolate8</strong></a>(y)</dt><dd><tt>Lagrange&nbsp;4-point&nbsp;interpolation&nbsp;with&nbsp;eightfold&nbsp;number&nbsp;of&nbsp;intervals.</tt></dd></dl>
+ <dl><dt><a name="-lagrange4_regularGrid"><strong>lagrange4_regularGrid</strong></a>(y, n)</dt><dd><tt>Lagrange&nbsp;4&nbsp;point&nbsp;interpolation&nbsp;for&nbsp;regular&nbsp;equidistant&nbsp;grid&nbsp;x&nbsp;to&nbsp;finer&nbsp;regular&nbsp;grid&nbsp;X&nbsp;of&nbsp;length&nbsp;n.<br>
+(assumes&nbsp;end&nbsp;points&nbsp;are&nbsp;identical:&nbsp;&nbsp;x[0]=X[0]&nbsp;and&nbsp;x[-1]=X[-1])</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>r6</strong> = 0.16666666666666666</td></tr></table>
+</body></html>

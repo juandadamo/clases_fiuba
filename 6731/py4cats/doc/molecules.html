@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module molecules</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>molecules</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/molecules.py">../src3/molecules.py</a></font></td></tr></table>
+    <p><tt>molecules<br>
+&nbsp;<br>
+A&nbsp;module&nbsp;essentially&nbsp;defining/collecting&nbsp;molecular&nbsp;data&nbsp;(mass,&nbsp;...)<br>
+and&nbsp;the&nbsp;ID&nbsp;numbers&nbsp;used&nbsp;by&nbsp;spectroscopic&nbsp;data&nbsp;bases&nbsp;(Hitran,&nbsp;Geisa,&nbsp;...)<br>
+&nbsp;<br>
+Usage&nbsp;as&nbsp;a&nbsp;command&nbsp;line&nbsp;script:<br>
+&nbsp;<br>
+&nbsp;&nbsp;molecules&nbsp;[options]&nbsp;[species]<br>
+&nbsp;<br>
+&nbsp;&nbsp;without&nbsp;argument:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;known&nbsp;molecules&nbsp;along&nbsp;with&nbsp;'main'&nbsp;data<br>
+&nbsp;&nbsp;with&nbsp;molecular&nbsp;name(s):&nbsp;&nbsp;&nbsp;list&nbsp;all&nbsp;attributes&nbsp;of&nbsp;this&nbsp;molecule(s)<br>
+&nbsp;&nbsp;with&nbsp;option&nbsp;-s:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-sh&nbsp;&nbsp;sort&nbsp;according&nbsp;to&nbsp;hitran&nbsp;id&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-sg&nbsp;&nbsp;sort&nbsp;according&nbsp;to&nbsp;geisa&nbsp;&nbsp;id&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-sm&nbsp;&nbsp;sort&nbsp;according&nbsp;to&nbsp;molecular&nbsp;mass<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-sn&nbsp;&nbsp;sort&nbsp;according&nbsp;to&nbsp;molecular&nbsp;name<br>
+&nbsp;<br>
+A&nbsp;dictionary&nbsp;of&nbsp;dictionaries&nbsp;containing&nbsp;molecular&nbsp;data&nbsp;along&nbsp;with&nbsp;some&nbsp;convenience&nbsp;functions.<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;HDO&nbsp;&nbsp;is&nbsp;considered&nbsp;as&nbsp;an&nbsp;individual&nbsp;molecule&nbsp;in&nbsp;GEISA2015<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CH3D&nbsp;is&nbsp;separate&nbsp;from&nbsp;CH4&nbsp;in&nbsp;GEISA&nbsp;2008&nbsp;ff</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-get_mol_id_nr"><strong>get_mol_id_nr</strong></a>(gases, database='hitran')</dt><dd><tt>Build&nbsp;up&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;molecular&nbsp;numbers&nbsp;(data&nbsp;base&nbsp;specific!)&nbsp;as&nbsp;keys&nbsp;and&nbsp;molecular&nbsp;names&nbsp;as&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-get_molec_data"><strong>get_molec_data</strong></a>(molecule)</dt><dd><tt>Given&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;dictionaries&nbsp;with&nbsp;molecular&nbsp;data&nbsp;(name&nbsp;and&nbsp;attributes),&nbsp;return&nbsp;dictionary&nbsp;of&nbsp;selected&nbsp;molecule.</tt></dd></dl>
+ <dl><dt><a name="-isotope_id"><strong>isotope_id</strong></a>(Mol, Iso, databasetype='hitran')</dt></dl>
+ <dl><dt><a name="-name_sort_molecules"><strong>name_sort_molecules</strong></a>(gases)</dt><dd><tt>Given&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;dictionaries&nbsp;with&nbsp;molecular&nbsp;data&nbsp;(name&nbsp;and&nbsp;further&nbsp;attributes),&nbsp;sort&nbsp;by&nbsp;molecular&nbsp;name.</tt></dd></dl>
+ <dl><dt><a name="-numeric_sort_molecules"><strong>numeric_sort_molecules</strong></a>(gases, criterion='hitran')</dt><dd><tt>Given&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;dictionaries&nbsp;with&nbsp;molecular&nbsp;data&nbsp;(name,&nbsp;ID&nbsp;numbers,&nbsp;mass,&nbsp;...),&nbsp;sort&nbsp;numerically.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>mainMolecules</strong> = ['H2O', 'CO2', 'O3', 'N2O', 'CH4', 'CO', 'O2']<br>
+<strong>molecules</strong> = {'BrO': {'NumDeg': [1], 'TempExpGL': 0.5, 'TempExpQR': 1.0, 'VibFreq': [500.0], 'isotopes': ['69', '61'], 'mass': 95.0}, 'C2H2': {'NumDeg': [1, 1, 1, 2, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.0, 'VibFreq': [3374.0, 1974.0, 3289.0, 629.0, 730.0], 'geisa': 24, 'hitran': 26, 'isotopes': ['1221', '1231', '1222'], 'mass': 26.03, 'sao': 26}, 'C2H4': {'NumDeg': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'TempExpGL': 0.5, 'TempExpQR': 1.5, 'VibFreq': [3026, 1625, 1342, 1023, 3103, 1236, 949, 943, 3106, 826, 2989, 1444], 'geisa': 25, 'hitran': 38, 'isotopes': ['221', '311'], 'mass': 28.0}, 'C2H6': {'NumDeg': [1, 1, 1, 1, 1, 1, 2, 1, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.9, 'VibFreq': [2899.0, 1375.0, 993.0, 275.0, 2954.0, 1379.0, 2994.0, 1486.0, 822.0], 'geisa': 22, 'hitran': 27, 'isotopes': ['1221', '1231'], 'mass': 30.07, 'sao': 27}, 'C2HD': {'geisa': 48, 'isotopes': ['122'], 'mass': 17.0}, 'C2N2': {'VibFreq': [2330, 846, 2158, 503, 234], 'geisa': 29, 'hitran': 48, 'isotopes': ['4224'], 'mass': 52.0}, 'C3H4': {'geisa': 40, 'mass': 40.0}, 'C3H8': {'VibFreq': [2977, 2962, 2887, 1476, 1462, 1392, 1158, 869, 369, 2967, 1451, 1278, 940, 216, 2968, 2887, 1464, 1378, 1338, 1054, ...], 'geisa': 28, 'isotopes': ['221'], 'mass': 44.0}, 'C4H2': {'VibFreq': [3293, 2184, 874, 3329, 2020, 627, 482, 630, 231], 'geisa': 30, 'hitran': 43, 'isotopes': ['221'], 'mass': 50.0}, 'C6H6': {'VibFreq': [3062, 992, 1326, 673, 3068, 1010, 995, 703, 1310, 1150, 849, 3063, 1486, 1038, 3047, 1596, 1178, 606, 975, 410], 'geisa': 47, 'isotopes': ['266'], 'mass': 78.0}, ...}</td></tr></table>
+</body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module command_parser</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>command_parser</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/command_parser.py">../src3/command_parser.py</a></font></td></tr></table>
+    <p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-change_defaults"><strong>change_defaults</strong></a>(opts, userDefaults)</dt><dd><tt>Replace&nbsp;standard&nbsp;options&nbsp;by&nbsp;user&nbsp;specified&nbsp;options.</tt></dd></dl>
+ <dl><dt><a name="-check_constraint"><strong>check_constraint</strong></a>(value, name, constraint)</dt><dd><tt>Perform&nbsp;various&nbsp;checks&nbsp;on&nbsp;name&nbsp;and&nbsp;value&nbsp;of&nbsp;a&nbsp;given&nbsp;option.</tt></dd></dl>
+ <dl><dt><a name="-check_options"><strong>check_options</strong></a>(optionsGiven, knownOptions, verbose=0)</dt><dd><tt>Check&nbsp;the&nbsp;options&nbsp;specified&nbsp;on&nbsp;the&nbsp;command&nbsp;line&nbsp;wrt&nbsp;type&nbsp;and&nbsp;constraits,&nbsp;add&nbsp;unspecified&nbsp;options&nbsp;with&nbsp;defaults&nbsp;if&nbsp;available.</tt></dd></dl>
+ <dl><dt><a name="-check_type"><strong>check_type</strong></a>(id, name, given, oType)</dt></dl>
+ <dl><dt><a name="-getopt_parser"><strong>getopt_parser</strong></a>(ShortOptions, LongOptions)</dt><dd><tt>Parse&nbsp;command&nbsp;line&nbsp;string&nbsp;using&nbsp;getopt.&nbsp;&nbsp;Return&nbsp;list&nbsp;of&nbsp;files&nbsp;and&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;options!</tt></dd></dl>
+ <dl><dt><a name="-multiple_outFiles"><strong>multiple_outFiles</strong></a>(inFiles, outFile)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;input&nbsp;file&nbsp;names&nbsp;and&nbsp;a&nbsp;'template'&nbsp;(e.g.&nbsp;extension)&nbsp;for&nbsp;the&nbsp;output&nbsp;files,<br>
+return&nbsp;a&nbsp;list&nbsp;of&nbsp;output&nbsp;file&nbsp;names.</tt></dd></dl>
+ <dl><dt><a name="-parse_command"><strong>parse_command</strong></a>(knownOptions, numFiles=None, env4defaults='', verbose=0)</dt><dd><tt>Parse&nbsp;command&nbsp;line&nbsp;arguments&nbsp;or&nbsp;interactively&nbsp;ask&nbsp;directly&nbsp;for&nbsp;files,&nbsp;&nbsp;return&nbsp;options&nbsp;as&nbsp;a&nbsp;dictionary.</tt></dd></dl>
+ <dl><dt><a name="-prepare4getopt"><strong>prepare4getopt</strong></a>(knownOptions)</dt><dd><tt>Extract&nbsp;short&nbsp;and&nbsp;long&nbsp;option&nbsp;id's&nbsp;as&nbsp;an&nbsp;input&nbsp;for&nbsp;getopt.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>standardOptions</strong> = [{'ID': 'h'}, {'ID': 'c', 'default': '#', 'type': &lt;class 'str'&gt;}, {'ID': 'o', 'type': &lt;class 'str'&gt;}]</td></tr></table>
+</body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module geisa</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>geisa</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/geisa.py">../src3/geisa.py</a></font></td></tr></table>
+    <p><tt>geisa<br>
+&nbsp;<br>
+usage:<br>
+geisa&nbsp;[options]&nbsp;line_parameter_database<br>
+&nbsp;<br>
+command&nbsp;line&nbsp;options&nbsp;without&nbsp;arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-h&nbsp;&nbsp;help<br>
+&nbsp;<br>
+optional&nbsp;command&nbsp;line&nbsp;options&nbsp;with&nbsp;string&nbsp;argument:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-i&nbsp;&nbsp;isotope&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-m&nbsp;&nbsp;molecule&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-o&nbsp;&nbsp;output&nbsp;file&nbsp;(default:&nbsp;standard&nbsp;output)<br>
+&nbsp;<br>
+optional&nbsp;command&nbsp;line&nbsp;options&nbsp;with&nbsp;float&nbsp;argument:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-S&nbsp;&nbsp;minimum&nbsp;line&nbsp;strength&nbsp;to&nbsp;accept<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-x&nbsp;&nbsp;lower&nbsp;and&nbsp;upper&nbsp;end&nbsp;of&nbsp;wavenumber&nbsp;range&nbsp;(comma&nbsp;separated&nbsp;pair&nbsp;without&nbsp;blanks)<br>
+&nbsp;<br>
+Note:&nbsp;at&nbsp;least&nbsp;wavenumber&nbsp;range&nbsp;or&nbsp;molecule&nbsp;has&nbsp;to&nbsp;be&nbsp;selected!</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-extract_Mol"><strong>extract_Mol</strong></a>(geisa, xLow, xHigh, getMol)</dt><dd><tt>Read&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule&nbsp;up&nbsp;to&nbsp;a&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_MolIso"><strong>extract_MolIso</strong></a>(geisa, xLow, xHigh, getMol, getIso)</dt><dd><tt>Read&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule/isotope&nbsp;up&nbsp;to&nbsp;a&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_MolIsoStr"><strong>extract_MolIsoStr</strong></a>(geisa, xLow, xHigh, getMol, getIso, strMin)</dt><dd><tt>Read&nbsp;strong&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule/isotope&nbsp;up&nbsp;to&nbsp;a&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_MolStr"><strong>extract_MolStr</strong></a>(geisa, xLow, xHigh, getMol, strMin)</dt><dd><tt>Read&nbsp;strong&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule&nbsp;up&nbsp;to&nbsp;a&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_geisa"><strong>extract_geisa</strong></a>(gFile, xLimits=None, molNr=0, isoNr=0, strMin=0.0)</dt><dd><tt>Read&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_range"><strong>extract_range</strong></a>(geisa, xLow, xHigh)</dt><dd><tt>Read&nbsp;all&nbsp;lines&nbsp;up&nbsp;to&nbsp;a&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-get_geisa_fields"><strong>get_geisa_fields</strong></a>(fileName, what=None)</dt><dd><tt>Use&nbsp;filename&nbsp;to&nbsp;determine&nbsp;position&nbsp;(first&nbsp;and&nbsp;last&nbsp;indices)&nbsp;of&nbsp;wavenumber,&nbsp;moleculeID,&nbsp;isotopeID,&nbsp;etc.<br>
+If&nbsp;'what'&nbsp;is&nbsp;given,&nbsp;return&nbsp;indices&nbsp;only&nbsp;for&nbsp;this&nbsp;field&nbsp;(e.g.&nbsp;moleculeID,&nbsp;currently&nbsp;no&nbsp;selfWidth)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>gIASI2003_fieldLength</strong> = [12, 11, 6, 10, 9, 9, 9, 9, 4, 3, 3, 1, 2, 1, 10, 5, 8, 3, 6, 6, ...]<br>
+<strong>geisa2003_fieldLength</strong> = [12, 11, 6, 10, 9, 9, 9, 9, 4, 3, 3, 3, 2, 1, 10, 5, 8, 3, 6, 6, ...]<br>
+<strong>geisa2008_fieldLength</strong> = [12, 11, 6, 10, 25, 25, 15, 15, 4, 3, 3, 3, 2, 1, 10, 7, 9, 6, 10, 11, ...]</td></tr></table>
+</body></html>

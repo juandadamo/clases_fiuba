@@ -1,0 +1,179 @@
+<t!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module atmos1D</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>atmos1D</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/atmos1D.py">/users/schrei_f/src/py4CAtS/lite/src/atmos1D.py</a></font></td></tr></table>
+    <p><tt>atmos1D<br>
+&nbsp;<br>
+Read&nbsp;atmospheric&nbsp;data&nbsp;file(s)&nbsp;in&nbsp;xy&nbsp;tabular&nbsp;ascii&nbsp;format:<br>
+extract&nbsp;profiles&nbsp;(columns),&nbsp;convert&nbsp;to&nbsp;cgs&nbsp;units,&nbsp;optionally&nbsp;truncate&nbsp;top&nbsp;or&nbsp;bottom&nbsp;levels,&nbsp;save&nbsp;in&nbsp;xy&nbsp;format.<br>
+If&nbsp;several&nbsp;files&nbsp;are&nbsp;given,&nbsp;the&nbsp;profiles&nbsp;from&nbsp;the&nbsp;second,&nbsp;third,&nbsp;...&nbsp;file&nbsp;are&nbsp;interpolated&nbsp;to&nbsp;the&nbsp;grid&nbsp;of&nbsp;the&nbsp;first&nbsp;file.<br>
+&nbsp;<br>
+Usage:<br>
+&nbsp;<br>
+&nbsp;&nbsp;atmos1D&nbsp;[options]&nbsp;file(s)<br>
+&nbsp;<br>
+&nbsp;&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;input,output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+&nbsp;&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;atmospheric&nbsp;data<br>
+&nbsp;&nbsp;-i&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;interpolation&nbsp;method&nbsp;(default:&nbsp;numpy's&nbsp;linear&nbsp;interp)<br>
+&nbsp;&nbsp;-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replace&nbsp;duplicate&nbsp;profile&nbsp;from&nbsp;preceeding&nbsp;file(s)&nbsp;with&nbsp;new&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;&nbsp;ignore&nbsp;duplicate&nbsp;profile(s)&nbsp;from&nbsp;second,&nbsp;third,&nbsp;...&nbsp;file)<br>
+&nbsp;&nbsp;-w&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;leading&nbsp;word&nbsp;identifying&nbsp;the&nbsp;header&nbsp;row&nbsp;specifying&nbsp;the&nbsp;columns&nbsp;&nbsp;(default:&nbsp;"what")<br>
+&nbsp;&nbsp;-u&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;leading&nbsp;word&nbsp;identifying&nbsp;the&nbsp;header&nbsp;row&nbsp;specifying&nbsp;the&nbsp;units&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;"units")<br>
+&nbsp;&nbsp;-x&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;eXtract&nbsp;profiles&nbsp;from&nbsp;file(s)&nbsp;(a&nbsp;string&nbsp;with&nbsp;comma&nbsp;seperated&nbsp;entries&nbsp;(default:&nbsp;"z,p,T,H2O"))<br>
+&nbsp;--BoA&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;bottom-of-atmosphere&nbsp;altitude&nbsp;in&nbsp;km<br>
+&nbsp;--ToA&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;top-of-atmosphere&nbsp;altitude&nbsp;in&nbsp;km<br>
+&nbsp;--scale&nbsp;floats&nbsp;&nbsp;&nbsp;multiply&nbsp;molecular&nbsp;concentrations&nbsp;with&nbsp;scaleFactors<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(either&nbsp;a&nbsp;comma&nbsp;separated&nbsp;list&nbsp;of&nbsp;floats&nbsp;(no&nbsp;blanks)&nbsp;in&nbsp;the&nbsp;same&nbsp;order&nbsp;as&nbsp;for&nbsp;the&nbsp;line&nbsp;data&nbsp;files,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;just&nbsp;a&nbsp;single&nbsp;float&nbsp;to&nbsp;scale&nbsp;the&nbsp;profile&nbsp;of&nbsp;the&nbsp;molecule&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;first&nbsp;lineFile.)<br>
+&nbsp;&nbsp;-z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;floats&nbsp;&nbsp;&nbsp;regrid&nbsp;to&nbsp;(evtl.&nbsp;equidistant)&nbsp;altitude&nbsp;grid</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-atmInfo"><strong>atmInfo</strong></a>(data)</dt><dd><tt>Print&nbsp;some&nbsp;basic&nbsp;information&nbsp;about&nbsp;the&nbsp;atmospheric&nbsp;data.</tt></dd></dl>
+ <dl><dt><a name="-atmMerge"><strong>atmMerge</strong></a>(atmData1, atmData2, replace=False, interpolate='linear', verbose=False)</dt><dd><tt>Combine&nbsp;two&nbsp;atmospheric&nbsp;datasets&nbsp;(given&nbsp;as&nbsp;numpy&nbsp;structured&nbsp;array),&nbsp;interpolate&nbsp;second&nbsp;one&nbsp;if&nbsp;necessary.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+atmData1,&nbsp;atmData2:&nbsp;&nbsp;&nbsp;the&nbsp;two&nbsp;atmospheres&nbsp;to&nbsp;merge<br>
+replace:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;a&nbsp;particular&nbsp;profile&nbsp;is&nbsp;given&nbsp;in&nbsp;both&nbsp;datasets,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;the&nbsp;first&nbsp;and&nbsp;ignore&nbsp;the&nbsp;second&nbsp;(default)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;replace&nbsp;the&nbsp;first&nbsp;by&nbsp;the&nbsp;second<br>
+interpolate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;interpolation&nbsp;method&nbsp;used&nbsp;for&nbsp;regridding&nbsp;(see&nbsp;the&nbsp;atmRegrid&nbsp;doc)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;&nbsp;the&nbsp;final&nbsp;grid&nbsp;is&nbsp;given&nbsp;by&nbsp;the&nbsp;grid&nbsp;of&nbsp;atmData1<br>
+verbose:<br>
+&nbsp;<br>
+RETURNS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;unified&nbsp;atmospheric&nbsp;dataset&nbsp;(as&nbsp;a&nbsp;numpy&nbsp;structured&nbsp;array)</tt></dd></dl>
+ <dl><dt><a name="-atmPlot"><strong>atmPlot</strong></a>(data, what='T', vertical='km', vmr='')</dt><dd><tt>Plot&nbsp;atmospheric&nbsp;profile(s)&nbsp;vs.&nbsp;altitude&nbsp;(or&nbsp;pressure).<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+data:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;either&nbsp;a&nbsp;numpy&nbsp;structured&nbsp;array&nbsp;of&nbsp;atmospheric&nbsp;data&nbsp;(z,&nbsp;p,&nbsp;T,&nbsp;gases)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;a&nbsp;list&nbsp;thereof<br>
+what:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;data&nbsp;field&nbsp;to&nbsp;plot,&nbsp;default&nbsp;T&nbsp;(=temperature)<br>
+vertical:&nbsp;&nbsp;unit&nbsp;for&nbsp;vertical&nbsp;axis,&nbsp;default&nbsp;'km'&nbsp;for&nbsp;altitude<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;of&nbsp;the&nbsp;altitude&nbsp;or&nbsp;pressure&nbsp;units&nbsp;defined&nbsp;in&nbsp;cgsUnits&nbsp;supported<br>
+vmr:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot&nbsp;volume&nbsp;mixing&nbsp;ratio&nbsp;instead&nbsp;of&nbsp;number&nbsp;density&nbsp;(default&nbsp;number&nbsp;density)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ignored&nbsp;for&nbsp;non-gas&nbsp;profiles&nbsp;and&nbsp;when&nbsp;vmr&nbsp;is&nbsp;not&nbsp;a&nbsp;valid&nbsp;mixingRatioUnit)</tt></dd></dl>
+ <dl><dt><a name="-atmRead"><strong>atmRead</strong></a>(atmFile, commentChar='#', extract=None, zToA=0.0, zBoA=0.0, what='what', units='units', scaleFactors=None, returnUnits=False, verbose=False)</dt><dd><tt>Read&nbsp;atmospheric&nbsp;data&nbsp;file,&nbsp;convert&nbsp;to&nbsp;cgs&nbsp;units,&nbsp;optionally&nbsp;truncate&nbsp;top/bottom&nbsp;or&nbsp;scale&nbsp;concentrations;<br>
+and&nbsp;return&nbsp;a&nbsp;structured&nbsp;numpy&nbsp;array.<br>
+&nbsp;<br>
+Parameters:<br>
+-----------<br>
+atmFile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;file(name)&nbsp;with&nbsp;data&nbsp;to&nbsp;be&nbsp;read<br>
+extract&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strings&nbsp;&nbsp;list&nbsp;of&nbsp;entries&nbsp;(essentially&nbsp;gases)&nbsp;to&nbsp;be&nbsp;returned&nbsp;(default&nbsp;None&nbsp;==&gt;&nbsp;read&nbsp;all)<br>
+zToA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;top&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;atmosphere&nbsp;altitude&nbsp;[km]&nbsp;(default:&nbsp;0.0)<br>
+zBoA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;bottom&nbsp;of&nbsp;atmosphere&nbsp;altitude&nbsp;[km]&nbsp;(default:&nbsp;0.0)<br>
+what&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;first&nbsp;'word'&nbsp;in&nbsp;file&nbsp;header&nbsp;line&nbsp;identifying&nbsp;column&nbsp;names&nbsp;(default:&nbsp;"what")<br>
+units&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;first&nbsp;'word'&nbsp;in&nbsp;file&nbsp;header&nbsp;line&nbsp;identifying&nbsp;units&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;"units")<br>
+scaleFactors&nbsp;&nbsp;&nbsp;floats&nbsp;&nbsp;&nbsp;change&nbsp;abundances,&nbsp;i.e.&nbsp;multiply&nbsp;molecular&nbsp;concentrations&nbsp;(default:&nbsp;1.0&nbsp;for&nbsp;all&nbsp;gases)<br>
+returnUnits&nbsp;&nbsp;&nbsp;&nbsp;flag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optionally&nbsp;also&nbsp;return&nbsp;units&nbsp;(default:&nbsp;False)<br>
+&nbsp;<br>
+Note:&nbsp;all&nbsp;data&nbsp;are&nbsp;returned&nbsp;in&nbsp;cgs&nbsp;units<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z[cm],&nbsp;&nbsp;p[dyn/cm**2],&nbsp;&nbsp;T[K],&nbsp;&nbsp;n[molec/cm**3)<br>
+&nbsp;<br>
+If&nbsp;you&nbsp;want&nbsp;to&nbsp;combine&nbsp;data&nbsp;from&nbsp;different&nbsp;files&nbsp;(e.g.&nbsp;'standard'&nbsp;p&amp;T&nbsp;and&nbsp;'exotic'&nbsp;trace&nbsp;gas&nbsp;concentrations)<br>
+then&nbsp;read&nbsp;the&nbsp;files&nbsp;separately&nbsp;using&nbsp;this&nbsp;`atmRead`&nbsp;(or&nbsp;vmrRead)&nbsp;function&nbsp;and&nbsp;then&nbsp;use&nbsp;the&nbsp;`atmMerge`&nbsp;function<br>
+&nbsp;<br>
+atmRead&nbsp;expects&nbsp;that&nbsp;pressure,&nbsp;temperature,&nbsp;and&nbsp;air&nbsp;density&nbsp;(at&nbsp;least&nbsp;two&nbsp;of&nbsp;these&nbsp;three!)&nbsp;are&nbsp;given;<br>
+If&nbsp;you&nbsp;want&nbsp;to&nbsp;read&nbsp;a&nbsp;file&nbsp;with&nbsp;only&nbsp;molecular&nbsp;VMRs&nbsp;or&nbsp;densities,&nbsp;use&nbsp;`vmrRead`.<br>
+&nbsp;<br>
+Atmospheric&nbsp;data&nbsp;file(s):&nbsp;&nbsp;see&nbsp;the&nbsp;data/atmos&nbsp;directory&nbsp;for&nbsp;examples.</tt></dd></dl>
+ <dl><dt><a name="-atmRegrid"><strong>atmRegrid</strong></a>(data, zNew, interpolate='linear')</dt><dd><tt>Interpolate&nbsp;atmospheric&nbsp;data&nbsp;(given&nbsp;as&nbsp;structured&nbsp;array)&nbsp;to&nbsp;a&nbsp;new&nbsp;altitude&nbsp;grid.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;original&nbsp;atmospheric&nbsp;data&nbsp;(structured&nbsp;array)<br>
+zNew&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;new&nbsp;altitude&nbsp;grid&nbsp;(list&nbsp;or&nbsp;numpy&nbsp;array)<br>
+interpolate&nbsp;&nbsp;&nbsp;select&nbsp;a&nbsp;specific&nbsp;method,&nbsp;&nbsp;default&nbsp;""&nbsp;for&nbsp;linear&nbsp;Lagrange&nbsp;with&nbsp;numpy.interp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;|&nbsp;z&nbsp;&nbsp;&nbsp;zero&nbsp;order&nbsp;spline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;|&nbsp;s&nbsp;&nbsp;&nbsp;first&nbsp;order&nbsp;spline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;|&nbsp;q&nbsp;&nbsp;&nbsp;second&nbsp;order&nbsp;spline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;|&nbsp;c&nbsp;&nbsp;&nbsp;third&nbsp;order&nbsp;spline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;|&nbsp;n&nbsp;&nbsp;&nbsp;previous&nbsp;or&nbsp;next,&nbsp;i.e.&nbsp;use&nbsp;the&nbsp;left/right&nbsp;point<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Piecewise&nbsp;cubic&nbsp;Hermite&nbsp;(scipy.pchip)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(see&nbsp;scipy.interpolate.interp1d)<br>
+&nbsp;<br>
+HINT:<br>
+you&nbsp;can&nbsp;use&nbsp;the&nbsp;parseGridSpec&nbsp;function&nbsp;of&nbsp;the&nbsp;grid&nbsp;module&nbsp;to&nbsp;generate&nbsp;a&nbsp;new&nbsp;altitude&nbsp;grid,<br>
+e.g.:&nbsp;&nbsp;zNew=parseGridSpec('0[2]16[4]60');&nbsp;&nbsp;atmNew=<a href="#-atmRegrid">atmRegrid</a>(atmOld,zNew)<br>
+&nbsp;<br>
+NOTE:<br>
+All&nbsp;atmospheric&nbsp;data&nbsp;incl.&nbsp;the&nbsp;altitude&nbsp;grid&nbsp;are&nbsp;in&nbsp;cgs&nbsp;units,&nbsp;hence&nbsp;z[cm].<br>
+However,&nbsp;for&nbsp;convenience&nbsp;zNew&nbsp;can&nbsp;be&nbsp;given&nbsp;in&nbsp;km:<br>
+if&nbsp;all&nbsp;new&nbsp;altitude&nbsp;values&nbsp;are&nbsp;'small'&nbsp;(z&lt;500),&nbsp;they&nbsp;are&nbsp;silently&nbsp;assumed&nbsp;to&nbsp;be&nbsp;kilometer&nbsp;and&nbsp;scaled&nbsp;to&nbsp;cm.</tt></dd></dl>
+ <dl><dt><a name="-atmSave"><strong>atmSave</strong></a>(atmos, outFile=None, units=None)</dt><dd><tt>Write&nbsp;atmospheric&nbsp;data&nbsp;to&nbsp;ascii&nbsp;tabular&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-atmSave_namelist"><strong>atmSave_namelist</strong></a>(atmos, outFile=None, vmr=False, zpT=False)</dt><dd><tt>Write&nbsp;atmospheric&nbsp;data&nbsp;to&nbsp;namelist&nbsp;formatted&nbsp;file&nbsp;(used&nbsp;by&nbsp;GARLIC).</tt></dd></dl>
+ <dl><dt><a name="-atmTruncate"><strong>atmTruncate</strong></a>(atmos, zToA=None, zBoA=None, verbose=False)</dt><dd><tt>Truncate&nbsp;atmosphere&nbsp;at&nbsp;top&nbsp;or&nbsp;bottom,&nbsp;i.e.&nbsp;delete&nbsp;levels&nbsp;for&nbsp;altitudes&nbsp;above&nbsp;zToA&nbsp;or&nbsp;below&nbsp;zBoA.</tt></dd></dl>
+ <dl><dt><a name="-cmr"><strong>cmr</strong></a>(atmos, what=None, zMin=None, zMax=None, verbose=False)</dt><dd><tt>Column&nbsp;mixing&nbsp;ratio:&nbsp;&nbsp;quotient&nbsp;of&nbsp;molecular&nbsp;vertical&nbsp;column&nbsp;densities&nbsp;and&nbsp;air&nbsp;vertical&nbsp;column&nbsp;density.</tt></dd></dl>
+ <dl><dt><a name="-densities"><strong>densities</strong></a>(atmos, what=None)</dt><dd><tt>Densities&nbsp;(1/cm**3)&nbsp;of&nbsp;molecules&nbsp;in&nbsp;atmospheric&nbsp;data,&nbsp;return&nbsp;a&nbsp;numpy&nbsp;array&nbsp;with&nbsp;shape&nbsp;(nLevels,nGases).<br>
+If&nbsp;a&nbsp;gas&nbsp;(or&nbsp;"air")&nbsp;is&nbsp;specified,&nbsp;return&nbsp;only&nbsp;this&nbsp;particular&nbsp;density.</tt></dd></dl>
+ <dl><dt><a name="-dry_vmr"><strong>dry_vmr</strong></a>(atmos, what=None)</dt><dd><tt>Volume&nbsp;mixing&nbsp;ratios&nbsp;of&nbsp;molecules&nbsp;in&nbsp;atmospheric&nbsp;data&nbsp;with&nbsp;respect&nbsp;to&nbsp;dry&nbsp;air,<br>
+return&nbsp;a&nbsp;numpy&nbsp;array&nbsp;with&nbsp;shape&nbsp;(nLevels,nGases).<br>
+If&nbsp;a&nbsp;gas&nbsp;is&nbsp;specified,&nbsp;return&nbsp;only&nbsp;this&nbsp;particular&nbsp;VMR.</tt></dd></dl>
+ <dl><dt><a name="-extract_profiles"><strong>extract_profiles</strong></a>(data, units, extract='main')</dt><dd><tt>Extract&nbsp;some&nbsp;profiles&nbsp;from&nbsp;the&nbsp;atmospheric&nbsp;data&nbsp;(given&nbsp;as&nbsp;structured&nbsp;array),<br>
+i.e.,&nbsp;remove&nbsp;all&nbsp;other&nbsp;profiles.<br>
+&nbsp;<br>
+Default&nbsp;is&nbsp;to&nbsp;return&nbsp;(extract)&nbsp;altitude,&nbsp;pressure,&nbsp;temperature&nbsp;and&nbsp;the&nbsp;'main'&nbsp;gases&nbsp;H2O,&nbsp;CO2,&nbsp;O3,&nbsp;...</tt></dd></dl>
+ <dl><dt><a name="-gases"><strong>gases</strong></a>(atmos, what=None)</dt><dd><tt>Return&nbsp;names&nbsp;of&nbsp;molecules&nbsp;in&nbsp;atmospheric&nbsp;data.<br>
+If&nbsp;a&nbsp;gas&nbsp;is&nbsp;specified,&nbsp;only&nbsp;check&nbsp;if&nbsp;it&nbsp;is&nbsp;present.</tt></dd></dl>
+ <dl><dt><a name="-pT"><strong>pT</strong></a>(atmos)</dt><dd><tt>Pressure&nbsp;and&nbsp;temperature:<br>
+given&nbsp;a&nbsp;numpy&nbsp;structured&nbsp;array&nbsp;of&nbsp;atmospheric&nbsp;data&nbsp;(z,&nbsp;p,&nbsp;T,&nbsp;gases)<br>
+return&nbsp;a&nbsp;numpy&nbsp;array&nbsp;with&nbsp;shape&nbsp;(nLevels,2).</tt></dd></dl>
+ <dl><dt><a name="-scaleDensities"><strong>scaleDensities</strong></a>(data, scaleFactors, gas=None, verbose=False)</dt><dd><tt>Scale&nbsp;molecular&nbsp;densities&nbsp;(either&nbsp;a&nbsp;single&nbsp;gas&nbsp;or&nbsp;all).<br>
+If&nbsp;a&nbsp;single&nbsp;factor&nbsp;is&nbsp;given&nbsp;and&nbsp;no&nbsp;gas&nbsp;is&nbsp;specified,&nbsp;scale&nbsp;the&nbsp;very&nbsp;first.</tt></dd></dl>
+ <dl><dt><a name="-scaleHeight"><strong>scaleHeight</strong></a>(atmos)</dt><dd><tt>Return&nbsp;the&nbsp;scale&nbsp;height&nbsp;[cm],&nbsp;i.e.&nbsp;the&nbsp;reciprocal&nbsp;of&nbsp;the&nbsp;slope&nbsp;of&nbsp;log(pressure)&nbsp;vs.&nbsp;altitude.</tt></dd></dl>
+ <dl><dt><a name="-vcd"><strong>vcd</strong></a>(atmos, what=None, zMin=None, zMax=None)</dt><dd><tt>Vertical&nbsp;column&nbsp;densities&nbsp;[molec/cm**2]&nbsp;for&nbsp;air&nbsp;and&nbsp;individual&nbsp;molecules.<br>
+If&nbsp;a&nbsp;gas&nbsp;(or&nbsp;"air")&nbsp;is&nbsp;specified,&nbsp;return&nbsp;only&nbsp;this&nbsp;particular&nbsp;vcd.<br>
+&nbsp;<br>
+Returns&nbsp;integral_zMin^zMax&nbsp;density&nbsp;dz<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+what&nbsp;&nbsp;&nbsp;default&nbsp;None,&nbsp;i.e.&nbsp;return&nbsp;all&nbsp;VCDs<br>
+zMin&nbsp;&nbsp;&nbsp;lower&nbsp;integral&nbsp;limit&nbsp;(default&nbsp;BoA)<br>
+zMax&nbsp;&nbsp;&nbsp;upper&nbsp;integral&nbsp;limit&nbsp;(default&nbsp;ToA)<br>
+&nbsp;<br>
+Notes:<br>
+*&nbsp;small&nbsp;zMin,&nbsp;zMax&nbsp;values&nbsp;(z&lt;250)&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;km&nbsp;and&nbsp;automatically&nbsp;converted&nbsp;to&nbsp;cm;<br>
+*&nbsp;the&nbsp;integral(s)&nbsp;start/stop&nbsp;at&nbsp;the&nbsp;given&nbsp;altitude&nbsp;levels,&nbsp;i.e.&nbsp;zMin&nbsp;or&nbsp;zMax&nbsp;is&nbsp;"rounded"&nbsp;to&nbsp;the&nbsp;next&nbsp;grid&nbsp;point.</tt></dd></dl>
+ <dl><dt><a name="-vmr"><strong>vmr</strong></a>(atmos, what=None)</dt><dd><tt>Volume&nbsp;mixing&nbsp;ratios&nbsp;of&nbsp;molecules&nbsp;in&nbsp;atmospheric&nbsp;data,&nbsp;return&nbsp;a&nbsp;numpy&nbsp;array&nbsp;with&nbsp;shape&nbsp;(nLevels,nGases).<br>
+If&nbsp;a&nbsp;gas&nbsp;is&nbsp;specified,&nbsp;return&nbsp;only&nbsp;this&nbsp;particular&nbsp;VMR.</tt></dd></dl>
+ <dl><dt><a name="-vmrRead"><strong>vmrRead</strong></a>(vmrFile, commentChar='#', extract=None, zToA=0.0, zBoA=0.0, what='what', units='units', scaleFactors=None, verbose=False)</dt><dd><tt>Read&nbsp;volume&nbsp;mixing&nbsp;ratio&nbsp;(VMR)&nbsp;data&nbsp;file,&nbsp;convert&nbsp;to&nbsp;cgs&nbsp;units,&nbsp;optionally&nbsp;truncate&nbsp;top/bottom&nbsp;or&nbsp;scale&nbsp;concentrations;<br>
+and&nbsp;return&nbsp;a&nbsp;structured&nbsp;numpy&nbsp;array.<br>
+&nbsp;<br>
+See&nbsp;the&nbsp;atmRead&nbsp;function&nbsp;for&nbsp;a&nbsp;full&nbsp;explanation&nbsp;of&nbsp;all&nbsp;arguments.<br>
+&nbsp;<br>
+The&nbsp;main&nbsp;purpose&nbsp;of&nbsp;this&nbsp;function&nbsp;is&nbsp;to&nbsp;read&nbsp;trace&nbsp;gases&nbsp;concentrations&nbsp;from&nbsp;a&nbsp;file&nbsp;without&nbsp;pressure/temperature&nbsp;data;<br>
+then&nbsp;you&nbsp;can&nbsp;combine&nbsp;these&nbsp;VMRs&nbsp;with&nbsp;p,&nbsp;T,&nbsp;and&nbsp;the&nbsp;main&nbsp;gas&nbsp;number&nbsp;densities&nbsp;using&nbsp;the&nbsp;`atmMerge`&nbsp;function.</tt></dd></dl>
+ <dl><dt><a name="-zpT"><strong>zpT</strong></a>(atmos)</dt><dd><tt>Altitude,&nbsp;pressure&nbsp;and&nbsp;temperature:<br>
+given&nbsp;a&nbsp;numpy&nbsp;structured&nbsp;array&nbsp;of&nbsp;atmospheric&nbsp;data&nbsp;(z,&nbsp;p,&nbsp;T,&nbsp;gases)<br>
+return&nbsp;a&nbsp;numpy&nbsp;array&nbsp;with&nbsp;shape&nbsp;(nLevels,3).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ascii_uppercase</strong> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'<br>
+<strong>goodNames</strong> = ['height', 'heights', 'altitude', 'altitudes', 'Height', 'Heights', 'Altitude', 'Altitudes', 'press', 'pressure', 'pressures', 'Press', 'Pressure', 'Pressures', 'temp', 'temperature', 'temperatures', 'Temp', 'Temperature', 'Temperatures', ...]<br>
+<strong>kBoltzmann</strong> = 1.3806504e-16<br>
+<strong>lengthUnits</strong> = {'A': 1e-08, 'cm': 1.0, 'dm': 10.0, 'inch': 2.54, 'km': 100000.0, 'm': 100.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, ...}<br>
+<strong>mixingRatioUnits</strong> = {'%': 0.01, 'pp1': 1.0, 'ppV': 1.0, 'ppb': 1e-09, 'ppm': 1e-06, 'ppt': 1e-12, 'ppv': 1.0, 'vmr': 1.0}<br>
+<strong>molecNames</strong> = ['H2O', 'HDO', 'CO2', 'O3', 'N2O', 'CO', 'CH4', 'CH3D', 'O2', 'NO', 'SO2', 'NO2', 'NH3', 'HNO3', 'OH', 'HF', 'HCl', 'HBr', 'HI', 'ClO', ...]<br>
+<strong>molecules</strong> = {'BrO': {'NumDeg': [1], 'TempExpGL': 0.5, 'TempExpQR': 1.0, 'VibFreq': [500.0], 'isotopes': ['69', '61'], 'mass': 95.0}, 'C2H2': {'NumDeg': [1, 1, 1, 2, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.0, 'VibFreq': [3374.0, 1974.0, 3289.0, 629.0, 730.0], 'geisa': 24, 'hitran': 26, 'isotopes': ['1221', '1231', '1222'], 'mass': 26.03, 'sao': 26}, 'C2H4': {'NumDeg': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'TempExpGL': 0.5, 'TempExpQR': 1.5, 'VibFreq': [3026, 1625, 1342, 1023, 3103, 1236, 949, 943, 3106, 826, 2989, 1444], 'geisa': 25, 'hitran': 38, 'isotopes': ['221', '311'], 'mass': 28.0}, 'C2H6': {'NumDeg': [1, 1, 1, 1, 1, 1, 2, 1, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.9, 'VibFreq': [2899.0, 1375.0, 993.0, 275.0, 2954.0, 1379.0, 2994.0, 1486.0, 822.0], 'geisa': 22, 'hitran': 27, 'isotopes': ['1221', '1231'], 'mass': 30.07, 'sao': 27}, 'C2HD': {'geisa': 48, 'isotopes': ['122'], 'mass': 17.0}, 'C2N2': {'VibFreq': [2330, 846, 2158, 503, 234], 'geisa': 29, 'hitran': 48, 'isotopes': ['4224'], 'mass': 52.0}, 'C3H4': {'geisa': 40, 'mass': 40.0}, 'C3H8': {'VibFreq': [2977, 2962, 2887, 1476, 1462, 1392, 1158, 869, 369, 2967, 1451, 1278, 940, 216, 2968, 2887, 1464, 1378, 1338, 1054, ...], 'geisa': 28, 'isotopes': ['221'], 'mass': 44.0}, 'C4H2': {'VibFreq': [3293, 2184, 874, 3329, 2020, 627, 482, 630, 231], 'geisa': 30, 'hitran': 43, 'isotopes': ['221'], 'mass': 50.0}, 'C6H6': {'VibFreq': [3062, 992, 1326, 673, 3068, 1010, 995, 703, 1310, 1150, 849, 3063, 1486, 1038, 3047, 1596, 1178, 606, 975, 410], 'geisa': 47, 'isotopes': ['266'], 'mass': 78.0}, ...}<br>
+<strong>pressureUnits</strong> = {'N/m**2': 10.0, 'N/m^2': 10.0, 'Pa': 10.0, 'Torr': 1333.22, 'atm': 1013250.0, 'bar': 1000000.0, 'dyn/cm**2': 1.0, 'dyn/cm^2': 1.0, 'g/(cm*s**2)': 1.0, 'g/(cm*s^2)': 1.0, ...}<br>
+<strong>simpleNames</strong> = {'Altitude': 'z', 'Altitudes': 'z', 'Density': 'air', 'HGT': 'z', 'Height': 'z', 'Heights': 'z', 'PRE': 'p', 'Press': 'p', 'Pressure': 'p', 'Pressures': 'p', ...}</td></tr></table>
+</body></html>

@@ -1,0 +1,24 @@
+\documentclass{minimal}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\begin{document}
+	\begin{tikzpicture}
+		
+		\begin{axis}[
+			date coordinates in=x,
+			xticklabel={\day.\month.\year\\ \hour:\minute},
+			x tick label style={align=center},
+			date ZERO=2010-01-01, % Set near lowest date
+			xmin={2010-01-01}, % A date with no time is assumed to have a time of 00:00
+			xmax={2010-01-04},
+			xtick={2010-01-01 12:00, % Set tick marks
+				2010-01-02 12:00,
+				2010-01-03 12:00}
+			]
+			\addplot table [col sep=comma,trim cells=true,y=value1] {data.csv};
+			\addplot table [col sep=comma,trim cells=true,y=value2] {data.csv};
+		\end{axis}
+		
+	\end{tikzpicture}
+\end{document}

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module cgsUnits</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>cgsUnits</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/cgsUnits.py">/users/schrei_f/src/py4CAtS/lite/src/cgsUnits.py</a></font></td></tr></table>
+    <p><tt>cgsUnits<br>
+convert&nbsp;(physical)&nbsp;data&nbsp;between&nbsp;(compatible)&nbsp;units<br>
+&nbsp;<br>
+usage:<br>
+cgsUnits&nbsp;oldUnit&nbsp;newUnit&nbsp;value(s)<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;the&nbsp;(physical)&nbsp;quantities&nbsp;and&nbsp;units&nbsp;supported&nbsp;are&nbsp;far&nbsp;from&nbsp;complete.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(see&nbsp;the&nbsp;source&nbsp;file&nbsp;for&nbsp;quantities&nbsp;and&nbsp;units&nbsp;known)</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-cgs"><strong>cgs</strong></a>(unit, data=1.0)</dt><dd><tt>Conversion&nbsp;of&nbsp;(scalar&nbsp;or&nbsp;array)&nbsp;physical&nbsp;value(s)&nbsp;to&nbsp;its&nbsp;cgs&nbsp;base&nbsp;unit&nbsp;(e.g.&nbsp;'cm'&nbsp;or&nbsp;'g').<br>
+If&nbsp;no&nbsp;data&nbsp;are&nbsp;given,&nbsp;simply&nbsp;return&nbsp;the&nbsp;conversion&nbsp;factor&nbsp;to&nbsp;the&nbsp;cgs&nbsp;base&nbsp;unit.<br>
+If&nbsp;unit&nbsp;starts&nbsp;with&nbsp;an&nbsp;exclamation&nbsp;mark&nbsp;(!),&nbsp;convert&nbsp;from&nbsp;the&nbsp;base&nbsp;unit.<br>
+If&nbsp;unit&nbsp;contains&nbsp;an&nbsp;exclamation&nbsp;mark,&nbsp;convert&nbsp;from&nbsp;the&nbsp;unit&nbsp;given&nbsp;before&nbsp;the&nbsp;!&nbsp;to&nbsp;the&nbsp;unit&nbsp;after&nbsp;the&nbsp;!<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+unit:&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;text&nbsp;string&nbsp;like&nbsp;"cm"&nbsp;or&nbsp;"mb"<br>
+data:&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;float&nbsp;or&nbsp;list&nbsp;or&nbsp;array&nbsp;of&nbsp;physical&nbsp;quantities<br>
+&nbsp;<br>
+RETURNS:<br>
+either&nbsp;simply&nbsp;the&nbsp;conversion&nbsp;factor&nbsp;to&nbsp;(from)&nbsp;the&nbsp;cgs&nbsp;base&nbsp;unit<br>
+or&nbsp;the&nbsp;data&nbsp;converted&nbsp;to&nbsp;(or&nbsp;from)&nbsp;the&nbsp;cgs&nbsp;base&nbsp;unit<br>
+&nbsp;<br>
+EXAMPLES:<br>
+<a href="#-cgs">cgs</a>('km')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;100000.0<br>
+<a href="#-cgs">cgs</a>('!kg',amu)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&gt;&nbsp;1.660538782e-27<br>
+<a href="#-cgs">cgs</a>('mb&nbsp;!&nbsp;atm',1013.25)&nbsp;&nbsp;---&gt;&nbsp;1.0<br>
+&nbsp;<br>
+NOTES:<br>
+*&nbsp;the&nbsp;greek&nbsp;mu&nbsp;can&nbsp;be&nbsp;specified&nbsp;with&nbsp;the&nbsp;latin&nbsp;'u'&nbsp;(e.g.&nbsp;'um'&nbsp;for&nbsp;wavelength&nbsp;in&nbsp;micrometer)<br>
+*&nbsp;temperature&nbsp;conversion&nbsp;K&nbsp;&lt;--&gt;&nbsp;C&nbsp;not&nbsp;implemented&nbsp;(additive,&nbsp;not&nbsp;multiplicative)<br>
+*&nbsp;the&nbsp;list&nbsp;of&nbsp;supported/known&nbsp;units&nbsp;is&nbsp;far&nbsp;from&nbsp;complete<br>
+&nbsp;&nbsp;(for&nbsp;a&nbsp;complete&nbsp;conversion&nbsp;module&nbsp;see&nbsp;astropy.units,&nbsp;<a href="http://www.astropy.org">http://www.astropy.org</a>)</tt></dd></dl>
+ <dl><dt><a name="-cgsTemperature"><strong>cgsTemperature</strong></a>(data, old=None, new=None)</dt><dd><tt>Temperature&nbsp;unit&nbsp;conversion:&nbsp;&nbsp;additive,&nbsp;so&nbsp;the&nbsp;standard&nbsp;scheme&nbsp;(multiplicative)&nbsp;does&nbsp;not&nbsp;work.</tt></dd></dl>
+ <dl><dt><a name="-change_frequency_units"><strong>change_frequency_units</strong></a>(x, xUnitOld, xUnitNew)</dt><dd><tt>Convert&nbsp;frequency&nbsp;&lt;--&gt;&nbsp;wavenumber&nbsp;&lt;--&gt;&nbsp;wavelength.</tt></dd></dl>
+ <dl><dt><a name="-lambda2nu"><strong>lambda2nu</strong></a>(lData, nm=False, freq='', delta=False)</dt><dd><tt>Convert&nbsp;wavelength&nbsp;[um|nm]&nbsp;to&nbsp;wavenumber&nbsp;[1/cm]&nbsp;or&nbsp;frequency.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+lData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavelength(s)<br>
+nm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag:&nbsp;input&nbsp;micrometer&nbsp;(default),&nbsp;otherwise&nbsp;nanometer<br>
+freq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;empty:&nbsp;&nbsp;output&nbsp;data&nbsp;in&nbsp;cm-1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;frequency&nbsp;give&nbsp;Hz&nbsp;|&nbsp;kHz&nbsp;|&nbsp;MHz&nbsp;|&nbsp;GHz&nbsp;|&nbsp;THz<br>
+delta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;the&nbsp;differences&nbsp;between&nbsp;consecutive&nbsp;wavelengths</tt></dd></dl>
+ <dl><dt><a name="-nu2lambda"><strong>nu2lambda</strong></a>(vData, freq='', nm=False)</dt><dd><tt>Convert&nbsp;wavenumber&nbsp;[cm-1]&nbsp;or&nbsp;frequency&nbsp;to&nbsp;wavelength.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+vData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber(s)&nbsp;or&nbsp;frequency(ies)<br>
+freq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;empty:&nbsp;&nbsp;input&nbsp;data&nbsp;in&nbsp;cm-1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;frequency&nbsp;give&nbsp;Hz&nbsp;|&nbsp;kHz&nbsp;|&nbsp;MHz&nbsp;|&nbsp;GHz&nbsp;|&nbsp;THz<br>
+nm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag:&nbsp;return&nbsp;micrometer&nbsp;(default)&nbsp;or&nbsp;nanometer</tt></dd></dl>
+ <dl><dt><a name="-unitConversion"><strong>unitConversion</strong></a>(data, WHAT, old=None, new=None)</dt><dd><tt>Conversion&nbsp;of&nbsp;(scalar&nbsp;or&nbsp;array)&nbsp;physical&nbsp;values&nbsp;to&nbsp;different&nbsp;units.<br>
+If&nbsp;old&nbsp;(input)&nbsp;or&nbsp;new&nbsp;(output)&nbsp;unit&nbsp;is&nbsp;not&nbsp;given:&nbsp;assume&nbsp;cgs&nbsp;standard&nbsp;unit&nbsp;for&nbsp;this&nbsp;quantity.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>alias</strong> = 'height'<br>
+<strong>allQuantities</strong> = {'altitude': {'A': 1e-08, 'cm': 1.0, 'dm': 10.0, 'inch': 2.54, 'km': 100000.0, 'm': 100.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, ...}, 'area': {'A**2': 1.0000000000000001e-16, 'cm**2': 1.0, 'dm**2': 100.0, 'inch**2': 6.4516, 'km**2': 10000000000.0, 'm**2': 10000.0, 'micrometer**2': 1e-08, 'mm**2': 0.010000000000000002, 'mue**2': 1e-08, 'mum**2': 1e-08, ...}, 'density': {'1/A**3': 1e+24, '1/cm**3': 1.0, '1/dm**3': 0.001, '1/inch**3': 0.06102374409473228, '1/km**3': 1e-15, '1/m**3': 1e-06, '1/micrometer**3': 999999999999.9999, '1/mm**3': 999.9999999999999, '1/mue**3': 999999999999.9999, '1/mum**3': 999999999999.9999, ...}, 'energy': {'J': 10000000.0, 'N.m': 10000000.0, 'Nm': 10000000.0, 'erg': 1.0, 'g.cm**2/s**2': 1.0, 'kg.m**2/s**2': 10000000.0, 'mJ': 10000.0}, 'frequency': {'1/cm': 29979245800.0, 'GHz': 1000000000.0, 'Hz': 1.0, 'MHz': 1000000.0, 'THz': 1000000000000.0, 'cm-1': 29979245800.0, 'kHz': 1000.0}, 'height': {'A': 1e-08, 'cm': 1.0, 'dm': 10.0, 'inch': 2.54, 'km': 100000.0, 'm': 100.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, ...}, 'length': {'A': 1e-08, 'cm': 1.0, 'dm': 10.0, 'inch': 2.54, 'km': 100000.0, 'm': 100.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, ...}, 'mass': {'amu': 1.660538782e-24, 'g': 1.0, 'kg': 1000.0, 'mg': 0.001, 'ton': 1000000.0, 'ug': 1e-06}, 'mixingratio': {'%': 0.01, 'pp1': 1.0, 'ppV': 1.0, 'ppb': 1e-09, 'ppm': 1e-06, 'ppt': 1e-12, 'ppv': 1.0, 'vmr': 1.0}, 'p': {'N/m**2': 10.0, 'N/m^2': 10.0, 'Pa': 10.0, 'Torr': 1333.22, 'atm': 1013250.0, 'bar': 1000000.0, 'dyn/cm**2': 1.0, 'dyn/cm^2': 1.0, 'g/(cm*s**2)': 1.0, 'g/(cm*s^2)': 1.0, ...}, ...}<br>
+<strong>allUnits</strong> = {'%': 0.01, '1/A**3': 1e+24, '1/cm': 29979245800.0, '1/cm**3': 1.0, '1/dm**3': 0.001, '1/inch**3': 0.06102374409473228, '1/km**3': 1e-15, '1/m**3': 1e-06, '1/micrometer**3': 999999999999.9999, '1/mm**3': 999.9999999999999, ...}<br>
+<strong>areaUnits</strong> = {'A**2': 1.0000000000000001e-16, 'cm**2': 1.0, 'dm**2': 100.0, 'inch**2': 6.4516, 'km**2': 10000000000.0, 'm**2': 10000.0, 'micrometer**2': 1e-08, 'mm**2': 0.010000000000000002, 'mue**2': 1e-08, 'mum**2': 1e-08, ...}<br>
+<strong>c</strong> = 29979245800.0<br>
+<strong>cgs_units</strong> = {'density': '1/cm**3', 'energy': 'erg', 'length': 'cm', 'power': 'erg/s', 'pressure': 'g/(cm*s**2)', 'temperature': 'K', 'vmr': 'pp1'}<br>
+<strong>densityUnits</strong> = {'1/A**3': 1e+24, '1/cm**3': 1.0, '1/dm**3': 0.001, '1/inch**3': 0.06102374409473228, '1/km**3': 1e-15, '1/m**3': 1e-06, '1/micrometer**3': 999999999999.9999, '1/mm**3': 999.9999999999999, '1/mue**3': 999999999999.9999, '1/mum**3': 999999999999.9999, ...}<br>
+<strong>energyUnits</strong> = {'J': 10000000.0, 'N.m': 10000000.0, 'Nm': 10000000.0, 'erg': 1.0, 'g.cm**2/s**2': 1.0, 'kg.m**2/s**2': 10000000.0, 'mJ': 10000.0}<br>
+<strong>frequencyUnits</strong> = {'1/cm': 29979245800.0, 'GHz': 1000000000.0, 'Hz': 1.0, 'MHz': 1000000.0, 'THz': 1000000000000.0, 'cm-1': 29979245800.0, 'kHz': 1000.0}<br>
+<strong>lengthUnits</strong> = {'A': 1e-08, 'cm': 1.0, 'dm': 10.0, 'inch': 2.54, 'km': 100000.0, 'm': 100.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, ...}<br>
+<strong>massUnits</strong> = {'amu': 1.660538782e-24, 'g': 1.0, 'kg': 1000.0, 'mg': 0.001, 'ton': 1000000.0, 'ug': 1e-06}<br>
+<strong>mixingRatioUnits</strong> = {'%': 0.01, 'pp1': 1.0, 'ppV': 1.0, 'ppb': 1e-09, 'ppm': 1e-06, 'ppt': 1e-12, 'ppv': 1.0, 'vmr': 1.0}<br>
+<strong>molecules</strong> = {'BrO': {'NumDeg': [1], 'TempExpGL': 0.5, 'TempExpQR': 1.0, 'VibFreq': [500.0], 'isotopes': ['69', '61'], 'mass': 95.0}, 'C2H2': {'NumDeg': [1, 1, 1, 2, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.0, 'VibFreq': [3374.0, 1974.0, 3289.0, 629.0, 730.0], 'geisa': 24, 'hitran': 26, 'isotopes': ['1221', '1231', '1222'], 'mass': 26.03, 'sao': 26}, 'C2H4': {'NumDeg': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'TempExpGL': 0.5, 'TempExpQR': 1.5, 'VibFreq': [3026, 1625, 1342, 1023, 3103, 1236, 949, 943, 3106, 826, 2989, 1444], 'geisa': 25, 'hitran': 38, 'isotopes': ['221', '311'], 'mass': 28.0}, 'C2H6': {'NumDeg': [1, 1, 1, 1, 1, 1, 2, 1, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.9, 'VibFreq': [2899.0, 1375.0, 993.0, 275.0, 2954.0, 1379.0, 2994.0, 1486.0, 822.0], 'geisa': 22, 'hitran': 27, 'isotopes': ['1221', '1231'], 'mass': 30.07, 'sao': 27}, 'C2HD': {'geisa': 48, 'isotopes': ['122'], 'mass': 17.0}, 'C2N2': {'VibFreq': [2330, 846, 2158, 503, 234], 'geisa': 29, 'hitran': 48, 'isotopes': ['4224'], 'mass': 52.0}, 'C3H4': {'geisa': 40, 'mass': 40.0}, 'C3H8': {'VibFreq': [2977, 2962, 2887, 1476, 1462, 1392, 1158, 869, 369, 2967, 1451, 1278, 940, 216, 2968, 2887, 1464, 1378, 1338, 1054, ...], 'geisa': 28, 'isotopes': ['221'], 'mass': 44.0}, 'C4H2': {'VibFreq': [3293, 2184, 874, 3329, 2020, 627, 482, 630, 231], 'geisa': 30, 'hitran': 43, 'isotopes': ['221'], 'mass': 50.0}, 'C6H6': {'VibFreq': [3062, 992, 1326, 673, 3068, 1010, 995, 703, 1310, 1150, 849, 3063, 1486, 1038, 3047, 1596, 1178, 606, 975, 410], 'geisa': 47, 'isotopes': ['266'], 'mass': 78.0}, ...}<br>
+<strong>powerUnits</strong> = {'W': 10000000.0, 'erg/s': 1.0, 'g.cm**2/s**3': 1.0, 'kg.m**2/s**3': 10000000.0, 'mW': 10000.0, 'nW': 0.01, 'uW': 10.0}<br>
+<strong>pressureUnits</strong> = {'N/m**2': 10.0, 'N/m^2': 10.0, 'Pa': 10.0, 'Torr': 1333.22, 'atm': 1013250.0, 'bar': 1000000.0, 'dyn/cm**2': 1.0, 'dyn/cm^2': 1.0, 'g/(cm*s**2)': 1.0, 'g/(cm*s^2)': 1.0, ...}<br>
+<strong>temperatureUnits</strong> = {'C': 273.15, 'Celsius': 273.15, 'K': 0.0, 'Kelvin': 0.0, 'k': 0.0}<br>
+<strong>units</strong> = {'J': 10000000.0, 'N.m': 10000000.0, 'Nm': 10000000.0, 'erg': 1.0, 'g.cm**2/s**2': 1.0, 'kg.m**2/s**2': 10000000.0, 'mJ': 10000.0}<br>
+<strong>volumeUnits</strong> = {'A**3': 1.0000000000000001e-24, 'cm**3': 1.0, 'dm**3': 1000.0, 'hl': 100000.0, 'inch**3': 16.387064000000002, 'km**3': 1000000000000000.0, 'l': 1000.0, 'm**3': 1000000.0, 'micrometer**3': 1.0000000000000002e-12, 'mm**3': 0.0010000000000000002, ...}<br>
+<strong>wavelengthUnits</strong> = {'A': 1e-08, 'cm': 1.0, 'micrometer': 0.0001, 'mm': 0.1, 'mue': 0.0001, 'mum': 0.0001, 'nm': 1e-07, 'um': 0.0001}</td></tr></table>
+</body></html>

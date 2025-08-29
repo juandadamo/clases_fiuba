@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lineshapes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>lineshapes</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/lineshapes.py">/users/schrei_f/src/py4CAtS/lite/src/lineshapes.py</a></font></td></tr></table>
+    <p><tt>Line&nbsp;profile&nbsp;functions&nbsp;normalized&nbsp;to&nbsp;1.0&nbsp;with&nbsp;wavenumber&nbsp;(array)&nbsp;and&nbsp;position,&nbsp;strengths,&nbsp;and&nbsp;width(s)&nbsp;as&nbsp;input&nbsp;variables.</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Gauss"><strong>Gauss</strong></a>(vGrid, vLine=0.0, S=1.0, gammaD=1.0)</dt><dd><tt>Doppler&nbsp;broadening:&nbsp;&nbsp;Gauss&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.</tt></dd></dl>
+ <dl><dt><a name="-Lorentz"><strong>Lorentz</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0)</dt><dd><tt>Pressure&nbsp;broadening:&nbsp;Lorentz&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.</tt></dd></dl>
+ <dl><dt><a name="-LorentzMix"><strong>LorentzMix</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, yMix=0.0)</dt><dd><tt>Pressure&nbsp;broadening:&nbsp;Lorentz&nbsp;profile&nbsp;incl.&nbsp;line&nbsp;mixing,&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+See&nbsp;D.&nbsp;Edwards,&nbsp;SPIE&nbsp;Vol.&nbsp;928&nbsp;(1986),&nbsp;Eq.&nbsp;(4.5)</tt></dd></dl>
+ <dl><dt><a name="-Rautian"><strong>Rautian</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, gammaD=1.0, gammaN=1.0)</dt><dd><tt>Rautian&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+Broadening&nbsp;by&nbsp;thermal&nbsp;motion&nbsp;and&nbsp;state-perturbing&nbsp;collisions;<br>
+hard&nbsp;collision&nbsp;model&nbsp;for&nbsp;velocity-changing&nbsp;collisions;&nbsp;collisional&nbsp;perturbations&nbsp;uncorrelated<br>
+&nbsp;<br>
+Philip&nbsp;L.&nbsp;Varghese&nbsp;and&nbsp;Ronald&nbsp;K.&nbsp;Hanson:<br>
+Collisional&nbsp;narrowing&nbsp;effects&nbsp;on&nbsp;spectral&nbsp;line&nbsp;shapes&nbsp;measured&nbsp;at&nbsp;high&nbsp;resolution&nbsp;[AO&nbsp;23(14),&nbsp;2376-2385,&nbsp;1984]</tt></dd></dl>
+ <dl><dt><a name="-Voigt"><strong>Voigt</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, gammaD=1.0)</dt><dd><tt>Voigt&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.</tt></dd></dl>
+ <dl><dt><a name="-VoigtMix"><strong>VoigtMix</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, gammaD=1.0, yMix=0.0)</dt><dd><tt>Voigt&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.</tt></dd></dl>
+ <dl><dt><a name="-Voigt_Kuntz_Humlicek1"><strong>Voigt_Kuntz_Humlicek1</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, gammaD=1.0)</dt><dd><tt>Voigt&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+Rational&nbsp;approximation&nbsp;for&nbsp;asymptotic&nbsp;region&nbsp;for&nbsp;large&nbsp;|x|+y.<br>
+Real&nbsp;part&nbsp;only&nbsp;using&nbsp;Kuntz&nbsp;(JQSRT,&nbsp;1997)&nbsp;implementation&nbsp;with&nbsp;Ruyten's&nbsp;(JQSRT,&nbsp;2003)&nbsp;correction.</tt></dd></dl>
+ <dl><dt><a name="-speedVoigt"><strong>speedVoigt</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, gammaD=1.0, gamma2=1.0)</dt><dd><tt>Speed-dependent&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+&nbsp;<br>
+Boone,&nbsp;Walker,&nbsp;Bernath&nbsp;(JQSRT&nbsp;112,&nbsp;2011):<br>
+An&nbsp;efficient&nbsp;analytical&nbsp;approach&nbsp;for&nbsp;calculating&nbsp;line&nbsp;mixing&nbsp;in&nbsp;atmospheric&nbsp;remote&nbsp;sensing&nbsp;applications<br>
+&nbsp;<br>
+Schreier&nbsp;(JQSRT&nbsp;187,&nbsp;2017):&nbsp;Computational&nbsp;Aspects&nbsp;of&nbsp;Speed-Dependent&nbsp;Voigt&nbsp;Profiles</tt></dd></dl>
+ <dl><dt><a name="-speedVoigtMix"><strong>speedVoigtMix</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, gammaD=1.0, gamma2=1.0, yMix=0.0)</dt><dd><tt>Speed-dependent&nbsp;profile&nbsp;including&nbsp;Rosenkranz&nbsp;line&nbsp;mixing&nbsp;normalized&nbsp;to&nbsp;one,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+&nbsp;<br>
+Boone,&nbsp;Walker,&nbsp;Bernath&nbsp;(JQSRT&nbsp;112,&nbsp;2011):<br>
+An&nbsp;efficient&nbsp;analytical&nbsp;approach&nbsp;for&nbsp;calculating&nbsp;line&nbsp;mixing&nbsp;in&nbsp;atmospheric&nbsp;remote&nbsp;sensing&nbsp;applications<br>
+&nbsp;<br>
+F.&nbsp;Schreier&nbsp;(JQSRT&nbsp;187,&nbsp;2017):&nbsp;&nbsp;Computational&nbsp;aspects&nbsp;of&nbsp;speed-dependent&nbsp;Voigt&nbsp;profiles</tt></dd></dl>
+ <dl><dt><a name="-sqrt"><strong>sqrt</strong></a>(...)</dt><dd><tt><a href="#-sqrt">sqrt</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;square&nbsp;root&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-vanVleckHuber"><strong>vanVleckHuber</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0, temp=250.0)</dt><dd><tt>Pressure&nbsp;broadening:&nbsp;VanVleck-Huber&nbsp;lineshape&nbsp;with&nbsp;tanh&nbsp;prefactor,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+See&nbsp;D.&nbsp;Edwards,&nbsp;SPIE&nbsp;Vol.&nbsp;928&nbsp;(1986),&nbsp;Eq.&nbsp;(4.3)<br>
+ARTS&nbsp;---&nbsp;Buehler,&nbsp;Eriksson&nbsp;et&nbsp;al.,&nbsp;JQSRT&nbsp;Vol.&nbsp;91&nbsp;(2005),&nbsp;Table&nbsp;2</tt></dd></dl>
+ <dl><dt><a name="-vanVleckWeisskopf"><strong>vanVleckWeisskopf</strong></a>(vGrid, vLine=0.0, S=1.0, gammaL=1.0)</dt><dd><tt>Pressure&nbsp;broadening:&nbsp;VanVleck-Weisskopf&nbsp;lineshape&nbsp;without&nbsp;tanh&nbsp;prefactor,&nbsp;multiplied&nbsp;with&nbsp;line&nbsp;strength.<br>
+ARTS&nbsp;manual,&nbsp;eq.&nbsp;(3.12)<br>
+ARTS&nbsp;---&nbsp;Buehler,&nbsp;Eriksson&nbsp;et&nbsp;al.,&nbsp;JQSRT&nbsp;Vol.&nbsp;91&nbsp;(2005),&nbsp;Eq.&nbsp;(7)<br>
+See&nbsp;D.&nbsp;Edwards,&nbsp;SPIE&nbsp;Vol.&nbsp;928&nbsp;(1986),&nbsp;Eq.&nbsp;(4.3)</tt></dd></dl>
+ <dl><dt><a name="-voigtWidth"><strong>voigtWidth</strong></a>(gammaL=1.0, gammaD=1.0)</dt><dd><tt>Half&nbsp;width&nbsp;half&nbsp;maximum&nbsp;(HWHM)&nbsp;of&nbsp;Voigt&nbsp;profile&nbsp;(Whiting's&nbsp;approximation).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>c</strong> = 29979245800.0<br>
+<strong>h</strong> = 6.62606896e-27<br>
+<strong>k</strong> = 1.3806504e-16<br>
+<strong>ln2</strong> = 0.6931471805599453<br>
+<strong>pi</strong> = 3.141592653589793<br>
+<strong>recSqrt2</strong> = 0.7071067811865475<br>
+<strong>recSqrtLn2</strong> = 1.2011224087864498<br>
+<strong>recSqrtPi</strong> = 0.5641895835477563<br>
+<strong>sqrtLn2</strong> = 0.8325546111576977<br>
+<strong>sqrtLn2overPi</strong> = 0.46971863934982566<br>
+<strong>sqrtPi</strong> = 1.7724538509055159</td></tr></table>
+</body></html>

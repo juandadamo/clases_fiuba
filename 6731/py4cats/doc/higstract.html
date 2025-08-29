@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module higstract</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>higstract</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/higstract.py">/users/schrei_f/src/py4CAtS/lite/src/higstract.py</a></font></td></tr></table>
+    <p><tt>higstract<br>
+&nbsp;<br>
+higstract&nbsp;(extract/grep/select)&nbsp;line&nbsp;parameters&nbsp;from&nbsp;a&nbsp;spectroscopic&nbsp;data&nbsp;base&nbsp;file<br>
+&nbsp;<br>
+usage:<br>
+higstract&nbsp;&nbsp;[options]&nbsp;&nbsp;line_parameter_database<br>
+&nbsp;<br>
+command&nbsp;line&nbsp;options:<br>
+&nbsp;&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help&nbsp;extended<br>
+&nbsp;&nbsp;-c&nbsp;&nbsp;&nbsp;char(s)&nbsp;&nbsp;comment&nbsp;character&nbsp;used&nbsp;in&nbsp;output&nbsp;file&nbsp;(default&nbsp;#)<br>
+&nbsp;&nbsp;-o&nbsp;&nbsp;&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;(default:&nbsp;standard&nbsp;output,&nbsp;see&nbsp;last&nbsp;note&nbsp;of&nbsp;extended&nbsp;help)<br>
+&nbsp;<br>
+&nbsp;&nbsp;-f&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;output&nbsp;format:&nbsp;&nbsp;original&nbsp;or&nbsp;simple&nbsp;lists&nbsp;(position&nbsp;vs&nbsp;strengths&nbsp;etc)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;"vSEan"&nbsp;(see&nbsp;notes&nbsp;of&nbsp;extended&nbsp;help)<br>
+&nbsp;&nbsp;-i&nbsp;&nbsp;&nbsp;integer&nbsp;&nbsp;isotope&nbsp;name&nbsp;(e.g.&nbsp;4&nbsp;or&nbsp;162&nbsp;for&nbsp;heavy&nbsp;water&nbsp;HDO,&nbsp;the&nbsp;fourth&nbsp;most&nbsp;abundant&nbsp;isotope)<br>
+&nbsp;&nbsp;-m&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;molecule&nbsp;name&nbsp;&nbsp;(one&nbsp;molecule&nbsp;only!)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"main"&nbsp;to&nbsp;save&nbsp;only&nbsp;lines&nbsp;of&nbsp;the&nbsp;main&nbsp;molecules&nbsp;(ignore&nbsp;trace&nbsp;gases)<br>
+&nbsp;&nbsp;-S&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;minimum&nbsp;line&nbsp;strength&nbsp;to&nbsp;accept<br>
+&nbsp;&nbsp;-x&nbsp;&nbsp;&nbsp;interval&nbsp;lower&nbsp;and&nbsp;upper&nbsp;end&nbsp;of&nbsp;spectral&nbsp;(default:&nbsp;wavenumber)&nbsp;range&nbsp;(comma&nbsp;separated&nbsp;pair&nbsp;without&nbsp;blanks)<br>
+&nbsp;&nbsp;-X&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;unit&nbsp;used&nbsp;for&nbsp;setting&nbsp;spectral&nbsp;range&nbsp;with&nbsp;-x&nbsp;option&nbsp;(does&nbsp;not&nbsp;affect&nbsp;output&nbsp;listing!)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default:&nbsp;"cm-1",&nbsp;&nbsp;other&nbsp;choices:&nbsp;"Hz",&nbsp;"MHz",&nbsp;"GHz",&nbsp;"THz",&nbsp;"mue",&nbsp;"nm")<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;to&nbsp;avoid&nbsp;name&nbsp;clashes&nbsp;with&nbsp;numpy's&nbsp;extract&nbsp;function,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;module&nbsp;and&nbsp;its&nbsp;the&nbsp;'main'&nbsp;function&nbsp;have&nbsp;been&nbsp;renamed&nbsp;to&nbsp;'higstract'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(short&nbsp;for&nbsp;HItran-GeiSa-exTRACT)<br>
+&nbsp;<br>
+For&nbsp;more&nbsp;information&nbsp;use<br>
+higstract&nbsp;--help</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-check_database_file"><strong>check_database_file</strong></a>(lineFile)</dt><dd><tt>Check&nbsp;command&nbsp;line&nbsp;argument&nbsp;supplied&nbsp;to&nbsp;higstract.</tt></dd></dl>
+ <dl><dt><a name="-core_parameters"><strong>core_parameters</strong></a>(lines, dataFile)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;data&nbsp;base&nbsp;records&nbsp;(one&nbsp;entry&nbsp;per&nbsp;transition)<br>
+return&nbsp;numpy&nbsp;structured&nbsp;array&nbsp;with&nbsp;the&nbsp;most&nbsp;important&nbsp;spectrocopic&nbsp;line&nbsp;parameters.</tt></dd></dl>
+ <dl><dt><a name="-higstract"><strong>higstract</strong></a>(lineFile, xLimits=None, molecule=None, isotope=None, strMin=0.0, xUnit='cm-1', format='vSEasni', verbose=False)</dt><dd><tt>HItran&nbsp;GeiSa&nbsp;exTRACT&nbsp;line&nbsp;data&nbsp;(position,&nbsp;strength,&nbsp;width,&nbsp;...)&nbsp;from&nbsp;spectroscopic&nbsp;line&nbsp;parameter&nbsp;data&nbsp;file.<br>
+RETURN&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;extracted&nbsp;lines&nbsp;in&nbsp;the&nbsp;original&nbsp;format&nbsp;(one&nbsp;list&nbsp;entry&nbsp;for&nbsp;each&nbsp;data&nbsp;record)<br>
+OR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;numpy&nbsp;structured&nbsp;arrays&nbsp;with&nbsp;the&nbsp;core&nbsp;parameters&nbsp;(by&nbsp;molecule).<br>
+&nbsp;<br>
+Parameters:<br>
+-----------<br>
+lineFile&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;name&nbsp;uniquely&nbsp;identifying&nbsp;the&nbsp;database<br>
+xLimits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interval&nbsp;&nbsp;&nbsp;&nbsp;pair&nbsp;of&nbsp;wavenumbers/frequencies/wavelengths<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(default&nbsp;al&nbsp;wavenumbers,&nbsp;also&nbsp;see&nbsp;xUnit)<br>
+molecule&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;species&nbsp;to&nbsp;be&nbsp;selected&nbsp;(default:&nbsp;'all')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'main'&nbsp;returns&nbsp;the&nbsp;first&nbsp;7&nbsp;Hitran/Geisa&nbsp;molecules&nbsp;H2O,&nbsp;CO2,&nbsp;O3,&nbsp;N2O,&nbsp;CH4,&nbsp;CO,&nbsp;O2<br>
+isotope&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;isotope&nbsp;ID&nbsp;as&nbsp;used&nbsp;by&nbsp;hitran,&nbsp;e.g.&nbsp;'162'&nbsp;for&nbsp;HDO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1=most&nbsp;abundant&nbsp;(e.g.&nbsp;4&nbsp;for&nbsp;HDO)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;&nbsp;all&nbsp;isotopes<br>
+strMin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strength&nbsp;of&nbsp;weakest&nbsp;line&nbsp;to&nbsp;be&nbsp;accepted&nbsp;(default:&nbsp;0.0)<br>
+xUnit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"cm-1"&nbsp;(default)&nbsp;|&nbsp;mue&nbsp;|&nbsp;nm&nbsp;|&nbsp;Hz&nbsp;|&nbsp;kHz&nbsp;|&nbsp;MHz|&nbsp;GHz&nbsp;|&nbsp;THz<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(only&nbsp;relevant&nbsp;for&nbsp;xLimits,&nbsp;does&nbsp;not&nbsp;change&nbsp;units&nbsp;of&nbsp;returned&nbsp;line&nbsp;positions)<br>
+format&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;combination&nbsp;of&nbsp;letters&nbsp;indicating&nbsp;the&nbsp;core&nbsp;line&nbsp;parameters<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+EITHER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;'lineArray',&nbsp;a&nbsp;subclassed&nbsp;structured&nbsp;numpy&nbsp;array&nbsp;of&nbsp;core&nbsp;line&nbsp;parameters,<br>
+OR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;single&nbsp;'lineArray,&nbsp;if&nbsp;only&nbsp;a&nbsp;single&nbsp;molecule&nbsp;is&nbsp;to&nbsp;be&nbsp;extracted,<br>
+OR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;lines&nbsp;accepted,&nbsp;i.e.&nbsp;a&nbsp;string&nbsp;(record)&nbsp;for&nbsp;each&nbsp;line&nbsp;in&nbsp;the&nbsp;original&nbsp;format.<br>
+&nbsp;<br>
+At&nbsp;least&nbsp;a&nbsp;spectral&nbsp;range&nbsp;(xLimits)&nbsp;OR&nbsp;a&nbsp;molecule&nbsp;(name)&nbsp;has&nbsp;to&nbsp;be&nbsp;specified.<br>
+Currently&nbsp;Hitran,&nbsp;Geisa,&nbsp;and&nbsp;SAO&nbsp;formats&nbsp;are&nbsp;supported.<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;main&nbsp;function&nbsp;called&nbsp;'higstract'&nbsp;(short&nbsp;for&nbsp;HItranGeiSaexTRACT)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;avoid&nbsp;a&nbsp;name&nbsp;clash&nbsp;with&nbsp;numpy's&nbsp;extract&nbsp;function</tt></dd></dl>
+ <dl><dt><a name="-save_lines_core"><strong>save_lines_core</strong></a>(dictOfLineLists, outFile='', format='vSEan', mainOnly=False, commentChar='#')</dt><dd><tt>Save&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;line&nbsp;arrays&nbsp;(structured&nbsp;numpy&nbsp;arrays&nbsp;with&nbsp;attributes)&nbsp;to&nbsp;files,&nbsp;molecule&nbsp;by&nbsp;molecule.</tt></dd></dl>
+ <dl><dt><a name="-save_lines_orig"><strong>save_lines_orig</strong></a>(lineList, lineFile, outFile=None, format='', mainOnly=False, commentChar='#')</dt><dd><tt>Save&nbsp;Hitran|Geisa&nbsp;lines&nbsp;extracted&nbsp;in&nbsp;original&nbsp;format.</tt></dd></dl>
+ <dl><dt><a name="-split_molecules"><strong>split_molecules</strong></a>(lineList, dataFile)</dt><dd><tt>Given&nbsp;the&nbsp;list&nbsp;of&nbsp;database&nbsp;records&nbsp;extracted&nbsp;from&nbsp;Hitran/Geisa,&nbsp;distribute&nbsp;the&nbsp;entries&nbsp;in&nbsp;separate&nbsp;lists&nbsp;for&nbsp;each&nbsp;molecule.</tt></dd></dl>
+ <dl><dt><a name="-write_lines_xy"><strong>write_lines_xy</strong></a>(data, outFile, job=None, commentChar='#')</dt><dd><tt>Print&nbsp;'core'&nbsp;line&nbsp;parameters,&nbsp;i.e.,&nbsp;positions&nbsp;vs&nbsp;strengths,&nbsp;and&nbsp;optionally&nbsp;energies,&nbsp;airWidths,&nbsp;tempExponents.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>mainMolecules</strong> = ['H2O', 'CO2', 'O3', 'N2O', 'CH4', 'CO', 'O2']<br>
+<strong>molecules</strong> = {'BrO': {'NumDeg': [1], 'TempExpGL': 0.5, 'TempExpQR': 1.0, 'VibFreq': [500.0], 'isotopes': ['69', '61'], 'mass': 95.0}, 'C2H2': {'NumDeg': [1, 1, 1, 2, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.0, 'VibFreq': [3374.0, 1974.0, 3289.0, 629.0, 730.0], 'geisa': 24, 'hitran': 26, 'isotopes': ['1221', '1231', '1222'], 'mass': 26.03, 'sao': 26}, 'C2H4': {'NumDeg': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'TempExpGL': 0.5, 'TempExpQR': 1.5, 'VibFreq': [3026, 1625, 1342, 1023, 3103, 1236, 949, 943, 3106, 826, 2989, 1444], 'geisa': 25, 'hitran': 38, 'isotopes': ['221', '311'], 'mass': 28.0}, 'C2H6': {'NumDeg': [1, 1, 1, 1, 1, 1, 2, 1, 2], 'TempExpGL': 0.75, 'TempExpQR': 1.9, 'VibFreq': [2899.0, 1375.0, 993.0, 275.0, 2954.0, 1379.0, 2994.0, 1486.0, 822.0], 'geisa': 22, 'hitran': 27, 'isotopes': ['1221', '1231'], 'mass': 30.07, 'sao': 27}, 'C2HD': {'geisa': 48, 'isotopes': ['122'], 'mass': 17.0}, 'C2N2': {'VibFreq': [2330, 846, 2158, 503, 234], 'geisa': 29, 'hitran': 48, 'isotopes': ['4224'], 'mass': 52.0}, 'C3H4': {'geisa': 40, 'mass': 40.0}, 'C3H8': {'VibFreq': [2977, 2962, 2887, 1476, 1462, 1392, 1158, 869, 369, 2967, 1451, 1278, 940, 216, 2968, 2887, 1464, 1378, 1338, 1054, ...], 'geisa': 28, 'isotopes': ['221'], 'mass': 44.0}, 'C4H2': {'VibFreq': [3293, 2184, 874, 3329, 2020, 627, 482, 630, 231], 'geisa': 30, 'hitran': 43, 'isotopes': ['221'], 'mass': 50.0}, 'C6H6': {'VibFreq': [3062, 992, 1326, 673, 3068, 1010, 995, 703, 1310, 1150, 849, 3063, 1486, 1038, 3047, 1596, 1178, 606, 975, 410], 'geisa': 47, 'isotopes': ['266'], 'mass': 78.0}, ...}<br>
+<strong>more_help</strong> = '<font color="#c040c0">\n\n</font>  OUTPUT FORMAT:<font color="#c040c0">\n</font>    *  "simple lists" --- for..., CO2, O3, N2O, CH4, CO, O2,  but no trace gases<font color="#c040c0">\n</font>'</td></tr></table>
+</body></html>

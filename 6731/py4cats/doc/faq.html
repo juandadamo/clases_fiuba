@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<TITLE>Py4CATS --- FAQ</TITLE>
+<LINK REV="made" HREF="mailto:franz.schreier[at]dlr.de">
+</HEAD>
+ 
+<BODY BGCOLOR="white" TEXT="black" LINK="red" VLINK="blue" ALINK="lime">
+<H1>Py4CATS --- FAQ</H1>
+<H2>Forecasted Asked Questions</H2>
+
+<small>(Answers specific to the <font color='blue'>(I)Python shell / Jupyter notebook </font> or to the <font color='green'>Unix/Linux command line shell (terminal/console)</font> are given in blue and green, respectively.)</small><P>
+
+<HR>
+<H3><A NAME="2scripts">Reading a pickle file of radiances with <kbd>riRead</kbd> fails, (I)Python response <kbd>ModuleNotFoundError: No module named 'py4CAtS'</kbd>?</A></H3>
+<em>Quick solution/recipe:</em>
+In the pickle-radiance file(s) exchange all occurances of <big><kbd>py4CAtS</kbd></big> by <big><kbd>py4cats</kbd></big> (i.e. change upper case to lower case).
+(Although the pickle file is not a simple ascii text file, you can do this with an editor (at least with vi: <kbd>:%s/py4CAtS/py4cats/g</kbd>)).
+If you have several pickle-radiance files, you can automate this upper to lower case change using a sed script inside a loop.
+<P>
+
+<em>Background explanation:</em>
+Probably the radiance data pickled in this file have been generated (and stored) with an "old, flat" version of Py4CAtS, where all sources (Python modules) were collected in a single directory called <kbd>src</kbd> within a directory <kbd>py4CAtS</kbd> (i.e. with a mix of lower and upper case letters).
+To avoid any confusion about lower/upper case letters, the top level directory of the "new" <b>package</b> has been renamed to <big><kbd>py4cats</kbd></big> (all letters lower case, so you can import all functions with <kbd>from py4cats import *</kbd>).
+<BR>
+
+<em>More background:</em>
+The problem is due to the fact that in the pickle file some of the attributes of the radiance array (<kbd>riArray</kbd>) are saved using py4cats' internal data structures,
+i.e. the <kbd>x</kbd> attribute defining the wavenumber interval of the radiance spectrum is saved as an instance of the <kbd>Interval</kbd> class defined in the <kbd>py4cats.aux.pairTypes</kbd> module.
+<P>
+
+<H3><A NAME="2scripts">Why not unify the two script <tt>higstract</tt> and <tt>lbl2od</tt>?</A></H3>
+Typically extracting lines form Hitran or Geisa in a certain spectral range will provide linelists of a dozen molecules or so.
+Some of these molecules are probably very ``exotic'', i.e. they might have very small concentrations
+and hence will "normally" not contribute significantly to the total optical depth.
+However, especially heavy molecules such as ClONO2 will have thousands or even ten thousands of lines and would slow down the line-by-line calculation considerably.
+<P>
+
+Therefore its up to the user to decide what molecules should be taken into account for cross section, absorption coefficient, and optical depth:
+First extract (<tt>higstract</tt>) the line parameters from Hitran or Geisa and check the (list of) line parameter (files)
+(you can do this graphically with <font color='green'><tt>plot_atlas *.vSEan</tt></font> in the Unix shell or the <font color='blue'><tt>atlas</tt></font> function in the (I)Python shell);
+then continue to optical depths with only the 'important' molecules.
+<P>
+
+If you already know YOUR molecules, then you can simply invoke <tt>higstract</tt> individually for each molecule 
+(specified with the <font color='green'><kbd>molecule='XYZ'</kbd> (I)Python shell)</font> or <font color='green'><kbd>-m XYZ</kbd> (Unix shell)</font> option).
+
+<HR>
+<H3><A NAME="wingCut">Line wing cuts?</A></H3>
+Currently the lbl functions of Py4CAtS do not cut the lines at a certain distance from the line center,
+i.e. the line profile (default Voigt) of all lines contributing to a certain wavenumber interval (see next item) is computed in this entire interval.
+(This is not an issue for small intervals, but clearly a problem for large intervals.
+Note, however, that there is no universally accepted definition / convention for the "correct" wing distance.
+For example, the (MT-)CKD continuum corrections for water H<sub>2</sub>O (not yet supported by Py4CAtS) are constructed assuming a cut at &Delta;&nu; = &plusmn;25 cm<sup>-1</sup>.)
+
+<HR>
+<H3><A NAME="WingContributions">Selection of spectral range, contributions from line outside the interval</A></H3>
+In order to compute cross sections, absorption coefficients, and optical depths for some spectral range
+<em>&nu;</em><sub>lo</sub> ... <em>&nu;</em><sub>hi</sub>,
+all lines in an extended spectral range
+<em>&nu;</em><sub>lo</sub> - <em>&Delta;</em> ... <em>&nu;</em><sub>hi</sub> + <em>&Delta;</em>
+should be considered, where <em>&Delta;</em> is typically some wavenumbers cm<sup>-1</sup>
+(the actual size of <em>&Delta;</em> depends on the number, density, and strengths of lines outside 'your' interval and on further factors such as pressure).
+As the <tt>higstract</tt> and <tt>lbl2od</tt> (or <tt>lbl2xs</tt>) functions and corresponding scripts are completely independent, this extension is not done automatically. <BR>
+(Note that the line wing cut &Delta;&nu; discussed in the previous item and the interval extension &Delta; discussed here are not strictly related, although it is reasonable to use the same value.) <P>
+Example: first collect line data in the 9.6&mu;m spectral range in a dictionary of line lists: then compute cross sections: <BR>
+<font color='blue'>(I)Python shell: <tt>lineListDict = higstract('/data/hitran/2016/lines', Interval(950,1050)+10)</tt> and then <tt>lbl2xs(lineListDict, ...)</tt></font> <BR>
+<font color='green'>Unix shell example: <tt>higstract -x 950,1050 -w10 ....</tt> and <tt>lbl2xs - x 950,1050 *.vSEan</tt></font> <BR>
+
+<HR>
+<H3><A NAME="wwOptions">What is the difference between the <tt>-w</tt> and <tt>-W</tt> options?</A></H3>
+In some way the <tt>-w</tt> (see also previous item) is kind of 'physics option',
+whereas the <tt>-W</tt> is more related to the numerics and approximation, and it is only relevant for the 'multigrid' cross section algorithms:
+Near the line center the cross section for an individual line is evaluated on a fine wavenumber grid
+with a spacing essentially determined by the line width (<i>&gamma; = hwhm</i> = half width @ half maximum):
+<I>&delta;&nu; = &gamma; / n</i>
+where <i>n</i> is the sampling rate defined by the sampling option <font color='green'><tt>-s</tt></font> (default 5.0).
+Outside this line center region the (Voigt) line profile is evaluated only on a coarse grid with spacing
+increased by a factor two, four, or eight (according to the <font color='blue'><tt>gridRatio</tt></font> or <font color='green'><tt>-g</tt></font> option).
+The extension of the center region is defined by the <font color='blue'><kbd>nWidths</kbd></font> or <font color='green'><tt>-W</tt></font> option,
+typically <i>&plusmn; 25&gamma;</i>.
+
+<HR>
+<H3><A NAME="timeExtract"></A>How long does it typically take to extract the line parameters from HITRAN/GEISA?</H3>
+Due to a kind of bisection approach <tt>higstract</tt> should find the first line to be accepted fairly quickly within a second (even in the ultraviolet, i.e. at the "far end" of the database).
+<tt>higstract</tt> will report on the first and last line found/accepted.
+On a modern computer reading the lines should not take more than a few seconds, and you should get a note on the completed extraction quite soon.
+Depending on the number of lines actually extracted, saving/writing to file/disk may take some time. <BR>
+<em>Note:</em> If the data (input and/or output) are located on a different machine, i.e., have to be transferred over the network, things can become considerably slower!
+
+<HR>
+<H3><A NAME="mixedLineData"></A>Can I mix line parameter data from HITRAN and GEISA?</H3>
+<tt>higstract</tt> collects lines for each molecule separately in individual numpy arrays
+Therefore you can easily mix data from different databases, e.g., spectroscopic data for some moleules from HITRAN, some other molecules from GEISA.
+Apparently you can also use different versions of these data bases.
+(<em>NOTE:</em> Do not collect data of the same molecule twice!)<BR>
+(<font color='blue'>When the function <tt>higstract</tt> is called without the <kbd>molecule</kbd> option or with the <kbd>molecule='main'</kbd> option, a dictionary with line lists is returned with keys corresponding to the molecules' names.
+Then, two (or more) dictionaries resulting from, e.g., HITRAN and GEISA data can be "combined" with standard Python dictionary methods.</font>)<BR>
+(<font color='green'>The Unix script <tt>higstract.py</tt> saves these arrays in individual files with extensions like <tt>.vSEan</tt> and the file base name given by the molecule name.
+The <kbd>lbl2xs.py</kbd> and related scripts do not care about the 'origin' of these  <tt>.vSEan</tt> files.</font>)
+
+<HR>
+<H3><A NAME="continuum"></A>What about continuum, e.g., (MT-)CKD for water?</H3>
+Continuum corrections to the lbl cross sections and absorptions coefficients are currently not implemented.
+(Collision induced absorption (CIA) is currently under development.)
+
+<HR>
+<H3> <A NAME="negXS">Some of the cross section values are negative?</H3>
+Some negative cross section values can show up due to problems of higher order Lagrange interpolation.
+Typically this happens for small <it>y</it> at the transition of the Gaussian line center to the Lorentzian line wings.
+In these cases use (default) linear interpolation: <BR>
+<font color='blue'>(I)Python shell: <tt>lbl2xs(lineData, ..., lagrange=2)</tt></font> or <BR>
+<font color='green'>Unix shell: <tt>lbl2od -i2 ....</tt> or <tt>lbl2xs -i2 ....</tt></font>.
+
+<HR>
+<H3><A NAME="sampling"></A>The optical depth file is huge &#150; Do we really need this fine resolution?</H3>
+Depending on the size of the spectral interval, the spectral region, and the altitude (pressure) of the highest atmospheric levels (top-of-atmosphere),
+the resulting optical depth file can become really huge, i.e., a wavenumber grid of a million points is not unusual.
+So is it possible to use less data points, i.e., a coarser wavenumber grid?
+<P>
+
+First, the wavenumber grid is equidistant with a spacing (<em>x</em><sub>i</sub> - <em>x</em><sub>i-1</sub>) automatically adjusted to the (mean) half width (hwhm &gamma;) of all contributing lines.
+As pressure is decreasing with altitude (approximately <em>p</em> &#126; exp(<em>-z</em>)) and pressure broadening half width is proportional to pressure,
+lines are becoming narrower and narrower (until Doppler broadening starts to dominate), and thus the number of grid points is increasing with altitude.
+The grid point spacing (and hence the number of grid points) can be influenced by means of the sampling option used by <tt>lbl2xs, lbl2ac, lbl2od</tt>:
+the default value of 5.0 results in a spacing <em>d&nu;=&gamma;/5</em> (approximately). <BR>
+<font color='blue'>(I)Python shell: <tt>lbl2xs(lineData, ..., sampling=5)</tt></font> or <BR>
+<font color='green'>Unix shell: <tt>lbl2xs -s5 ....</tt></font> <BR>
+(and analogously for <tt>lbl2ac</tt> and <tt>lbl2od</tt>).
+<P>
+
+So it is tempting to reduce the sampling rate. However, then it may happen that the peak(s) of some important strong line(s) are just between some grid points and hence "lost".
+If you really want to reduce the number of grid points, it is better to use a sampling with some grid points per hwhm and average the final optical depth spectra afterwards.
+(Note that from a physics point of view it is the radiance and transmission to be convolved with an instrument response function.)
+<HR>
+
+<P align=right>&copy; <A HREF ="mailto:franz.schreier[at]dlr.de">fgs</A> &nbsp; (+49-8153-28-1234) <BR>
+<!Last update>  Tue 12 Jan 2021;  10:25 <!fgs> <BR>
+
+
+</BODY>
+</HTML>

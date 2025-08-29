@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module srf</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>srf</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/srf.py">../src3/srf.py</a></font></td></tr></table>
+    <p><tt>srf&nbsp;&nbsp;---&nbsp;&nbsp;spectral&nbsp;response&nbsp;functions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.k.a.<br>
+ils&nbsp;&nbsp;---&nbsp;&nbsp;instrument&nbsp;line&nbsp;shape<br>
+&nbsp;<br>
+Evaluate&nbsp;normalized&nbsp;srf/ils&nbsp;on&nbsp;a&nbsp;wavenumber&nbsp;grid<br>
+integral&nbsp;<a href="#-srf">srf</a>(v)&nbsp;dv&nbsp;=&nbsp;1<br>
+&nbsp;<br>
+usage:<br>
+srf&nbsp;&nbsp;[options]&nbsp;&nbsp;srfValue<br>
+&nbsp;<br>
+*&nbsp;Gaussian&nbsp;etc&nbsp;response&nbsp;function:<br>
+&nbsp;&nbsp;srfValue&nbsp;=&nbsp;width&nbsp;=&nbsp;HWHM&nbsp;=&nbsp;half&nbsp;width&nbsp;@&nbsp;half&nbsp;maximum<br>
+*&nbsp;FTS&nbsp;(Fourier&nbsp;transform&nbsp;spectrometer):<br>
+&nbsp;&nbsp;srfValue&nbsp;is&nbsp;interpreted&nbsp;as&nbsp;MOPD<br>
+&nbsp;&nbsp;L&nbsp;=&nbsp;MOPD&nbsp;=&nbsp;maximum&nbsp;optical&nbsp;path&nbsp;difference<br>
+&nbsp;&nbsp;the&nbsp;first&nbsp;zero&nbsp;is&nbsp;at&nbsp;1/2L<br>
+&nbsp;&nbsp;===&gt;&nbsp;hwhm&nbsp;=&nbsp;1/4L&nbsp;approximately<br>
+&nbsp;<br>
+-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;vGrid&nbsp;and&nbsp;srfValues<br>
+-t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;of&nbsp;spectral&nbsp;response&nbsp;function:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss&nbsp;(default),&nbsp;Lorentz,&nbsp;Hyperbolic,&nbsp;Triangle,&nbsp;FTS<br>
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apodization&nbsp;(for&nbsp;FTS&nbsp;only)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;no&nbsp;apodization,&nbsp;i.e.&nbsp;sinc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cosine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gaussian<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quartic&nbsp;(Connes)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t|b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;triangular&nbsp;/&nbsp;Bartlett<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w|m|s&nbsp;&nbsp;&nbsp;weak|medium|strong&nbsp;Norton-Beer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hamming<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hanning<br>
+-s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sampling&nbsp;rate:&nbsp;&nbsp;grid&nbsp;point&nbsp;spacing&nbsp;=&nbsp;delta&nbsp;=&nbsp;width/sample<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;5<br>
+-x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber&nbsp;grid&nbsp;extension&nbsp;in&nbsp;units&nbsp;of&nbsp;half&nbsp;widths<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;10.0</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Gauss"><strong>Gauss</strong></a>(vGrid, gamma=1.0)</dt><dd><tt>Gauss&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one&nbsp;(gamma&nbsp;is&nbsp;HWHM).</tt></dd></dl>
+ <dl><dt><a name="-HyperGauss"><strong>HyperGauss</strong></a>(vGrid, gamma=1.0)</dt><dd><tt>'hyper-Gauss'&nbsp;profile&nbsp;with&nbsp;power&nbsp;of&nbsp;six&nbsp;in&nbsp;the&nbsp;exponent&nbsp;normalized&nbsp;to&nbsp;one&nbsp;(gamma&nbsp;is&nbsp;HWHM).</tt></dd></dl>
+ <dl><dt><a name="-Hyperbolic"><strong>Hyperbolic</strong></a>(vGrid, gamma=1.0)</dt><dd><tt>Hyperbolic&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one&nbsp;(gamma&nbsp;is&nbsp;HWHM).</tt></dd></dl>
+ <dl><dt><a name="-Lorentz"><strong>Lorentz</strong></a>(vGrid, gamma=1.0)</dt><dd><tt>Lorentz&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one&nbsp;(gamma&nbsp;is&nbsp;HWHM).</tt></dd></dl>
+ <dl><dt><a name="-Sinc"><strong>Sinc</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-SuperGauss"><strong>SuperGauss</strong></a>(vGrid, gamma=1.0)</dt><dd><tt>'super-Gauss'&nbsp;profile&nbsp;with&nbsp;power&nbsp;of&nbsp;four&nbsp;in&nbsp;the&nbsp;exponent&nbsp;normalized&nbsp;to&nbsp;one&nbsp;(gamma&nbsp;is&nbsp;HWHM).</tt></dd></dl>
+ <dl><dt><a name="-Triangle"><strong>Triangle</strong></a>(xGrid, hwhm=1.0)</dt><dd><tt>Triangular&nbsp;profile&nbsp;normalized&nbsp;to&nbsp;one&nbsp;(the&nbsp;triangle&nbsp;goes&nbsp;from&nbsp;-2*hwhm&nbsp;to&nbsp;+2*hwhm).</tt></dd></dl>
+ <dl><dt><a name="-fts"><strong>fts</strong></a>(vGrid, mopd=1.0, apodize='', vShift=0.0, sigma=1.0)</dt><dd><tt>Instrument&nbsp;Line&nbsp;Shape&nbsp;(spectral&nbsp;response&nbsp;function)&nbsp;for&nbsp;Fourier&nbsp;transform&nbsp;spectrometer.<br>
+Default:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ils&nbsp;=&nbsp;2&nbsp;mopd&nbsp;sinc(2&nbsp;pi&nbsp;mopd&nbsp;v)&nbsp;=&nbsp;sin(2&nbsp;pi&nbsp;mopd&nbsp;v)/(pi&nbsp;v)&nbsp;unapodized;<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+vGrid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber&nbsp;grid<br>
+mopd:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;=&nbsp;mopd&nbsp;=&nbsp;maximum&nbsp;optical&nbsp;path&nbsp;difference&nbsp;[cm]<br>
+apodize:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;of&nbsp;apodization&nbsp;function,&nbsp;default&nbsp;None,&nbsp;i.e.&nbsp;ILS&nbsp;=&nbsp;2*L*sinc(2&nbsp;pi&nbsp;L&nbsp;vGrid)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;triangle,&nbsp;cosine,&nbsp;weak|medium|strong&nbsp;Norton-Beer,&nbsp;Hamming,&nbsp;Hanning,&nbsp;quartic,&nbsp;Gaussian,&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In&nbsp;most&nbsp;cases&nbsp;case-insensitive,&nbsp;the&nbsp;first&nbsp;letter&nbsp;is&nbsp;sufficient&nbsp;(e.g.&nbsp;'t'&nbsp;for&nbsp;triangular)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;for:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"H"&nbsp;&nbsp;&nbsp;&nbsp;Hamming<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"h"&nbsp;&nbsp;&nbsp;&nbsp;hanning<br>
+vShift:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber&nbsp;shift&nbsp;(default&nbsp;0.0)<br>
+sigma:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width&nbsp;for&nbsp;Gaussian&nbsp;apodization<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+ils:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;ndarray&nbsp;of&nbsp;response&nbsp;function&nbsp;values&nbsp;with&nbsp;size=len(vGrid)<br>
+&nbsp;<br>
+REFERENCES:<br>
+-----------<br>
+Weisstein,&nbsp;Eric&nbsp;W.&nbsp;"Apodization&nbsp;Function."&nbsp;From&nbsp;MathWorld&nbsp;--&nbsp;A&nbsp;Wolfram&nbsp;Web&nbsp;Resource.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://mathworld.wolfram.com/ApodizationFunction.html">http://mathworld.wolfram.com/ApodizationFunction.html</a><br>
+R.H.&nbsp;Norton&nbsp;and&nbsp;C.P.&nbsp;Rinsland.&nbsp;New&nbsp;apodozing&nbsp;functions&nbsp;in&nbsp;Fourier&nbsp;spectrometry.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;J.&nbsp;Opt.&nbsp;Soc.&nbsp;Am.,&nbsp;66:259-264,&nbsp;1976.&nbsp;doi:&nbsp;10.1364/JOSA.66.000259.<br>
+R.H.&nbsp;Norton&nbsp;and&nbsp;R.&nbsp;Beer.&nbsp;Errata:&nbsp;New&nbsp;apodozing&nbsp;functions&nbsp;in&nbsp;Fourier&nbsp;spectrometry.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;J.&nbsp;Opt.&nbsp;Soc.&nbsp;Am.,&nbsp;67:419,&nbsp;1977.&nbsp;doi:&nbsp;10.1364/JOSA.67.000419.</tt></dd></dl>
+ <dl><dt><a name="-gauss4quad"><strong>gauss4quad</strong></a>(x)</dt><dd><tt>#&nbsp;...&nbsp;and&nbsp;the&nbsp;gaussian&nbsp;required&nbsp;for&nbsp;the&nbsp;integral&nbsp;defining&nbsp;the&nbsp;Gaussian&nbsp;apodization&nbsp;function,&nbsp;to&nbsp;be&nbsp;solved&nbsp;by&nbsp;quadpack</tt></dd></dl>
+ <dl><dt><a name="-hamming"><strong>hamming</strong></a>(t)</dt><dd><tt>Hamming&nbsp;instrument&nbsp;function&nbsp;for&nbsp;apodization&nbsp;(without&nbsp;the&nbsp;MOPD&nbsp;prefactor!).</tt></dd></dl>
+ <dl><dt><a name="-hanning1"><strong>hanning1</strong></a>(t)</dt><dd><tt>Hanning&nbsp;instrument&nbsp;function&nbsp;for&nbsp;apodization&nbsp;(without&nbsp;the&nbsp;MOPD&nbsp;prefactor!).</tt></dd></dl>
+ <dl><dt><a name="-hanning2"><strong>hanning2</strong></a>(t)</dt><dd><tt>Hanning&nbsp;instrument&nbsp;function&nbsp;for&nbsp;apodization&nbsp;(without&nbsp;the&nbsp;MOPD&nbsp;prefactor!).</tt></dd></dl>
+ <dl><dt><a name="-srf"><strong>srf</strong></a>(vGrid, srFunction='Gauss', value=1.0)</dt><dd><tt>Evaluate&nbsp;spectral&nbsp;response&nbsp;function&nbsp;on&nbsp;given&nbsp;wavenumber&nbsp;grid&nbsp;and&nbsp;return&nbsp;array&nbsp;of&nbsp;data&nbsp;values.<br>
+&nbsp;<br>
+vGrid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wavenumber&nbsp;grid<br>
+srFunction:&nbsp;&nbsp;name&nbsp;of&nbsp;the&nbsp;spectral&nbsp;reponse&nbsp;function&nbsp;(default&nbsp;Gauss)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G&nbsp;=&nbsp;Gauss&nbsp;|&nbsp;L&nbsp;=&nbsp;Lorentz&nbsp;|&nbsp;H&nbsp;=&nbsp;Hyperbolic&nbsp;|&nbsp;T&nbsp;=&nbsp;Triangle&nbsp;|&nbsp;S&nbsp;=&nbsp;SuperGauss&nbsp;|&nbsp;HG&nbsp;=&nbsp;HyperGauss<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FTS&nbsp;=&nbsp;Fourier&nbsp;transform&nbsp;spectrometer&nbsp;&nbsp;(apodization&nbsp;selected&nbsp;by&nbsp;second&nbsp;'word'&nbsp;in&nbsp;this&nbsp;string)<br>
+value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hwhm&nbsp;OR&nbsp;mopd&nbsp;characterizing&nbsp;the&nbsp;spectral&nbsp;response&nbsp;function:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hwhm&nbsp;(half&nbsp;width&nbsp;@&nbsp;half&nbsp;maximum)&nbsp;[1/cm]&nbsp;of&nbsp;(super/hyper)&nbsp;Gauss&nbsp;/&nbsp;Lorentz&nbsp;/&nbsp;Hyperbolic&nbsp;/&nbsp;Triangle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mopd&nbsp;(maximum&nbsp;optical&nbsp;path&nbsp;difference)&nbsp;[cm]&nbsp;of&nbsp;FTS<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FTS&nbsp;default&nbsp;without&nbsp;apodization,&nbsp;i.e.&nbsp;sinc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add&nbsp;a&nbsp;letter&nbsp;indicating&nbsp;type&nbsp;of&nbsp;apodization&nbsp;function,&nbsp;e.g.&nbsp;"FTS&nbsp;T"&nbsp;for&nbsp;triangular&nbsp;apodization<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(see&nbsp;function&nbsp;fts&nbsp;documentation)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<strong>cm0</strong> = 0.152442<br>
+<strong>cm1</strong> = -0.136176<br>
+<strong>cm2</strong> = 0.983734<br>
+<strong>cos</strong> = &lt;ufunc 'cos'&gt;<br>
+<strong>cs0</strong> = 0.045335<br>
+<strong>cs2</strong> = 0.554883<br>
+<strong>cs4</strong> = 0.399782<br>
+<strong>cw0</strong> = 0.384093<br>
+<strong>cw1</strong> = -0.087577<br>
+<strong>cw2</strong> = 0.703484<br>
+<strong>ln2</strong> = 0.6931471805599453<br>
+<strong>pi</strong> = 3.141592653589793<br>
+<strong>recGammaQuarter</strong> = 0.2758156628302093<br>
+<strong>recGammaSixth</strong> = 0.17965203550789732<br>
+<strong>recPi</strong> = 0.3183098861837907<br>
+<strong>sqrt2</strong> = 1.4142135623730951<br>
+<strong>sqrtLn2</strong> = 0.8325546111576977<br>
+<strong>sqrtPi</strong> = 1.7724538509055159<br>
+<strong>sqrtSqrtLn2</strong> = 0.9124443057840285</td></tr></table>
+</body></html>

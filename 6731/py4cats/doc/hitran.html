@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module hitran</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>hitran</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/hitran.py">/users/schrei_f/src/py4CAtS/lite/src/hitran.py</a></font></td></tr></table>
+    <p><tt>hitran<br>
+&nbsp;<br>
+usage:<br>
+hitran&nbsp;[options]&nbsp;line_parameter_database<br>
+&nbsp;<br>
+command&nbsp;line&nbsp;options:<br>
+&nbsp;&nbsp;-h&nbsp;&nbsp;help<br>
+&nbsp;&nbsp;-i&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isotope&nbsp;number&nbsp;&nbsp;(default:&nbsp;all)<br>
+&nbsp;&nbsp;-m&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;molecule&nbsp;number&nbsp;(default:&nbsp;all)<br>
+&nbsp;&nbsp;-o&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;(default:&nbsp;standard&nbsp;output)<br>
+&nbsp;&nbsp;-S&nbsp;&nbsp;float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minimum&nbsp;line&nbsp;strength&nbsp;to&nbsp;accept&nbsp;(default:&nbsp;S=0.0)<br>
+&nbsp;&nbsp;-x&nbsp;&nbsp;interval&nbsp;&nbsp;lower&nbsp;and&nbsp;upper&nbsp;end&nbsp;of&nbsp;wavenumber&nbsp;range&nbsp;(comma&nbsp;separated&nbsp;pair&nbsp;without&nbsp;blanks)<br>
+&nbsp;<br>
+Notes:&nbsp;&nbsp;&nbsp;at&nbsp;least&nbsp;wavenumber&nbsp;range&nbsp;or&nbsp;molecule&nbsp;has&nbsp;to&nbsp;be&nbsp;selected!<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;is&nbsp;the&nbsp;'low-level'&nbsp;version&nbsp;of&nbsp;the&nbsp;extract&nbsp;module</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-bisect_first_line"><strong>bisect_first_line</strong></a>(db, xBegin, xEnd, iw=3, lw=15)</dt><dd><tt>Search&nbsp;and&nbsp;return&nbsp;first&nbsp;line&nbsp;of&nbsp;Hitran&nbsp;or&nbsp;Geisa&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-clock"><strong>clock</strong></a>(...)</dt><dd><tt><a href="#-clock">clock</a>()&nbsp;-&gt;&nbsp;floating&nbsp;point&nbsp;number<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;CPU&nbsp;time&nbsp;or&nbsp;real&nbsp;time&nbsp;since&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;process&nbsp;or&nbsp;since<br>
+the&nbsp;first&nbsp;call&nbsp;to&nbsp;<a href="#-clock">clock</a>().&nbsp;&nbsp;This&nbsp;has&nbsp;as&nbsp;much&nbsp;precision&nbsp;as&nbsp;the&nbsp;system<br>
+records.</tt></dd></dl>
+ <dl><dt><a name="-extract_All"><strong>extract_All</strong></a>(hitran, xBegin, xHigh)</dt><dd><tt>Read&nbsp;all&nbsp;lines&nbsp;up&nbsp;to&nbsp;an&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Hitran&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_Mol"><strong>extract_Mol</strong></a>(hitran, xBegin, xHigh, getMol)</dt><dd><tt>Read&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule&nbsp;up&nbsp;to&nbsp;an&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Hitran&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_MolIso"><strong>extract_MolIso</strong></a>(hitran, xBegin, xHigh, getMol, getIso)</dt><dd><tt>Read&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule/isotope&nbsp;up&nbsp;to&nbsp;an&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Hitran&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_MolIsoStr"><strong>extract_MolIsoStr</strong></a>(hitran, xBegin, xHigh, getMol, getIso, strMin)</dt><dd><tt>Read&nbsp;strong&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule/isotope&nbsp;up&nbsp;to&nbsp;an&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Hitran&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_MolStr"><strong>extract_MolStr</strong></a>(hitran, xBegin, xHigh, getMol, strMin)</dt><dd><tt>Read&nbsp;strong&nbsp;lines&nbsp;of&nbsp;a&nbsp;given&nbsp;molecule&nbsp;up&nbsp;to&nbsp;an&nbsp;upper&nbsp;wavenumber&nbsp;limit&nbsp;from&nbsp;Hitran&nbsp;formatted&nbsp;database.</tt></dd></dl>
+ <dl><dt><a name="-extract_hitran"><strong>extract_hitran</strong></a>(hFile, xLimits=None, molNr=0, isoNr=0, strMin=0.0)</dt><dd><tt>Read&nbsp;Hitran&nbsp;formatted&nbsp;database,&nbsp;return&nbsp;list&nbsp;of&nbsp;accepted&nbsp;lines.</tt></dd></dl>
+</td></tr></table>
+</body></html>

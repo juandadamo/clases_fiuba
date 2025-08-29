@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module moreFun</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>moreFun</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/moreFun.py">../src3/moreFun.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;'random'&nbsp;collection&nbsp;of&nbsp;some&nbsp;useful(?)&nbsp;mathematical&nbsp;functions:<br>
+&nbsp;<br>
+sindg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sine&nbsp;&nbsp;&nbsp;for&nbsp;angle&nbsp;x&nbsp;given&nbsp;in&nbsp;degrees<br>
+cosdg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cosine&nbsp;for&nbsp;angle&nbsp;x&nbsp;given&nbsp;in&nbsp;degrees<br>
+asindg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arcsin&nbsp;with&nbsp;angle&nbsp;returned&nbsp;in&nbsp;degrees<br>
+acosdg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arccos&nbsp;with&nbsp;angle&nbsp;returned&nbsp;in&nbsp;degrees<br>
+Sinc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-Sinc">Sinc</a>(x)&nbsp;=&nbsp;sin(x)/x<br>
+j2_over_xx&nbsp;&nbsp;spherical&nbsp;Bessel&nbsp;function&nbsp;of&nbsp;the&nbsp;first&nbsp;kind&nbsp;divided&nbsp;by&nbsp;x**2<br>
+nexprl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relative&nbsp;error&nbsp;exponential&nbsp;for&nbsp;negative&nbsp;exponent:&nbsp;&nbsp;(exp(-x)-1)/x<br>
+erf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error&nbsp;function&nbsp;(using&nbsp;rational&nbsp;approximation)</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Sinc"><strong>Sinc</strong></a>(x)</dt><dd><tt><a href="#-Sinc">Sinc</a>(x)&nbsp;=&nbsp;sin(x)/x<br>
+For&nbsp;small&nbsp;arguments&nbsp;x&lt;1e-5&nbsp;Taylor&nbsp;expansion&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+NOTE:&nbsp;&nbsp;numpy&nbsp;defines&nbsp;the&nbsp;'cardinal&nbsp;sinc'&nbsp;with&nbsp;an&nbsp;extra&nbsp;factor&nbsp;pi:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sinc&nbsp;=&nbsp;sinc(pi*x)/(pi*x)</tt></dd></dl>
+ <dl><dt><a name="-acosdg"><strong>acosdg</strong></a>(x)</dt><dd><tt>Compute&nbsp;arccos&nbsp;and&nbsp;return&nbsp;angle&nbsp;alpha&nbsp;given&nbsp;in&nbsp;degrees.</tt></dd></dl>
+ <dl><dt><a name="-asindg"><strong>asindg</strong></a>(x)</dt><dd><tt>Compute&nbsp;arcsin&nbsp;and&nbsp;return&nbsp;angle&nbsp;alpha&nbsp;given&nbsp;in&nbsp;degrees.</tt></dd></dl>
+ <dl><dt><a name="-cosdg"><strong>cosdg</strong></a>(x)</dt><dd><tt>Compute&nbsp;cosine&nbsp;for&nbsp;angle&nbsp;x&nbsp;given&nbsp;in&nbsp;degrees.</tt></dd></dl>
+ <dl><dt><a name="-erf"><strong>erf</strong></a>(x)</dt><dd><tt>Compute&nbsp;the&nbsp;error&nbsp;function&nbsp;using&nbsp;a&nbsp;rational&nbsp;approximation&nbsp;for&nbsp;the&nbsp;exp&nbsp;scaled&nbsp;complementary&nbsp;error&nbsp;function.<br>
+<a href="#-erf">erf</a>(x)&nbsp;&nbsp;&nbsp;=&nbsp;1&nbsp;-&nbsp;exp(-x^2)*erfcx(x)<br>
+erfcx(x)&nbsp;=&nbsp;exp(x^2)&nbsp;*&nbsp;erfc(x)&nbsp;=&nbsp;exp(x^2)&nbsp;*&nbsp;[1&nbsp;-&nbsp;<a href="#-erf">erf</a>(x)]<br>
+Accuracy&nbsp;1.5e-7<br>
+Literature:&nbsp;&nbsp;Abramowitz&amp;Stegun&nbsp;1964:&nbsp;7.1.26</tt></dd></dl>
+ <dl><dt><a name="-j2_over_xx"><strong>j2_over_xx</strong></a>(x)</dt><dd><tt>Spherical&nbsp;Bessel&nbsp;function&nbsp;of&nbsp;the&nbsp;first&nbsp;kind&nbsp;divided&nbsp;by&nbsp;x**2<br>
+j_2&nbsp;=&nbsp;sqrt(0.5*pi/x)&nbsp;J_{5/2}&nbsp;=&nbsp;spherical&nbsp;Bessel&nbsp;function&nbsp;of&nbsp;the&nbsp;first&nbsp;kind,<br>
+<a href="http://dlmf.nist.gov/10.49.E3">http://dlmf.nist.gov/10.49.E3</a></tt></dd></dl>
+ <dl><dt><a name="-nexprl"><strong>nexprl</strong></a>(x)</dt><dd><tt>Relative&nbsp;error&nbsp;exponential&nbsp;&nbsp;(EXP(-x)-1)/x&nbsp;&nbsp;for&nbsp;negative&nbsp;exponent.<br>
+see&nbsp;also:&nbsp;&nbsp;<a href="http://www.netlib.no/netlib/slatec/fnlib/exprel.f">http://www.netlib.no/netlib/slatec/fnlib/exprel.f</a>&nbsp;and&nbsp;dexprl.f</tt></dd></dl>
+ <dl><dt><a name="-sindg"><strong>sindg</strong></a>(x)</dt><dd><tt>Compute&nbsp;sine&nbsp;for&nbsp;angle&nbsp;x&nbsp;given&nbsp;in&nbsp;degrees.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['sindg', 'cosdg', 'asindg', 'acosdg', 'Sinc', 'j2_over_xx', 'nexprl', 'erf']</td></tr></table>
+</body></html>

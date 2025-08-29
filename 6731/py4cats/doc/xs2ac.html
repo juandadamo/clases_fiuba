@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module xs2ac</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>xs2ac</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../src3/xs2ac.py">../src3/xs2ac.py</a></font></td></tr></table>
+    <p><tt>xs2ac<br>
+&nbsp;<br>
+&nbsp;Read&nbsp;atmospheric&nbsp;and&nbsp;molecular&nbsp;absorption&nbsp;cross&nbsp;section&nbsp;files,&nbsp;scale&nbsp;by&nbsp;density,&nbsp;and&nbsp;sum&nbsp;to&nbsp;absorption&nbsp;coefficients<br>
+&nbsp;<br>
+&nbsp;usage:<br>
+&nbsp;xs2ac&nbsp;&nbsp;[options]&nbsp;&nbsp;atm_file&nbsp;&nbsp;line_parameter_file(s)<br>
+&nbsp;<br>
+&nbsp;-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;help<br>
+&nbsp;-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;character(s)&nbsp;used&nbsp;in&nbsp;input,output&nbsp;file&nbsp;(default&nbsp;'#')<br>
+&nbsp;-o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file&nbsp;for&nbsp;saving&nbsp;of&nbsp;optical&nbsp;depth&nbsp;(if&nbsp;not&nbsp;given:&nbsp;write&nbsp;to&nbsp;StdOut)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;the&nbsp;output&nbsp;file's&nbsp;extension&nbsp;ends&nbsp;with&nbsp;".nc",&nbsp;".ncdf"&nbsp;or&nbsp;".netcdf",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;netcdf&nbsp;file&nbsp;is&nbsp;generated,&nbsp;otherwise&nbsp;the&nbsp;file&nbsp;is&nbsp;ascii&nbsp;tabular&nbsp;or&nbsp;pickled)<br>
+&nbsp;<br>
+--scale&nbsp;floats&nbsp;&nbsp;&nbsp;&nbsp;scaling&nbsp;factors&nbsp;for&nbsp;molecular&nbsp;concentrations<br>
+&nbsp;-m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode:&nbsp;'c'&nbsp;---&gt;&nbsp;cumulative&nbsp;optical&nbsp;depth<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'d'&nbsp;---&gt;&nbsp;difference&nbsp;(delta)&nbsp;optical&nbsp;depth&nbsp;(default)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'r'&nbsp;---&gt;&nbsp;reverse&nbsp;cumulative&nbsp;optical&nbsp;depth<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'t'&nbsp;---&gt;&nbsp;total&nbsp;optical&nbsp;depth<br>
+&nbsp;-i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interpolation&nbsp;method&nbsp;&nbsp;&nbsp;[default:&nbsp;'2'&nbsp;two-point&nbsp;Lagrange,&nbsp;&nbsp;choices&nbsp;are&nbsp;one&nbsp;of&nbsp;"234lqc"]<br>
+--xFormat&nbsp;string&nbsp;&nbsp;format&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;wavenumbers,&nbsp;&nbsp;&nbsp;default&nbsp;'%12f'&nbsp;&nbsp;&nbsp;(only&nbsp;for&nbsp;ascii&nbsp;tabular)<br>
+--yFormat&nbsp;string&nbsp;&nbsp;format&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;optical&nbsp;depth,&nbsp;default&nbsp;'%11.5f'&nbsp;(only&nbsp;for&nbsp;ascii&nbsp;tabular)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;xFormat&nbsp;or&nbsp;yFormat&nbsp;is&nbsp;an&nbsp;empty&nbsp;string,&nbsp;netcdf&nbsp;or&nbsp;pickled&nbsp;format&nbsp;will&nbsp;be&nbsp;used)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-xs2ac"><strong>xs2ac</strong></a>(atmos, xssDict, interpolate='l', verbose=False)</dt><dd><tt>Compute&nbsp;absorption&nbsp;coefficients&nbsp;as&nbsp;product&nbsp;cross&nbsp;section&nbsp;times&nbsp;molecular&nbsp;density,&nbsp;summed&nbsp;over&nbsp;all&nbsp;molecules.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+atmos:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;structured&nbsp;numpy&nbsp;array&nbsp;with&nbsp;atmospheric&nbsp;data,&nbsp;esp.&nbsp;molecular&nbsp;number&nbsp;densities<br>
+xssDict:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;cross&nbsp;section&nbsp;lists,&nbsp;one&nbsp;list&nbsp;with&nbsp;npT=nLevels&nbsp;xsArrays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(subclassed&nbsp;numpy&nbsp;arrays)&nbsp;for&nbsp;each&nbsp;molecule.<br>
+interpolate:&nbsp;&nbsp;string&nbsp;or&nbsp;integer&nbsp;to&nbsp;select&nbsp;the&nbsp;interpolation&nbsp;method&nbsp;(default:&nbsp;linear&nbsp;using&nbsp;numpy.interp)<br>
+verbose:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boolean&nbsp;flag<br>
+&nbsp;<br>
+RETURNS:<br>
+--------<br>
+absCo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;subclassed&nbsp;numpy&nbsp;array&nbsp;with&nbsp;the&nbsp;absorption&nbsp;coefficients,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;z,&nbsp;p,&nbsp;T,&nbsp;and&nbsp;wavenumber&nbsp;grid&nbsp;information&nbsp;as&nbsp;attributes&nbsp;(similar&nbsp;to&nbsp;xsArray)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+</body></html>

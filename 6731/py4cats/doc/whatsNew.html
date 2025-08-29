@@ -1,0 +1,235 @@
+<HTML>
+<HEAD>
+<TITLE>Py4CAtS</TITLE>
+<LINK REV="made" HREF="mailto:franz.schreier[at]dlr.de">
+</HEAD>
+ 
+<BODY BGCOLOR="white" TEXT="black" LINK="red" VLINK="blue" ALINK="lime">
+<H1>Py4CAtS --- <A HREF="http://www.python.org">Python</A> for Computational ATmospheric Spectroscopy</H1>
+
+<H2>What's new?</H2>
+<DL>
+<DT> July 2015
+<DD> The 'main' scripts (e.g. <tt>lbl2od</tt>) can now be used as functions inside the <A HREF="http://www.ipython.org/">(I)Python</A> interpreter.
+<DT> October 2015
+<DD> Sources thoroughly checked with
+     <A HREF="http://pep8.readthedocs.org/">Pep8</A>,
+     <A HREF="https://pypi.python.org/pypi/pyflakes">PyFlakes</A>,
+     and <A HREF="http://pychecker.sourceforge.net/">PyChecker</A> <BR>
+     Script <tt>od2ri</tt> with function <tt>dod2ri</tt> added to compute radiation intensity
+<DT> March 2016
+<DD> A new function <tt>cgs</tt> in module <tt>cgsUnits.py</tt> for easier conversions of physical quantities<BR>
+     Improved <tt>ac2wf.py</tt> and <tt>od2ri</tt> functions/modules.
+<DT> July 2016
+<DD> Further source code checks with <A HREF="https://www.pylint.org/">Pylint</A>
+<DD> Absorption coefficients and optical depths are now stored in subclassed numpy arrays <tt>acArray</tt> and <tt>odArray</tt> (similar to <tt>xsArray</tt> before)
+<DT> September 2016
+<DD> Atmospheric data: corrected "CH3CL" -> "CH3Cl" 
+<DD> Functions <tt>atlas</tt> (in module <tt>lines.py</tt>), <tt>acPlot</tt> (in module <tt>absCo.py</tt>), and <tt>odPlot</tt> (in module <tt>oDepth.py</tt>) rewritten (to exploit recursive calls)
+<DT> October 2016
+<DD> <tt>xs2ac</tt> corrected to allow single level atmosphere and cross sections
+<DT> November 2016
+<DD> <tt>od2ri</tt> corrected to allow atmospheric data starting at ToA
+<DD> Some further checks of 'important' function arguments implemented 
+<DD> <tt>srf.py</tt>: wavenumber shift implemented in <tt>fts</tt> function
+<DD> Atmospheric data sets:  trace gas profiles saved in separate file
+<DT> December 2016
+<DD> Setup script <tt>py4cats.py</tt> 'generalized' for Windows (pathname construction!)
+<DD> Line mixing added (first order, Voigt and Lorentz, "brute force" only)
+<DD> <tt>read_line_file</tt> in the <tt>lines.py</tt> script now works recursively
+<DD> <tt>atlas</tt> now also allows to plot <em>voigtLines</em>
+<DD> <tt>misc.py</tt>: new function <tt>triSpec</tt> for convolution with triangular
+<DD> <tt>moreFun.py</tt>: new function <tt>erfcx</tt> for exponentially scaled complementary error function
+<DT> May 2017
+<DD> Function <tt>atmPlot</tt> now can plot volume mixing ratios (instead of densities), too. <BR>
+     <tt>radiance2radiance</tt> clean-up
+<DT> November 2017
+<DD> New subclassed numpy array for radiance/intensity (i.e. the radiance array along with its attributes): single return variable of function <tt>dod2ri</tt>.<BR>
+     New function <tt>riPlot</tt> and updated/adjusted function <tt>riSave</tt> to plot and save radiance.<BR>
+     New function <tt>truncate</tt> in module <tt>misc.py</tt>
+<DT> January 2018
+<DD> <tt>atmos1D.py</tt>:<BR>
+     New function <tt>readVMR</tt> to read (trace) gas concentration data (i.e. without pressure and temperature);<BR>
+     Function <tt>merge_atmos1D</tt> can use pure VMR data as second input.<BR>
+     Atmospheric data sets clean-up, reorganized, ...
+<DT> March 2018
+<DD> <tt>py4cats.py</tt>:<BR>
+     Identification / location of path to source files reorganized
+<DD> <tt>wgtFct.py</tt>:<BR>
+     (Unix/Linux/...) shell interface adjusted to <tt>acArray</tt> implementation
+<DD> <tt>lbl2xs.py</tt> (and <tt>extract.py</tt>, <tt>hitran.py</tt>, <tt>geisa.py</tt>):<BR>
+     Pressure-induced line shift implemented
+<DT> June 2018
+<DD> <tt>lines.py</tt> --- function <tt>atlas</tt>:  recoded to ensure common wavenumber axis for splitted plots
+<DD> <tt>atmos1D.py</tt>: functions <tt>merge_atmos1D</tt> and <tt>regrid</tt> updated
+
+<P>  <font size=+1>
+<DT> <em>Summer 2018</em>
+<DD> <em><font size=+1 face="it" color="green">Code ported to Python 3</font></em> (the Python 2 code is frozen now!)
+<P>  </font>
+
+<DT> <font size=+1>October 2018</font>
+<DD> <tt>lbl2xs.py</tt> --- a new option <tt>cpT</tt> to specify the pressure and temperature columns in the pT file <BR>
+     <tt>xs2ac.py</tt>, <tt>ac2od.py</tt>, <tt>xs2od.py</tt> ---  new executable scripts to do these steps from the command line (i.e. "wrappers" for the corresponding functions to be called from the command line / (unix) terminal) <BR>
+     <tt>extract.py</tt> renamed to <tt>higstract.py</tt> consistent with the main function of this module
+<DT> December 2018
+<DD> <tt>radInt.py</tt> --- new module defining a subclassed array <tt>riArray</tt> for radiation-intensity, including functions for read, save, and plot
+<DT> February 2019
+<DD> Failed matplotlib imports:  <tt>raise SystemExit</tt> errors replaced by <tt>print</tt> warnings
+<DD> Module <tt>planck.py</tt>:  new function <tt>dPlanck_Wavenumber_dT</tt>
+<DD> Module <tt>higstract.py</tt>:  new method <tt>strong</tt> for subclassed numpy array <tt>lineArray</tt>
+<DD> Module <tt>radInt.py</tt>:  info on spectral response added to legend produced by <tt>riPlot</tt>
+<DD> Module <tt>wgtFct.py</tt>:  new method <tt>convolve</tt> for subclassed numpy array <tt>wfArray</tt>
+<DT> March 2019
+<DD> Module <tt>radInt.py</tt>:  inconsistencies of header comment lines between <tt>riSave</tt> and <tt>riRead</tt> removed
+<DD> Python 2 sources (in directory <tt>src2</tt>) removed from tarball
+<DT> April 2019
+<DD> Broken/incorrect links from <tt>bin</tt> directory to <tt>../src</tt> directory repaired (incorrectly to  <tt>../src3</tt>)
+<DD> Module <tt>srf.py</tt>:  function <tt>Triangle</tt> corrected
+<DD> Demo file corrected:  <tt>mls=atmos1D(...)</tt> --->  <tt>mls=atmRead(...)</tt> 
+
+<P>
+<DT> <font size=+1>May 2019</font>
+<DD> <em>Py4CAtS paper published in <A HREF="http://dx.doi.org/10.3390/atmos10050262">Atmosphere <B>10(5)</B>, pp. 262, 2019</A></em>
+<P>
+
+<DT> <font size=+1><em>May-July 2019</em></font>
+<DD> Modules <tt>absCo.py, oDepth.py, xSection</tt>:  old regrid methods removed
+<DD> Module <tt>ac2wf.py</tt>: FoV loop in function <tt>ac2wf</tt> corrected to wfArray 
+<DD> Module <tt>atmos1D.py</tt>:   function <tt>cmr</tt> with new (second) optional argument <tt>what</tt>; misc changes in functions <tt>atmRead, atmPlot</tt>
+<DD> Module <tt>lbl2xs.py</tt>:  function <tt>lbl2xs</tt> terminates with non-positive pressure or temperature
+<DD> Module <tt>misc.py</tt>:  function <tt>show_lambda</tt> more wavenumbers in NIR added
+<DD> Module <tt>pairTypes.py</tt>:  class <tt>Interval</tt> division corrected Python 2 <tt>__(r)div__</tt> to Python 3 <tt>__(r)truediv__</tt>
+<DD> Module <tt>radInt.py</tt>:  new special method <tt>kelvin</tt> in class <tt>riArray</tt> to return equ. brightness temperature
+<DD> Module <tt>wgtFct.py</tt>:  function <tt>wfPlot</tt>: contour levels can be set explicitely, axis labels can be suppressed
+<DD> Cosmetic changes in module <tt>ac2wf.py, aeiou.py, srf.py</tt>
+
+<DT> <font size=+1><em>September 2019 -- January 2020</em></font>
+<DD> Module <tt>aeiou.py</tt>:  function <tt>loadxyy</tt> with new optional argument <tt>xLimits</tt>
+<DD> Module <tt>cgsUnits</tt>:  lengthsUnits:  ly, pc added;
+                                functions <tt>lambda2nu, nu2lambda</tt>: first argument (wavelengths or wavenumbers) are variable list arguments
+<DD> Module <tt>lineshapes.py</tt>:  function <tt>Rautian</tt>  now calling hum2wei32 (old: hum1wei24)
+<DD> Module <tt>misc.py</tt>:  function <tt>show_lambda</tt> with new arguments <tt>frmt, yShift, nanometer</tt>
+<DD> Module <tt>py4cats.py</tt>: import show_lambda added;
+<DD> Module <tt>oDepth.py</tt>:  functions <tt>oDepth_altitudes, oDepth_pressures</tt> optionally return altitudes or pressures in km, mb, ....
+<DD> Module <tt>xSection.py</tt>:  function <tt>xsSave</tt>: third and fourth arguments swapped (interpolate <--> commentChar) <BR>
+                                   function <tt>xsRead</tt>: now can be called recursively
+<!further changes:  ac2od --- statement acLast=ac moved after print; xs2ac --- warning for negative absCo>
+
+<DT> <font size=+1><em>July 202</em>0</font>
+<DD> Module <tt>convolution.py</tt>: functions <tt>convolveBox, convolveTriangle, convolveGauss</tt>: the number of grid points for the new wGrid is now evaluated as int()
+<DD> Module <tt>myMatPlotLib.py</tt>:  new module with some extra settings
+<DD> Module <tt>py4cats.py</tt>: last section with matplotlib settings removed (now in new file <tt>myMatPlotLib.py</tt>)
+
+<HR>
+<DL>
+<DT> <A NAME='march21'><font size=+1><em>March 2021</em></font></A>
+<DD> <font size=+1 face="it">Source code now reorganized as a <A HREF="https://docs.python.org/3/tutorial/modules.html#packages">package</A></font><BR>
+     <font size=-1>
+     Source files are now distributed over three subdirectories
+     <UL>
+          <LI> <big><kbd>lbl</kbd></big>: modules related to lbl computations incl. Hitran/Geisa database access, Voigt routines etc.;
+          <LI> <big><kbd>art</kbd></big>: modules related to atmospheric radiative transfer;
+          <LI> <big><kbd>aux</kbd></big>: auxiliary modules that should/could be useful in any context, e.g. input/output routines.
+     </UL>
+     The setup module <tt>py4cats.py</tt> is not required anymore, import of the Py4CAtS modules is now organized by the <big><tt>__init__.py</tt></big> files, in the (I)Python shell simply say<BR>
+     <font size=+1 face="monospace" color="green">from py4cats import *</font>
+     </font>
+<P>
+
+
+<P>
+<DT> <font size=+1><em>Spring - Summer 2021</em></font>
+<P>
+<DT> &nbsp; Plot functions
+<DD> <tt>atmPlot, acPlot, odPlot, riPlot, xsPlot</tt> functions have an additional argument <tt>**kwArgs</tt> (passed thru to MatPlotLib's functions) <BR>
+     <tt>acPlot, odPlot, xsPlot</tt> with an additional argument xUnit (instead of flag mue or nm)
+
+<DT> &nbsp;  Module <tt>art/ac2od.py</tt>:
+<DD> column density now saved as an additional entry in the <tt>odArray</tt> instance
+
+<DT> &nbsp;  Module <tt>aux/aerosol.py</tt>
+<DD> new module for aerosol optical depth using simple power law (Angstrom coefficient)
+
+<DT> &nbsp;  Module <tt>lbl/higstract.py</tt>
+<DD> improved/extended support of "beyond Voigt" line parameters in SEOM database
+
+<DT> &nbsp;  Module <tt>aux/ir.ry</tt>
+<DD> added radiusEarth, radiusSun, radiusJupiter, massEarth, massSun, massJupiter
+
+<DT>  &nbsp; Module <tt>lbl/lbl.py</tt>
+<DD>  functions <tt>lbl_2grids, lbl_3grids</tt>:   defaults changed to gridRatio=8, lagrange=2;
+<DD> function  <tt>lbl_brute</tt>:  handling/selection of "beyond Voigt" line shapes changed;
+<DD> function  <tt>lbl2xs</tt>:     initial check of `lineshape` modified;
+<DD> new function <tt>init_xSection</tt>:  setup wavenumber grid (old,original function wavenumber2xs) and zero xs array
+
+<DT> &nbsp;  Module <tt>lbl/lines.py</tt>
+<DD> <tt>lineArray</tt> class info with better support of "beyond Voigt" parameters;
+<DD> function <tt>xVoigt_parameters</tt> with support for "beyond Voigt" parameters (extended version of old `voigt_parameters`);
+<DD> new function <tt>llInfo</tt>
+
+<DT> &nbsp;  Module <tt>lbl/lineshapes.py</tt>
+<DD>   function argument `S` replaced by `strength`;
+<DD> function <tt>Voigt</tt>:    call <tt>hum1wei32</tt> for tiny <i>y</i> (otherwise <tt>hum1wei24</tt>);
+<DD> function <tt>Rautian</tt>:  call <tt>hum1wei32</tt> (original hum1wei24);
+<DD> speed-dependent profiles:  now calling <tt>sdv</tt> and <tt>sdr</tt> functions (in new module sdr)
+
+<DT> &nbsp;  Module <tt>art/limb.py</tt>:
+<DD> new module for limb (occultation) transmission and effective height
+
+<DT> &nbsp;  Module <tt>lbl/molecules.py</tt>
+<DD> new molecules (hitran20, geisa19/20) added 
+
+<DT> &nbsp;  Module <tt>art/oDepth.py</tt>
+<DD> class <tt>odArray</tt> with new attribute column density;
+<DD> convolve method with default Gauss;
+<DD> new function <tt>odConvolve</tt> (calls class method for a list/dictionary of optical depths);
+<DD> function <tt>odSave</tt> with new flag transmission to optionally save exp(-od);
+<DD> functions <tt>oDepth_altitudes, oDepth_pressures</tt> can return data in non-cgs units (e.g. km or mb)
+
+<DT> &nbsp;  Module <tt>art/od2ri.py</tt>
+<DD>   completely rewritten with added support for surface reflection etc
+
+<DT> &nbsp;  Module <tt>aux/racef.py</tt>
+<DD> new function <tt>hum1wei24w</tt>;<BR>
+     <EM>NOTE:</EM> all function except for <tt>zpf16p</tt> use two real arguments (x,y); zpf16p(z) is used by the <tt>sdr</tt> module/functions only!
+
+<DT> &nbsp;  Module <tt>art/rayleigh.py</tt>
+<DD>  new module for Rayleigh extinction
+
+<DT> &nbsp;  Module <tt>art/radInt.py</tt>
+<DD> class <tt>riArray</tt> with new method noise; <BR>
+     convolve method with default Gauss; <BR>
+     new function <tt>riConvolve</tt> (calls class method for a list/dictionary of radiances); <BR>
+     function <tt>riRead</tt> now returns a dictionary of riArray's if all entries of the pickle file have a `key`; <BR>
+     function <tt>riSave</tt>: if called with a dictionary of riArray's, save each as dictionary with an extra `key`
+
+<DT> &nbsp;  Module <tt>lbl/sdr.py</tt>
+<DD>      new module for speed-dependent Voigt and Rautian functions
+
+<DT>  &nbsp; Module <tt>aux/srf.py</tt>
+<DD>      function <tt>HyperGauss</tt>:  bug fix of sqrtLn2**3 ---> sqrtLn2**(1/3);
+                                      function <tt>UltraGauss</tt> added
+<DT> &nbsp;  Module <tt>aux/struc_array.py</tt>
+<DD>     new functions <tt>strucArrayChangeName</tt> and <tt>strucArrayUpdate</tt> 
+
+<DT> &nbsp;  Module <tt>art/wgtFct.py</tt>
+<DD> function <tt>wfPeakHeight</tt> now returns altitudes in cm
+
+<P>
+<DT> <font size=+1><em>Fall 2021</em></font>
+<P>
+
+<DT> &nbsp;  Modules <tt>art/absCo.py</tt> and <tt>art/xs2ac.py</tt>
+<DD>      <tt>acArray</tt> attribute <tt>molec</tt> now saves a dictionary of molecules vs. number densities (old: only (absorbing) molecule names);<BR>
+          this dictionary is set by the <tt>xs2ac</tt> function and the densities are required by the <tt>cia(.py)</tt> module/function.
+<DT> &nbsp;  Module <tt>lbl/lbl2od.py</tt>
+<DD>      three new options for function <tt>lbl2od</tt> to add cia, Rayleigh, and aerosol extinction to absorption coefficient(s) and optical depth(s)
+<DT> &nbsp;  Module <tt>art/cia.py</tt>
+<DD>      new module for collision-induced absorption
+</DL>
+
+</DL>
+
+</BODY>
+</HTML>

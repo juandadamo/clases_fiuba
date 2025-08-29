@@ -1,0 +1,38 @@
+%
+%\documentclass[]{article}
+%\usepackage{tikz,pgfplots}
+%\usepgfplotslibrary{dateplot}
+%\begin{document}
+%	\begin{tikzpicture}
+%		\begin{axis}
+%			\addplot table [x=tiempo, y=inflacion, col sep=comma] {salarios_sep2024.csv};
+%		\end{axis}
+%	\end{tikzpicture}
+%\end{document}
+
+
+
+\documentclass{minimal}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\begin{document}
+	\begin{tikzpicture}
+		
+		\begin{axis}[
+			date coordinates in=x,
+			xticklabel={\day.\month.\year\\ \hour:\minute:\sec},
+			x tick label style={align=center},
+			date ZERO={2023-11-01}, % Set near lowest date
+			xmin={2023-11-01}, % A date with no time is assumed to have a time of 00:00
+			xmax={2024-09-01},
+			xtick={2023-11-01  , % Set tick marks
+				2024-03-02 ,
+				20240-07-03  }
+			]
+			\addplot table [col sep=comma,trim cells=true,y=inflacion,x=tiempo] {salarios_sep2024.csv};
+			%\addplot table [col sep=comma,trim cells=true,y=salario] {salarios_sep2024.csv};
+		\end{axis}
+		
+	\end{tikzpicture}
+\end{document}

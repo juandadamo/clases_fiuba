@@ -1,0 +1,10 @@
+#  Solar irradiance vs wavenumber taken from Modtran 4.0
+#
+#  The spectra here correspond to a Planck blackbody of approx 6000K
+#  scaled by pi*(sunRadius/sun2earth)**2 = 6.80013e-05
+#
+#  sunRadius = 6.96e10 cm
+#  sun2Earth distance = 1au = 1.495979e+13 cm
+#
+#  Full resolution extraterrestrial spectrum by Kurucz et al. (1992), 100 MByte!
+#  http://www.libradtran.org/download/kurudz_full.tar.gz

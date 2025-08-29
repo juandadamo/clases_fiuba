@@ -1,0 +1,34 @@
+\documentclass[]{standalone}
+%\documentclass[]{article}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage[utf8x]{inputenc}
+\usetikzlibrary{arrows,positioning}
+\usetikzlibrary{plotmarks}
+\usepackage{amsmath}
+\usetikzlibrary{backgrounds,arrows.meta,external,babel,math,patterns,patterns.meta,calc,decorations.pathmorphing,decorations.markings, decorations.pathreplacing,shapes,fillbetween}
+\newcommand{\AxisRotator}[1][rotate=0]{%
+	\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+}
+
+\begin{document}
+	
+
+	\tikzmath{\Rd=5;\Rp = 4; \x1=3; \y1 =4; 
+		% Computations are also possible
+		\x2 = \x1/4; \y2 =\y1/3; } 
+
+	\begin{tikzpicture}[scale=1.5] 
+%	\fill[pattern=north east lines](0,0) arc(100:80:\Rd);
+	\draw[thick] (0,0) arc(100:80:\Rd)node[midway,above,yshift=0.5cm]{$\dot q|_{r+dr}d\theta(r+dr)$};	
+	\draw[thick,fill=white] (0,0)++(100:-\Rd+\Rp) arc(100:80:\Rp)node[midway,below]{$\dot q|_r d\theta r$};	
+	\draw[thin] (0,0)++(100:-\Rd+\Rp)--++(100:\Rd-\Rp);%node[left,midway]{$h  r d\theta dr \Delta T$};
+	\draw[thin] (0,0)++(100:-\Rd+\Rp)arc(100:80:\Rp)--++(80:\Rd-\Rp);%node[right,midway]{$h rd\theta dr \Delta T$};
+	
+	\draw[thin,latex-] (0,0) arc(100:90:\Rd)++(90:.25)--++(-90:.35);
+	\draw[thin,latex-] (0,0)+(100:-\Rd+\Rp) arc(100:90:\Rp) ++(90:.25)--++(-90:.35);
+	%\draw[thin,-latex] (0,0)++(100:-\Rd+\Rp)++(100:0.35)--++(190:.25);
+	%\draw[thin,-latex] (0,0)++(100:-\Rd+\Rp)arc(100:80:\Rp)++(80:.35)--++(-10:.25);
+	\draw[draw=gray,thin,-{latex[width=1mm,length=1mm]},line width=1mm] (0,0)++(100:-\Rd/2+\Rp/2)++(0.5,0)--++(1,0)node[above,midway,text=black]{$h rd\theta dr \Delta T$};
+	\end{tikzpicture}
+\end{document}

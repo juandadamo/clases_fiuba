@@ -1,0 +1,2 @@
+import numpy as np 
+my_data = loadtxt('vs.csv',dtype='str')

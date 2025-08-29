@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module convolve_grating</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>convolve_grating</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/convolve_grating.py">/users/schrei_f/src/py4CAtS/lite/src/convolve_grating.py</a></font></td></tr></table>
+    <p><tt>Convolve&nbsp;spectrum/spectra&nbsp;with&nbsp;a&nbsp;spectral&nbsp;response&nbsp;function&nbsp;of&nbsp;fixed&nbsp;resolving&nbsp;power&nbsp;R.<br>
+R&nbsp;=&nbsp;nu/delta_nu&nbsp;=&nbsp;lambda/delta_lambda&nbsp;=&nbsp;constant</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-convolve_grating"><strong>convolve_grating</strong></a>(vGrid, yValues, resolve=1000.0, what='i', vExt=5.0)</dt><dd><tt>Convolve&nbsp;spectra&nbsp;with&nbsp;a&nbsp;Gaussian&nbsp;spectral&nbsp;response&nbsp;function&nbsp;of&nbsp;fixed&nbsp;resolving&nbsp;power.<br>
+&nbsp;<br>
+ARGUMENTS:<br>
+----------<br>
+vGrid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;wavenumber&nbsp;grid&nbsp;of&nbsp;the&nbsp;monochromatic&nbsp;(high&nbsp;resolution)&nbsp;spectra<br>
+yValues:&nbsp;&nbsp;&nbsp;a&nbsp;rank-1&nbsp;spectrum&nbsp;or&nbsp;rank-2&nbsp;array&nbsp;(matrix)&nbsp;of&nbsp;spectra<br>
+resolve:&nbsp;&nbsp;&nbsp;resolving&nbsp;power&nbsp;&nbsp;R&nbsp;=&nbsp;nu/dNu&nbsp;=&nbsp;lambda/dLambda<br>
+vExt:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;left&nbsp;and&nbsp;right&nbsp;wing&nbsp;cutoff&nbsp;for&nbsp;Gauss&nbsp;response&nbsp;function&nbsp;in&nbsp;units&nbsp;of&nbsp;width<br>
+what:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type&nbsp;of&nbsp;spectra:&nbsp;&nbsp;'i'&nbsp;or&nbsp;'r'&nbsp;radiance&nbsp;(default)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'t'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transmission<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'o'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optical&nbsp;depth&nbsp;(see&nbsp;note)<br>
+RETURNS:<br>
+--------<br>
+the&nbsp;spectrum/spectra&nbsp;convolved&nbsp;with&nbsp;a&nbsp;Gaussian&nbsp;response&nbsp;function<br>
+&nbsp;<br>
+NOTE:<br>
+-----<br>
+*&nbsp;In&nbsp;case&nbsp;of&nbsp;transmission,&nbsp;the&nbsp;convolution&nbsp;uses&nbsp;absorption&nbsp;=&nbsp;1-transmission<br>
+*&nbsp;In&nbsp;case&nbsp;of&nbsp;optical&nbsp;depth,&nbsp;this&nbsp;is&nbsp;transformed&nbsp;to&nbsp;1-transmission&nbsp;=&nbsp;1-exp(-od)<br>
+&nbsp;&nbsp;before&nbsp;the&nbsp;convolution&nbsp;and&nbsp;transformed&nbsp;back&nbsp;afterwards<br>
+*&nbsp;In&nbsp;contrast&nbsp;to&nbsp;the&nbsp;(old)&nbsp;gaussedSpec&nbsp;etc&nbsp;routines,&nbsp;the&nbsp;new&nbsp;grid&nbsp;is&nbsp;set&nbsp;automatically</tt></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,22 @@
+\documentclass{minimal}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\begin{document}
+	\begin{tikzpicture}
+		
+		\begin{axis}[
+			date coordinates in=x,
+			xticklabel={\month.\year},
+			x tick label style={align=center},
+			date ZERO=2023-11-01, % Set near lowest date
+			xmin={2023-11-01}, % A date with no time is assumed to have a time of 00:00
+			xmax={2024-09-01},
+			xtick={2023-11-01,2024-03-01,2024-09-01},grid
+			]
+			\addplot table [col sep=comma,trim cells=true,y=inflacion] {datefile.csv};
+			\addplot table [col sep=comma,trim cells=true,y=salario] {datefile.csv};
+		\end{axis}
+		
+	\end{tikzpicture}
+\end{document}

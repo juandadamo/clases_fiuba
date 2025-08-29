@@ -1,0 +1,12 @@
+*.vSEan
+"typical" line parameter files as used by the lbl2xs, lbl2ac, and lbl2od scripts (executables).
+(The extension indicates the columns
+v = wavenumber/frequency, Strength, Energy, airbroadening, n = temperature exponent)
+
+NOTE:
+the files given here are provided as typical examples.
+These files are relevant only(?) when using py4CAtS from the Unix/Linux console/terminal (not recommended anymore!),
+i.e. they are generated (written) by the `higstract` script (executable)
+and read (loaded) by the `lbl2xs`, `lbl2ac`, and `lbl2od` scripts.
+They are not required when py4CATS is used in the (I)Python / Jupyter / ... interpreter or notebook.
+(Well, they might be useful if you want to plot line data with an external plot program.)

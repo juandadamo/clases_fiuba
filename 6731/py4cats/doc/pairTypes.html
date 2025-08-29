@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pairTypes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pairTypes</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/users/schrei_f/src/py4CAtS/lite/src/pairTypes.py">/users/schrei_f/src/py4CAtS/lite/src/pairTypes.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;collection&nbsp;of&nbsp;some&nbsp;special&nbsp;data&nbsp;types.</tt></p>
+<p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#list">builtins.list</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pairTypes.html#ListOfInts">ListOfInts</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pairTypes.html#Interval">Interval</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pairTypes.html#PairOfFloats">PairOfFloats</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pairTypes.html#PairOfInts">PairOfInts</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Interval">class <strong>Interval</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;kind&nbsp;of&nbsp;sequence&nbsp;/&nbsp;set&nbsp;with&nbsp;just&nbsp;two&nbsp;float&nbsp;elements&nbsp;definind&nbsp;an&nbsp;interval/range.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Interval-__add__"><strong>__add__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__bool__"><strong>__bool__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-__cmp__"><strong>__cmp__</strong></a>(self, other)</dt><dd><tt><a href="#Interval">Interval</a>&nbsp;comparison&nbsp;using&nbsp;cmp(<a href="#Interval">Interval</a>(,),<a href="#Interval">Interval</a>(,)),&nbsp;&nbsp;returns&nbsp;-1,&nbsp;0,&nbsp;or&nbsp;+1.</tt></dd></dl>
+
+<dl><dt><a name="Interval-__contains__"><strong>__contains__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__div__"><strong>__div__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__eq__"><strong>__eq__</strong></a>(self, other)</dt><dd><tt><a href="#Interval">Interval</a>&nbsp;equality&nbsp;test&nbsp;with&nbsp;==</tt></dd></dl>
+
+<dl><dt><a name="Interval-__init__"><strong>__init__</strong></a>(self, *limits)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Interval-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-__mul__"><strong>__mul__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__radd__"><strong>__radd__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__rdiv__"><strong>__rdiv__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Interval-__rmul__"><strong>__rmul__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="Interval-__sub__"><strong>__sub__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Interval-approx"><strong>approx</strong></a>(self, other, eps=0.001)</dt></dl>
+
+<dl><dt><a name="Interval-grid"><strong>grid</strong></a>(self, nPoints=11, logGrid=False)</dt><dd><tt>Generate&nbsp;an&nbsp;equidistant,&nbsp;uniform&nbsp;grid&nbsp;with&nbsp;nPoints-1&nbsp;intervals.</tt></dd></dl>
+
+<dl><dt><a name="Interval-inside"><strong>inside</strong></a>(self, value)</dt><dd><tt>Test&nbsp;if&nbsp;other&nbsp;is&nbsp;inside&nbsp;the&nbsp;interval,&nbsp;i.e.,&nbsp;lower&lt;value&lt;upper.</tt></dd></dl>
+
+<dl><dt><a name="Interval-intersect"><strong>intersect</strong></a>(self, other)</dt><dd><tt>Return&nbsp;the&nbsp;common&nbsp;intersect&nbsp;of&nbsp;two&nbsp;intervals.</tt></dd></dl>
+
+<dl><dt><a name="Interval-limits"><strong>limits</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Interval-member"><strong>member</strong></a>(self, value)</dt><dd><tt>Test&nbsp;if&nbsp;other&nbsp;is&nbsp;inside&nbsp;the&nbsp;interval,&nbsp;i.e.,&nbsp;lower&lt;=value&lt;=upper.</tt></dd></dl>
+
+<dl><dt><a name="Interval-overlap"><strong>overlap</strong></a>(self, other)</dt><dd><tt>Test&nbsp;if&nbsp;the&nbsp;two&nbsp;intervals&nbsp;have&nbsp;a&nbsp;common&nbsp;intersect.</tt></dd></dl>
+
+<dl><dt><a name="Interval-part"><strong>part</strong></a>(self, other)</dt><dd><tt>Test&nbsp;if&nbsp;interval&nbsp;is&nbsp;inside&nbsp;other&nbsp;.</tt></dd></dl>
+
+<dl><dt><a name="Interval-shift"><strong>shift</strong></a>(self, other)</dt><dd><tt>shift&nbsp;the&nbsp;interval&nbsp;limits&nbsp;by&nbsp;a&nbsp;constant.</tt></dd></dl>
+
+<dl><dt><a name="Interval-size"><strong>size</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ListOfInts">class <strong>ListOfInts</strong></a>(<a href="builtins.html#list">builtins.list</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;special&nbsp;<a href="builtins.html#list">list</a>&nbsp;with&nbsp;only&nbsp;integers&nbsp;allowed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pairTypes.html#ListOfInts">ListOfInts</a></dd>
+<dd><a href="builtins.html#list">builtins.list</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ListOfInts-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__iadd__"><strong>__iadd__</strong></a>(self, other)</dt><dd><tt>Implement&nbsp;self+=value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__init__"><strong>__init__</strong></a>(self, *someList)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__setitem__"><strong>__setitem__</strong></a>(self, i, item)</dt><dd><tt>Set&nbsp;self[key]&nbsp;to&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-append"><strong>append</strong></a>(self, item)</dt><dd><tt>L.<a href="#ListOfInts-append">append</a>(<a href="builtins.html#object">object</a>)&nbsp;-&gt;&nbsp;None&nbsp;--&nbsp;append&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;end</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-extend"><strong>extend</strong></a>(self, otherList)</dt><dd><tt>L.<a href="#ListOfInts-extend">extend</a>(iterable)&nbsp;-&gt;&nbsp;None&nbsp;--&nbsp;extend&nbsp;<a href="builtins.html#list">list</a>&nbsp;by&nbsp;appending&nbsp;elements&nbsp;from&nbsp;the&nbsp;iterable</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-insert"><strong>insert</strong></a>(self, index, item)</dt><dd><tt>L.<a href="#ListOfInts-insert">insert</a>(index,&nbsp;<a href="builtins.html#object">object</a>)&nbsp;--&nbsp;insert&nbsp;<a href="builtins.html#object">object</a>&nbsp;before&nbsp;index</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#list">builtins.list</a>:<br>
+<dl><dt><a name="ListOfInts-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;key&nbsp;in&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__delitem__"><strong>__delitem__</strong></a>(self, key, /)</dt><dd><tt>Delete&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#ListOfInts-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__imul__"><strong>__imul__</strong></a>(self, value, /)</dt><dd><tt>Implement&nbsp;self*=value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.n</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__reversed__"><strong>__reversed__</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-__reversed__">__reversed__</a>()&nbsp;--&nbsp;return&nbsp;a&nbsp;reverse&nbsp;iterator&nbsp;over&nbsp;the&nbsp;<a href="builtins.html#list">list</a></tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-__sizeof__">__sizeof__</a>()&nbsp;--&nbsp;size&nbsp;of&nbsp;L&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-clear"><strong>clear</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-clear">clear</a>()&nbsp;-&gt;&nbsp;None&nbsp;--&nbsp;remove&nbsp;all&nbsp;items&nbsp;from&nbsp;L</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-copy"><strong>copy</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-copy">copy</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#list">list</a>&nbsp;--&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;L</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-count"><strong>count</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-count">count</a>(value)&nbsp;-&gt;&nbsp;integer&nbsp;--&nbsp;return&nbsp;number&nbsp;of&nbsp;occurrences&nbsp;of&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-index"><strong>index</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-index">index</a>(value,&nbsp;[start,&nbsp;[stop]])&nbsp;-&gt;&nbsp;integer&nbsp;--&nbsp;return&nbsp;first&nbsp;index&nbsp;of&nbsp;value.<br>
+Raises&nbsp;ValueError&nbsp;if&nbsp;the&nbsp;value&nbsp;is&nbsp;not&nbsp;present.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-pop"><strong>pop</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-pop">pop</a>([index])&nbsp;-&gt;&nbsp;item&nbsp;--&nbsp;remove&nbsp;and&nbsp;return&nbsp;item&nbsp;at&nbsp;index&nbsp;(default&nbsp;last).<br>
+Raises&nbsp;IndexError&nbsp;if&nbsp;<a href="builtins.html#list">list</a>&nbsp;is&nbsp;empty&nbsp;or&nbsp;index&nbsp;is&nbsp;out&nbsp;of&nbsp;range.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-remove"><strong>remove</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-remove">remove</a>(value)&nbsp;-&gt;&nbsp;None&nbsp;--&nbsp;remove&nbsp;first&nbsp;occurrence&nbsp;of&nbsp;value.<br>
+Raises&nbsp;ValueError&nbsp;if&nbsp;the&nbsp;value&nbsp;is&nbsp;not&nbsp;present.</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-reverse"><strong>reverse</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-reverse">reverse</a>()&nbsp;--&nbsp;reverse&nbsp;*IN&nbsp;PLACE*</tt></dd></dl>
+
+<dl><dt><a name="ListOfInts-sort"><strong>sort</strong></a>(...)</dt><dd><tt>L.<a href="#ListOfInts-sort">sort</a>(key=None,&nbsp;reverse=False)&nbsp;-&gt;&nbsp;None&nbsp;--&nbsp;stable&nbsp;sort&nbsp;*IN&nbsp;PLACE*</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="builtins.html#list">builtins.list</a>:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PairOfFloats">class <strong>PairOfFloats</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;kind&nbsp;of&nbsp;sequence&nbsp;/&nbsp;set&nbsp;with&nbsp;just&nbsp;two&nbsp;float&nbsp;elements.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PairOfFloats-__add__"><strong>__add__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__div__"><strong>__div__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__eq__"><strong>__eq__</strong></a>(self, other)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="PairOfFloats-__init__"><strong>__init__</strong></a>(self, *pair)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PairOfFloats-__mul__"><strong>__mul__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__radd__"><strong>__radd__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__rdiv__"><strong>__rdiv__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="PairOfFloats-__rmul__"><strong>__rmul__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__rsub__"><strong>__rsub__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="PairOfFloats-__sub__"><strong>__sub__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-approx"><strong>approx</strong></a>(self, other, eps=0.001)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-list"><strong>list</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-max"><strong>max</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-min"><strong>min</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PairOfFloats-swap"><strong>swap</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PairOfInts">class <strong>PairOfInts</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;kind&nbsp;of&nbsp;sequence&nbsp;/&nbsp;set&nbsp;with&nbsp;just&nbsp;two&nbsp;integer&nbsp;elements.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PairOfInts-__add__"><strong>__add__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__div__"><strong>__div__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__eq__"><strong>__eq__</strong></a>(self, other)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="PairOfInts-__init__"><strong>__init__</strong></a>(self, *pair)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="PairOfInts-__mul__"><strong>__mul__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__radd__"><strong>__radd__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__rdiv__"><strong>__rdiv__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="PairOfInts-__rmul__"><strong>__rmul__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__rsub__"><strong>__rsub__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="PairOfInts-__sub__"><strong>__sub__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="PairOfInts-distinct"><strong>distinct</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PairOfInts-list"><strong>list</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PairOfInts-max"><strong>max</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PairOfInts-min"><strong>min</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
